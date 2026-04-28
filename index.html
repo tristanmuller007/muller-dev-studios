@@ -723,6 +723,34 @@ nav{
   margin-right:5px;
 }
 
+/* ===== LANGUAGE TOGGLE ===== */
+.lang-toggle{
+  display:inline-flex;align-items:center;
+  background:rgba(0,0,0,.04);
+  border:1px solid var(--line-dark);
+  border-radius:30px;
+  padding:3px;
+  margin-right:14px;
+  font-family:'Geist Mono','Courier New',monospace;
+  font-size:11px;font-weight:700;letter-spacing:1px;
+}
+.lang-toggle button{
+  background:none;border:none;
+  padding:6px 11px;border-radius:30px;
+  cursor:pointer;
+  color:var(--text-3);
+  transition:all .25s;
+  font:inherit;text-transform:uppercase;
+}
+.lang-toggle button.active{
+  background:var(--ink);color:var(--neon);
+}
+.lang-toggle button:hover:not(.active){color:var(--ink)}
+@media (max-width:900px){
+  .lang-toggle{margin-right:10px;padding:2px}
+  .lang-toggle button{padding:5px 9px;font-size:10px}
+}
+
 /* ===== KEYBOARD HINT (bottom right) ===== */
 .kbd-hint{
   position:fixed;bottom:24px;right:24px;
@@ -1399,6 +1427,10 @@ footer{
       <li><a href="#projets">Démos</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
+    <div class="lang-toggle" role="tablist" aria-label="Language">
+      <button data-lang="fr" class="active">FR</button>
+      <button data-lang="en">EN</button>
+    </div>
     <a href="#contact" class="nav-cta">Devis gratuit <i class="fas fa-arrow-right"></i></a>
   </div>
 </nav>
@@ -2196,6 +2228,265 @@ footer{
 <div class="kbd-hint">Appuie sur <kbd>⌘</kbd><kbd>K</kbd> pour naviguer</div>
 
 <script>
+/* ===== LANGUAGE TOGGLE FR / EN =====
+   Walks all text nodes, swaps based on a FR->EN dictionary.
+   Stores user preference in localStorage. */
+(function(){
+  const I18N = {
+    /* Nav */
+    "Pour qui": "Who it's for",
+    "L'offre": "Service",
+    "Tarifs": "Pricing",
+    "Démos": "Showcase",
+    "FAQ": "FAQ",
+    "Devis gratuit": "Get a quote",
+
+    /* Hero */
+    "Disponible · Bourg-en-Bresse": "Available · Bourg-en-Bresse, France",
+    "BÂTI": "BUILT",
+    "POUR LE": "FOR THE",
+    "DÉFI.": "CHALLENGE.",
+    "sur-mesure": "tailor-made",
+    "préparation, exécution, victoire": "preparation, execution, victory",
+    "7 jours": "7 days",
+    "890€": "€890",
+    "Lancer mon projet": "Start my project",
+    "Voir les tarifs": "See pricing",
+    "Champion": "Champion",
+    "Délai max": "Max delivery",
+    "Réponse devis": "Quote response",
+    "BOURG-EN-BRESSE · 01 · FRANCE": "BOURG-EN-BRESSE · FRANCE",
+
+    /* Trustbar */
+    "— Inspiré par les meilleures maisons": "— Inspired by leading brands",
+    "Joaillerie": "Jewelry",
+    "Bistronomie": "Bistronomy",
+    "Couture": "Couture",
+
+    /* Pour qui */
+    "— Pour qui": "— Who it's for",
+    "Pour les pros qui n'ont pas le temps de s'occuper d'un site.": "For pros who don't have time to manage a website.",
+    "Vous gérez votre activité, je gère votre présence en ligne. Brief en 30 min, livraison en 7 jours.": "You run your business, I run your online presence. 30-min brief, 7-day delivery.",
+    "À la commande": "Upfront",
+    "Devis": "Quote",
+    "Artisans BTP": "Trades & construction",
+    "Plombier, électricien, chauffagiste, menuisier, paysagiste, peintre.": "Plumber, electrician, heating, carpenter, landscaper, painter.",
+    "Beauté": "Beauty",
+    "Coiffeur, esthétique, barbier": "Hair, beauty, barber",
+    "Santé": "Health",
+    "Kiné, ostéo, podologue": "Physio, osteo, podiatrist",
+    "Coachs sportifs & bien-être": "Sport & wellness coaches",
+    "Coachs indépendants, préparateurs physiques, yoga, pilates, naturopathes.": "Independent coaches, personal trainers, yoga, pilates, naturopaths.",
+    "Restaurants": "Restaurants",
+    "Resto, food truck, traiteur": "Restaurant, food truck, caterer",
+    "Auto": "Auto",
+    "Garage, carrosserie, auto-école": "Garage, body shop, driving school",
+    "Animalier & commerces locaux": "Pet care & local shops",
+    "Toiletteur, éducateur canin, boutiques de proximité, ateliers, indépendants.": "Groomer, dog trainer, local shops, workshops, indies.",
+
+    /* Offre */
+    "— Ce qui est inclus": "— What's included",
+    "Pas de fonctionnalités gadget, pas de frais cachés. Juste ce qui fait qu'un site amène des clients aujourd'hui.": "No gimmicks, no hidden fees. Just what makes a site bring customers today.",
+    "Design moderne sur-mesure": "Modern custom design",
+    "Pas un template recyclé. Une identité visuelle pensée pour votre métier et votre clientèle.": "Not a recycled template. A visual identity built for your trade and clients.",
+    "100% responsive": "100% responsive",
+    "Affichage parfait sur mobile, tablette et ordinateur. 70% de vos clients vous verront depuis leur téléphone.": "Perfect on mobile, tablet, and desktop. 70% of your customers see you on their phone.",
+    "Optimisé Google": "Google-optimized",
+    "Formulaire de contact": "Contact form",
+    "Les demandes arrivent directement dans votre boîte mail. Aucune installation à faire.": "Inquiries land straight in your inbox. Zero setup on your side.",
+    "Ultra rapide": "Lightning fast",
+    "Site qui charge en moins de 2 secondes. Google adore, vos visiteurs aussi.": "Loads in under 2 seconds. Google loves it, so do your visitors.",
+    "Domaine + hébergement": "Domain + hosting",
+    "Nom de domaine personnalisé (.fr ou .com) et hébergement inclus la première année.": "Custom domain (.com or .fr) and hosting included for the first year.",
+
+    /* Process */
+    "— Le déroulé": "— How it works",
+    "Un process simple et carré. Vous savez ce qu'il se passe à chaque étape.": "A simple, no-nonsense process. You know what happens at every step.",
+    "On échange": "We talk",
+    "30 min au téléphone ou en café à Bourg pour comprendre votre activité et vos besoins.": "30 min by phone or coffee in Bourg to understand your business and needs.",
+    "Jour 1 · Gratuit": "Day 1 · Free",
+    "Devis et maquette": "Quote & mockup",
+    "Vous recevez un devis clair et une première maquette du site. On valide ensemble.": "You get a clear quote and a first mockup. We validate together.",
+    "Jour 2": "Day 2",
+    "Conception": "Build",
+    "Je code le site sur-mesure. Vous suivez l'avancée via un lien privé en temps réel.": "I code your custom site. You follow progress in real time via a private link.",
+    "Jours 3 à 5": "Days 3 to 5",
+    "Retouches & mise en ligne": "Polish & go live",
+    "2 séries de retouches incluses, puis on déploie le site avec votre nom de domaine.": "2 rounds of edits included, then we deploy with your domain.",
+    "Jours 6 à 7": "Days 6 to 7",
+
+    /* Tarifs */
+    "— Tarifs": "— Pricing",
+    "Pas de petite ligne, pas de surprise. Vous savez exactement ce que vous payez et ce que vous obtenez.": "No fine print, no surprise. You know exactly what you pay and what you get.",
+    "Le plus choisi": "Most popular",
+    "Starter": "Starter",
+    "Pour démarrer en ligne avec un site simple et propre.": "To get online with a clean, simple website.",
+    "TVA non applicable · paiement en 2 fois": "VAT-exempt · 2 installments",
+    "Site 3 pages (Accueil, Services, Contact)": "3-page site (Home, Services, Contact)",
+    "Mobile / tablette / ordi": "Mobile / tablet / desktop",
+    "Hébergement + domaine 1 an": "Hosting + domain (1 year)",
+    "Livraison en 5 jours": "5-day delivery",
+    "Choisir Starter": "Choose Starter",
+    "Vitrine Pro": "Showcase Pro",
+    "L'offre la plus demandée par les artisans et indépendants.": "The most-requested offer by tradespeople and freelancers.",
+    "Site 5 pages sur-mesure": "5-page custom site",
+    "Design moderne et identité visuelle": "Modern design + visual identity",
+    "Référencement Google local": "Google local SEO",
+    "Configuration Google Business": "Google Business setup",
+    "2 séries de retouches incluses": "2 rounds of edits included",
+    "Livraison en 7 jours": "7-day delivery",
+    "Choisir Vitrine Pro": "Choose Showcase Pro",
+    "Sur-mesure": "Custom",
+    "Site avec blog, espace client, réservation, ou intégrations spécifiques.": "Site with blog, client area, booking, or custom integrations.",
+    "À partir de 1 490€": "Starting at €1,490",
+    "Tout du pack Vitrine Pro": "Everything in Showcase Pro",
+    "Pages illimitées": "Unlimited pages",
+    "Blog ou actualités": "Blog or news",
+    "Système de réservation en ligne": "Online booking system",
+    "Intégrations personnalisées": "Custom integrations",
+    "Demander un devis": "Request a quote",
+
+    /* Démos */
+    "— Galerie de démos": "— Demo gallery",
+    "Immobilier": "Real estate",
+    "Avocats": "Law firm",
+    "Restaurant": "Restaurant",
+    "Artisan BTP": "Trade",
+    "Démo": "Demo",
+    "Vous voulez votre démo personnalisée ?": "Want a custom demo?",
+
+    /* Témoignages */
+    "— Ce qu'ils en disent": "— What they say",
+    "Des artisans, indépendants et commerces qui sont passés du \"site qui dort\" au \"site qui ramène des clients\".": "Tradespeople, freelancers and shops who switched from a \"sleeping site\" to one that brings real customers.",
+    "*Témoignages composites représentatifs · projets en cours": "*Representative composite testimonials · projects in progress",
+
+    /* Localisation */
+    "— Localisation": "— Location",
+    "Latitude · Ain (01)": "Latitude · Ain (01)",
+    "Longitude · Auvergne-Rhône-Alpes": "Longitude · Auvergne-Rhône-Alpes",
+
+    /* FAQ */
+    "— Questions fréquentes": "— Frequently asked",
+
+    /* Contact */
+    "— On en parle ?": "— Let's talk",
+    "Devis gratuit sous 24h. Aucun engagement. Le 1er échange est gratuit (téléphone ou café à Bourg).": "Free quote within 24h. No commitment. First call is free (phone or coffee in Bourg).",
+    "Téléphone": "Phone",
+    "Email": "Email",
+    "Localisation": "Location",
+    "Réponse sous 24h, et c'est sans engagement.": "Response within 24h, no commitment.",
+    "Prénom & Nom": "First & Last Name",
+    "Entreprise": "Company",
+    "Quel pack vous intéresse ?": "Which package?",
+    "Vitrine Pro — 890€ (recommandé)": "Showcase Pro — €890 (recommended)",
+    "Starter — 690€": "Starter — €690",
+    "Je ne sais pas encore": "Not sure yet",
+    "Votre projet en quelques mots": "Your project in a few words",
+    "Mon métier, ce que je veux montrer sur le site, ce que je n'aime pas chez les concurrents...": "My business, what I want to show, what I don't like in competitors...",
+    "Envoyer ma demande": "Send my request",
+    "Vos infos restent confidentielles. Aucune revente, aucun spam.": "Your info stays private. No reselling, no spam.",
+
+    /* Footer */
+    "Studio de création de sites web pour artisans, commerçants et indépendants. Basé à Bourg-en-Bresse, disponible partout en France.": "Web design studio for tradespeople, shopkeepers and freelancers. Based in Bourg-en-Bresse, working France-wide.",
+    "Navigation": "Navigation",
+    "Contact": "Contact",
+    "Portfolio complet": "Full portfolio",
+
+    /* Cmd-K */
+    "Naviguer · taper pour filtrer...": "Navigate · type to filter...",
+    "Naviguer": "Navigate",
+    "Aller": "Go",
+    "Fermer": "Close",
+    "pour naviguer": "to navigate",
+    "Hero": "Home",
+    "Pour qui c'est ?": "Who is it for?",
+    "Process": "Process",
+    "Démos / Galerie": "Showcase",
+    "Témoignages": "Testimonials",
+    "Voir le portfolio complet": "Full portfolio",
+
+    /* Section heads (split parts) */
+    "amène des clients": "brings customers",
+    "Conçu pour les pros": "Built for pros",
+    "du terrain.": "on the ground.",
+    "Vous êtes seul·e ou en petite équipe. Vous gérez votre activité au quotidien. Vous avez besoin d'un site qui travaille pour vous, pas de prise de tête.": "Solo or small team. You run your business day-to-day. You need a site that works for you, not headaches.",
+    "Tout ce qu'il faut pour": "Everything you need to",
+    "être visible.": "be visible.",
+    "De la commande à la mise en ligne,": "From order to launch,",
+    "en 7 jours.": "in 7 days.",
+    "Tout est": "Everything is",
+    "transparent.": "transparent.",
+    "6 sites, 6 univers,": "6 sites, 6 worlds,",
+    "une exigence.": "one standard.",
+    "Basé à": "Based in",
+    "Bourg-en-Bresse.": "Bourg-en-Bresse.",
+    "Disponible partout en France. RDV physique privilégié à Bourg-en-Bresse, Mâcon, Lyon et dans tout l'Ain. Travail à distance partout ailleurs.": "Available across France. In-person preferred in Bourg-en-Bresse, Mâcon, Lyon and across Ain. Remote anywhere else.",
+    "Vous vous demandez": "You're wondering",
+    "peut-être...": "maybe...",
+    "Parlons de votre": "Let's talk about your",
+    "projet.": "project.",
+    "Mes derniers": "Recent",
+    "projets.": "projects.",
+    "La preuve par": "Proof in",
+    "5 étoiles.": "5 stars.",
+  };
+
+  const fr2en = new Map(Object.entries(I18N));
+  const en2fr = new Map();
+  fr2en.forEach((v,k) => en2fr.set(v,k));
+
+  const html = document.documentElement;
+  const buttons = document.querySelectorAll('.lang-toggle button');
+  let currentLang = 'fr';
+
+  function findText(node, list){
+    if(node.nodeType===3){
+      const txt = node.nodeValue.trim();
+      if(txt.length > 0) list.push(node);
+    } else if(node.nodeType===1 && !['SCRIPT','STYLE','NOSCRIPT'].includes(node.tagName)){
+      for(let i=0;i<node.childNodes.length;i++) findText(node.childNodes[i], list);
+    }
+    return list;
+  }
+
+  function applyLang(lang){
+    if(lang===currentLang) return;
+    const list = findText(document.body, []);
+    list.forEach(n => {
+      const original = n.nodeValue;
+      const trimmed = original.trim();
+      const leading = original.match(/^\s*/)[0];
+      const trailing = original.match(/\s*$/)[0];
+      let translated;
+      if(lang==='en' && fr2en.has(trimmed)) translated = fr2en.get(trimmed);
+      else if(lang==='fr' && en2fr.has(trimmed)) translated = en2fr.get(trimmed);
+      else return;
+      n.nodeValue = leading + translated + trailing;
+    });
+    document.querySelectorAll('[placeholder]').forEach(el => {
+      const cur = el.placeholder.trim();
+      if(lang==='en' && fr2en.has(cur)) el.placeholder = fr2en.get(cur);
+      else if(lang==='fr' && en2fr.has(cur)) el.placeholder = en2fr.get(cur);
+    });
+    document.querySelectorAll('option').forEach(el => {
+      const cur = el.textContent.trim();
+      if(lang==='en' && fr2en.has(cur)) el.textContent = fr2en.get(cur);
+      else if(lang==='fr' && en2fr.has(cur)) el.textContent = en2fr.get(cur);
+    });
+    currentLang = lang;
+    html.lang = lang;
+    buttons.forEach(b => b.classList.toggle('active', b.dataset.lang===lang));
+    try { localStorage.setItem('mds-lang', lang); } catch(e){}
+  }
+
+  buttons.forEach(b => b.addEventListener('click', () => applyLang(b.dataset.lang)));
+
+  try {
+    const saved = localStorage.getItem('mds-lang');
+    if(saved==='en') applyLang('en');
+  } catch(e){}
+})();
+
 /* ===== PRELOADER ===== */
 (function(){
   const pre=document.getElementById('preloader');
