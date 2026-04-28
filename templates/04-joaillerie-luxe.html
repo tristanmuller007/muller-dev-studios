@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ELYSÉA — Joaillerie</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #fafaf7;
+  --fg: #0a0a0a;
+  --muted: rgba(10,10,10,0.5);
+  --line: rgba(10,10,10,0.08);
+  --paper: #f0ede5;
+  --accent: #b8956a;
+  --accent-soft: rgba(184,149,106,0.08);
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Geist', sans-serif;
+  --mono: 'Geist Mono', monospace;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --max: 1480px;
+}
+
+body.theme-cream { --bg: #fafaf7; --paper: #f0ede5; --accent: #b8956a; --accent-soft: rgba(184,149,106,0.08); }
+body.theme-rose { --bg: #fdf6f3; --paper: #f5e9e2; --accent: #c8957f; --accent-soft: rgba(200,149,127,0.1); }
+body.theme-emerald { --bg: #f6f8f5; --paper: #e7ede4; --accent: #4a7a5e; --accent-soft: rgba(74,122,94,0.08); }
+body.theme-noir { --bg: #0a0a0a; --fg: #f0ede5; --paper: #131312; --line: rgba(240,237,229,0.08); --muted: rgba(240,237,229,0.5); --accent: #d4b483; --accent-soft: rgba(212,180,131,0.12); }
+body.theme-platinum { --bg: #f5f5f3; --paper: #ebebe7; --accent: #8a8a85; --accent-soft: rgba(138,138,133,0.08); }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--sans);
+  font-weight: 300;
+  line-height: 1.55;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+::selection { background: var(--accent); color: var(--bg); }
+
+/* ━━━━━━ NAV ━━━━━━ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 1.2rem 3rem;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  background: rgba(250,250,247,0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  transition: padding 0.3s var(--ease);
+  border-bottom: 1px solid transparent;
+}
+body.theme-noir .nav { background: rgba(10,10,10,0.85); }
+.nav.solid { border-bottom-color: var(--line); padding: 0.8rem 3rem; }
+
+.nav-left { display: flex; gap: 2rem; }
+.nav-right {
+  display: flex; gap: 2rem; justify-content: flex-end; align-items: center;
+}
+.nav-link {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--fg);
+  transition: color 0.3s var(--ease);
+}
+.nav-link:hover { color: var(--accent); }
+
+.brand-center {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+.brand-center .since {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  color: var(--accent);
+  margin-top: 0.2rem;
+}
+
+.nav-icon {
+  width: 36px; height: 36px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s var(--ease);
+  font-size: 0.85rem;
+}
+.nav-icon:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ━━━━━━ HERO ━━━━━━ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  padding: 8rem 3rem 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.hero-left {
+  position: relative;
+  z-index: 2;
+}
+.hero-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--accent);
+  margin-bottom: 2.5rem;
+  display: inline-flex; align-items: center; gap: 0.8rem;
+}
+.hero-eyebrow::before {
+  content: ''; width: 30px; height: 1px; background: var(--accent);
+}
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(3rem, 7vw, 7rem);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  margin-bottom: 2rem;
+}
+.hero-title em {
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 300;
+}
+.hero-desc {
+  font-size: 1.05rem;
+  color: var(--muted);
+  max-width: 460px;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 1rem 1.8rem;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: 500;
+  transition: all 0.4s var(--ease);
+  border-radius: 2px;
+}
+.btn-primary { background: var(--accent); color: var(--bg); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px var(--accent-soft); }
+.btn-ghost { border: 1px solid var(--line); color: var(--fg); }
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+.arrow { transition: transform 0.3s var(--ease); }
+.btn:hover .arrow { transform: translateX(3px); }
+
+.hero-right {
+  position: relative;
+  height: 75vh;
+  min-height: 600px;
+}
+.hero-img-stack {
+  position: relative;
+  width: 100%; height: 100%;
+}
+.hero-img-stack img {
+  position: absolute;
+  width: 70%; height: 80%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+.hero-img-stack img:first-child {
+  top: 0; right: 0;
+  z-index: 2;
+}
+.hero-img-stack img:last-child {
+  bottom: 0; left: 0;
+  z-index: 1;
+  width: 55%; height: 60%;
+  border: 8px solid var(--bg);
+}
+.hero-mark {
+  position: absolute;
+  bottom: 8%; right: 5%;
+  z-index: 3;
+  width: 90px; height: 90px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--bg);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.85rem;
+  text-align: center;
+  font-weight: 400;
+  animation: spin 20s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ━━━━━━ MARQUEE ━━━━━━ */
+.marquee {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 2rem 0;
+  overflow: hidden;
+  white-space: nowrap;
+  background: var(--paper);
+}
+.marquee-track {
+  display: inline-flex;
+  gap: 4rem;
+  animation: tick 45s linear infinite;
+}
+.marquee-item {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+.marquee-item.dot { color: var(--accent); font-style: normal; font-size: 0.8rem; align-self: center; }
+@keyframes tick { to { transform: translateX(-50%); } }
+
+/* ━━━━━━ SECTION ━━━━━━ */
+.section {
+  padding: 8rem 3rem;
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.section-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 3rem;
+  align-items: end;
+  margin-bottom: 5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--line);
+}
+.section-num {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  text-align: center;
+}
+.section-title em { font-style: italic; color: var(--accent); }
+.section-link {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 0.3rem;
+  transition: all 0.3s var(--ease);
+}
+.section-link:hover { color: var(--accent); border-color: var(--accent); }
+
+/* ━━━━━━ COLLECTIONS ━━━━━━ */
+.collections {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.collection {
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.4s var(--ease);
+}
+.collection:hover { transform: translateY(-6px); }
+.collection-img {
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  background: var(--paper);
+  margin-bottom: 1.5rem;
+  border-radius: 4px;
+  position: relative;
+}
+.collection-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--ease);
+}
+.collection:hover .collection-img img { transform: scale(1.05); }
+.collection-img::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 70%, rgba(0,0,0,0.05) 100%);
+  pointer-events: none;
+}
+.collection-meta {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 0.4rem;
+}
+.collection-tag {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+}
+.collection-count {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+}
+.collection-name {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.3rem;
+}
+.collection-desc {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* ━━━━━━ FEATURED PIECE ━━━━━━ */
+.featured {
+  background: var(--paper);
+  padding: 8rem 3rem;
+}
+.featured-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 6rem;
+  align-items: center;
+}
+.featured-img {
+  aspect-ratio: 1;
+  background: var(--bg);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+.featured-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.featured-img::after {
+  content: '01';
+  position: absolute;
+  top: 1.5rem; left: 1.5rem;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+}
+.featured-tag {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+}
+.featured-name {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+}
+.featured-name em { font-style: italic; color: var(--accent); }
+.featured-desc {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--muted);
+  margin-bottom: 2.5rem;
+  max-width: 520px;
+}
+.featured-specs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem 3rem;
+  margin-bottom: 2.5rem;
+  padding: 2rem 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.spec-label {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  margin-bottom: 0.4rem;
+}
+.spec-value {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 400;
+}
+.featured-price {
+  display: flex; align-items: center; gap: 2rem;
+  margin-bottom: 2rem;
+}
+.price-label {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+}
+.price-value {
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--accent);
+}
+
+/* ━━━━━━ CRAFT ━━━━━━ */
+.craft {
+  padding: 8rem 3rem;
+  max-width: var(--max);
+  margin: 0 auto;
+  text-align: center;
+}
+.craft-quote {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4.5vw, 4rem);
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  max-width: 1100px;
+  margin: 0 auto 3rem;
+}
+.craft-quote em { color: var(--accent); }
+.craft-author {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--muted);
+}
+.craft-author b { color: var(--accent); display: block; font-size: 1rem; font-family: var(--serif); font-weight: 500; letter-spacing: 0; text-transform: none; margin-bottom: 0.3rem; }
+
+/* ━━━━━━ PROCESS ━━━━━━ */
+.process {
+  background: var(--paper);
+  padding: 8rem 3rem;
+  border-top: 1px solid var(--line);
+}
+.process-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  position: relative;
+}
+.process-steps::before {
+  content: '';
+  position: absolute;
+  top: 30px;
+  left: 12%; right: 12%;
+  height: 1px;
+  background: var(--line);
+  z-index: 0;
+}
+.step {
+  position: relative;
+  text-align: center;
+  z-index: 1;
+}
+.step-num {
+  width: 60px; height: 60px;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  font-style: italic;
+  font-weight: 400;
+}
+.step-name {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.01em;
+}
+.step-desc {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  max-width: 240px;
+  margin: 0 auto;
+}
+
+/* ━━━━━━ TESTIMONIAL ━━━━━━ */
+.testimonial {
+  padding: 8rem 3rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+.testimonial-stars {
+  color: var(--accent);
+  letter-spacing: 0.4em;
+  margin-bottom: 2rem;
+}
+.testimonial-quote {
+  font-family: var(--serif);
+  font-size: clamp(1.75rem, 3vw, 2.75rem);
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin-bottom: 2rem;
+}
+.testimonial-author {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--muted);
+}
+
+/* ━━━━━━ APPOINTMENT ━━━━━━ */
+.appointment {
+  padding: 10rem 3rem;
+  background: var(--accent);
+  color: var(--bg);
+  text-align: center;
+}
+.appointment-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  margin-bottom: 2rem;
+  opacity: 0.8;
+}
+.appointment-title {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 7vw, 6rem);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  max-width: 1100px;
+  margin: 0 auto 2rem;
+}
+.appointment-title em { font-style: italic; opacity: 0.85; }
+.appointment-text {
+  font-size: 1.1rem;
+  max-width: 520px;
+  margin: 0 auto 3rem;
+  line-height: 1.6;
+  opacity: 0.85;
+}
+.appointment-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.btn-light { background: var(--bg); color: var(--fg); }
+.btn-light:hover { transform: translateY(-2px); }
+.btn-outline {
+  border: 1px solid currentColor;
+  color: var(--bg);
+}
+.btn-outline:hover { background: var(--bg); color: var(--accent); }
+
+/* ━━━━━━ FOOTER ━━━━━━ */
+.footer {
+  padding: 6rem 3rem 2rem;
+  background: var(--bg);
+}
+.footer-inner { max-width: var(--max); margin: 0 auto; }
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 4rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid var(--line);
+}
+.footer-brand-name {
+  font-family: var(--serif);
+  font-size: 2.5rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+.footer-brand-since {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+}
+.footer-tag {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-width: 320px;
+}
+.footer-col h4 {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  margin-bottom: 1.2rem;
+}
+.footer-col ul { list-style: none; }
+.footer-col li {
+  margin-bottom: 0.6rem;
+  color: var(--fg);
+  font-size: 0.9rem;
+  transition: color 0.3s var(--ease);
+}
+.footer-col li:hover { color: var(--accent); cursor: pointer; }
+.footer-bottom {
+  padding-top: 2rem;
+  display: flex; justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+  flex-wrap: wrap; gap: 1rem;
+}
+
+/* ━━━━━━ REVEAL ━━━━━━ */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+/* ━━━━━━ MOBILE ━━━━━━ */
+@media (max-width: 968px) {
+  .nav { padding: 1rem 1.2rem; grid-template-columns: 1fr auto 1fr; }
+  .nav-left, .nav-right { display: none; }
+  .nav.solid { padding: 0.8rem 1.2rem; }
+  .hero { grid-template-columns: 1fr; padding: 6rem 1.2rem 3rem; gap: 3rem; }
+  .hero-right { height: 500px; }
+  .section { padding: 5rem 1.2rem; }
+  .section-head { grid-template-columns: 1fr; gap: 1rem; text-align: left; }
+  .section-title { text-align: left; }
+  .collections { grid-template-columns: 1fr; }
+  .featured { padding: 5rem 1.2rem; }
+  .featured-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .featured-specs { grid-template-columns: 1fr; gap: 1rem; }
+  .craft { padding: 5rem 1.2rem; }
+  .process { padding: 5rem 1.2rem; }
+  .process-steps { grid-template-columns: 1fr 1fr; gap: 3rem; }
+  .process-steps::before { display: none; }
+  .testimonial { padding: 5rem 1.2rem; }
+  .appointment { padding: 6rem 1.2rem; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; padding-bottom: 2rem; }
+  .footer-bottom { justify-content: flex-start; }
+}
+</style>
+</head>
+
+<!--
+  THEMES:
+  theme-cream (default — crème classique)
+  theme-rose (rose poudré — féminin précieux)
+  theme-emerald (vert émeraude — joaillerie verte)
+  theme-noir (noir absolu — luxe contemporain)
+  theme-platinum (platine — minimal pur)
+-->
+<body class="theme-cream">
+
+<nav class="nav" id="nav">
+  <div class="nav-left">
+    <a class="nav-link" href="#collections">Collections</a>
+    <a class="nav-link" href="#savoir-faire">Savoir-faire</a>
+    <a class="nav-link" href="#sur-mesure">Sur-mesure</a>
+  </div>
+  <div class="brand-center">
+    ELYSÉA
+    <span class="since">— Depuis 2026 —</span>
+  </div>
+  <div class="nav-right">
+    <a class="nav-link" href="#boutique">Boutique</a>
+    <a class="nav-link" href="#contact">Contact</a>
+    <div class="nav-icon">⌕</div>
+    <div class="nav-icon">○</div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Maison de joaillerie · Paris 8ᵉ</div>
+    <h1 class="hero-title">L'éclat<br>du <em>geste</em>.<br>L'âme<br>du <em>métier</em>.</h1>
+    <p class="hero-desc">
+      Une maison familiale fondée en 2026. Pièces uniques, créations sur-mesure et collections
+      d'exception nées dans nos ateliers de Paris 8ᵉ.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#collections">Découvrir <span class="arrow">→</span></a>
+      <a class="btn btn-ghost" href="#sur-mesure">Sur-mesure</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img-stack">
+      <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=900&q=80" alt="">
+      <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=700&q=80" alt="">
+      <div class="hero-mark">Pièce<br>unique</div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span class="marquee-item">Création sur-mesure</span><span class="marquee-item dot">●</span>
+    <span class="marquee-item">Pierres certifiées</span><span class="marquee-item dot">●</span>
+    <span class="marquee-item">Or éthique</span><span class="marquee-item dot">●</span>
+    <span class="marquee-item">Atelier Paris 8ᵉ</span><span class="marquee-item dot">●</span>
+    <span class="marquee-item">Création sur-mesure</span><span class="marquee-item dot">●</span>
+    <span class="marquee-item">Pierres certifiées</span><span class="marquee-item dot">●</span>
+    <span class="marquee-item">Or éthique</span><span class="marquee-item dot">●</span>
+    <span class="marquee-item">Atelier Paris 8ᵉ</span><span class="marquee-item dot">●</span>
+  </div>
+</div>
+
+<section class="section" id="collections">
+  <div class="section-head">
+    <div class="section-num">— 01 / Univers</div>
+    <h2 class="section-title">Nos <em>collections</em></h2>
+    <a class="section-link" href="#">Tout voir →</a>
+  </div>
+
+  <div class="collections">
+    <article class="collection reveal">
+      <div class="collection-img">
+        <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=900&q=80" alt="">
+      </div>
+      <div class="collection-meta">
+        <span class="collection-tag">— Solitaires</span>
+        <span class="collection-count">12 pièces</span>
+      </div>
+      <h3 class="collection-name">Éclat Pur</h3>
+      <p class="collection-desc">Diamants taille brillant, sertissage griffes, or 18 carats. La promesse d'une vie.</p>
+    </article>
+
+    <article class="collection reveal">
+      <div class="collection-img">
+        <img src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=900&q=80" alt="">
+      </div>
+      <div class="collection-meta">
+        <span class="collection-tag">— Alliances</span>
+        <span class="collection-count">24 pièces</span>
+      </div>
+      <h3 class="collection-name">Symbole</h3>
+      <p class="collection-desc">Alliances classiques et contemporaines. Or jaune, or blanc, or rose, platine.</p>
+    </article>
+
+    <article class="collection reveal">
+      <div class="collection-img">
+        <img src="https://images.unsplash.com/photo-1535632787350-4e68ef0ac584?w=900&q=80" alt="">
+      </div>
+      <div class="collection-meta">
+        <span class="collection-tag">— Joaillerie</span>
+        <span class="collection-count">36 pièces</span>
+      </div>
+      <h3 class="collection-name">Haute Joaillerie</h3>
+      <p class="collection-desc">Créations d'exception. Pierres rares, savoir-faire d'atelier, pièces uniques.</p>
+    </article>
+
+    <article class="collection reveal">
+      <div class="collection-img">
+        <img src="https://images.unsplash.com/photo-1596944946297-3d5fb0d6d39f?w=900&q=80" alt="">
+      </div>
+      <div class="collection-meta">
+        <span class="collection-tag">— Hommes</span>
+        <span class="collection-count">18 pièces</span>
+      </div>
+      <h3 class="collection-name">Édition Homme</h3>
+      <p class="collection-desc">Chevalières, bracelets, boutons de manchettes. Une virilité affirmée.</p>
+    </article>
+
+    <article class="collection reveal">
+      <div class="collection-img">
+        <img src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=900&q=80" alt="">
+      </div>
+      <div class="collection-meta">
+        <span class="collection-tag">— Vintage</span>
+        <span class="collection-count">8 pièces</span>
+      </div>
+      <h3 class="collection-name">Patrimoine</h3>
+      <p class="collection-desc">Pièces vintage sourcées et restaurées. Art Déco, Belle Époque, années 50.</p>
+    </article>
+
+    <article class="collection reveal">
+      <div class="collection-img">
+        <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=900&q=80" alt="">
+      </div>
+      <div class="collection-meta">
+        <span class="collection-tag">— Sur-mesure</span>
+        <span class="collection-count">∞</span>
+      </div>
+      <h3 class="collection-name">Création Privée</h3>
+      <p class="collection-desc">Imaginez la pièce. Nous la dessinons, nous la créons. Confidentielle.</p>
+    </article>
+  </div>
+</section>
+
+<section class="featured">
+  <div class="featured-inner">
+    <div class="featured-img reveal">
+      <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=1200&q=80" alt="">
+    </div>
+    <div class="reveal">
+      <div class="featured-tag">— Pièce signature</div>
+      <h2 class="featured-name">Solitaire <em>Aurore</em></h2>
+      <p class="featured-desc">
+        Une création exclusive. Diamant central de 1,2 carat, pureté VVS1, couleur D — sertissage
+        invisible sur or blanc 18 carats. Une pièce qui résume notre obsession : la lumière.
+      </p>
+      <div class="featured-specs">
+        <div>
+          <div class="spec-label">Pierre</div>
+          <div class="spec-value">Diamant 1,2 ct</div>
+        </div>
+        <div>
+          <div class="spec-label">Pureté</div>
+          <div class="spec-value">VVS1 · D</div>
+        </div>
+        <div>
+          <div class="spec-label">Métal</div>
+          <div class="spec-value">Or blanc 18k</div>
+        </div>
+        <div>
+          <div class="spec-label">Certification</div>
+          <div class="spec-value">GIA Lab</div>
+        </div>
+      </div>
+      <div class="featured-price">
+        <span class="price-label">— À partir de</span>
+        <span class="price-value">€ 12 800</span>
+      </div>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#contact">Prendre rendez-vous <span class="arrow">→</span></a>
+        <a class="btn btn-ghost" href="#">Voir la fiche complète</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="craft" id="savoir-faire">
+  <div class="reveal">
+    <div class="section-num">— 02 / Le geste</div>
+    <p class="craft-quote">
+      Une pièce de joaillerie n'est pas un produit — c'est un <em>récit gravé dans le métal</em>.
+      Notre rôle : être à la hauteur de l'histoire que vous voulez raconter.
+    </p>
+    <div class="craft-author">
+      <b>—</b>
+      Maître Joaillier · ELYSÉA
+    </div>
+  </div>
+</section>
+
+<section class="process" id="sur-mesure">
+  <div class="process-inner">
+    <div class="section-head">
+      <div class="section-num">— 03 / Sur-mesure</div>
+      <h2 class="section-title">Le <em>processus</em></h2>
+      <span></span>
+    </div>
+
+    <div class="process-steps">
+      <div class="step reveal">
+        <div class="step-num">i</div>
+        <h3 class="step-name">Rendez-vous</h3>
+        <p class="step-desc">Conversation confidentielle pour comprendre l'intention, l'histoire, la personne.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">ii</div>
+        <h3 class="step-name">Esquisses</h3>
+        <p class="step-desc">Dessins exclusifs et choix des pierres. Validation de la direction artistique.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">iii</div>
+        <h3 class="step-name">Atelier</h3>
+        <p class="step-desc">Réalisation à la main dans nos ateliers de Paris 8ᵉ. Comptez 6 à 12 semaines.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">iv</div>
+        <h3 class="step-name">Remise</h3>
+        <p class="step-desc">Présentation en boutique, certificat d'authenticité, écrin signature.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonial">
+  <div class="reveal">
+    <div class="testimonial-stars">★ ★ ★ ★ ★</div>
+    <p class="testimonial-quote">
+      Nous voulions une bague qui ait du sens. — a transformé une histoire intime
+      en une pièce que nous porterons toute notre vie. Discrétion, écoute, pure beauté.
+    </p>
+    <div class="testimonial-author">M. & Mme A. — Cliente fidèle depuis 12 ans</div>
+  </div>
+</section>
+
+<section class="appointment" id="contact">
+  <div class="reveal">
+    <div class="appointment-eyebrow">— Sur rendez-vous uniquement</div>
+    <h2 class="appointment-title">Une pièce <em>vous attend</em>.<br>Ou nous la <em>créons</em>.</h2>
+    <p class="appointment-text">
+      Boutique sur rendez-vous, présentation privée, conseil sur-mesure. Une expérience à part,
+      pour les moments qui le méritent.
+    </p>
+    <div class="appointment-actions">
+      <a class="btn btn-light" href="tel:+33 1 42 65 87 14">Prendre rendez-vous <span class="arrow">→</span></a>
+      <a class="btn btn-outline" href="mailto:contact@elysea.fr">contact@elysea.fr</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">ELYSÉA</div>
+        <div class="footer-brand-since">— DEPUIS 2026 —</div>
+        <p class="footer-tag">
+          Maison familiale de joaillerie. Pièces uniques, créations sur-mesure et collections
+          d'exception, ateliers à Paris 8ᵉ.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Maison</h4>
+        <ul><li>Notre histoire</li><li>L'atelier</li><li>Savoir-faire</li><li>Engagements</li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Boutique</h4>
+        <ul><li>Solitaires</li><li>Alliances</li><li>Haute joaillerie</li><li>Sur-mesure</li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul><li>47 rue du Faubourg Saint-Honoré</li><li>+33 1 42 65 87 14</li><li>contact@elysea.fr</li><li>Instagram · Pinterest</li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 ELYSÉA — Tous droits réservés</span>
+      <span>Mentions · CGV · Politique de confidentialité</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('solid', window.scrollY > 60);
+});
+
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// Theme cycler — press T
+const themes = ['theme-cream','theme-rose','theme-emerald','theme-noir','theme-platinum'];
+let ti = 0;
+window.addEventListener('keydown', (e) => {
+  if (e.key === 't' || e.key === 'T') {
+    document.body.className = '';
+    ti = (ti + 1) % themes.length;
+    document.body.classList.add(themes[ti]);
+    console.log('Theme:', themes[ti]);
+  }
+});
+</script>
+
+<script src="_enhance.js"></script>
+</body>
+</html>

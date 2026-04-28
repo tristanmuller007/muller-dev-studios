@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DUPONT & ASSOCIÉS — Cabinet d'Avocats</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #fafaf7;
+  --fg: #0a0a0a;
+  --muted: rgba(10,10,10,0.55);
+  --line: rgba(10,10,10,0.1);
+  --accent: #1a3a8c;
+  --accent-soft: rgba(26,58,140,0.08);
+  --paper: #f5f3ec;
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Geist', sans-serif;
+  --mono: 'Geist Mono', monospace;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --max: 1440px;
+}
+
+body.theme-classic { --accent: #1a3a8c; --accent-soft: rgba(26,58,140,0.08); }
+body.theme-bordeaux { --accent: #7a2030; --accent-soft: rgba(122,32,48,0.08); }
+body.theme-forest { --accent: #1f4a3a; --accent-soft: rgba(31,74,58,0.08); }
+body.theme-charcoal { --bg: #1a1a1a; --fg: #f5f3ec; --paper: #242424; --line: rgba(245,243,236,0.1); --muted: rgba(245,243,236,0.55); --accent: #c9a96e; --accent-soft: rgba(201,169,110,0.12); }
+body.theme-ivory { --bg: #f8f5ef; --paper: #ede9df; --accent: #2c2416; --accent-soft: rgba(44,36,22,0.08); }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--sans);
+  font-weight: 400;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+::selection { background: var(--accent); color: var(--bg); }
+
+/* ━━━━━━ NAV ━━━━━━ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 1.5rem 2.5rem;
+  display: flex; justify-content: space-between; align-items: center;
+  background: rgba(250,250,247,0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s var(--ease);
+}
+body.theme-charcoal .nav { background: rgba(26,26,26,0.85); }
+.nav.solid { border-bottom-color: var(--line); }
+.brand {
+  display: flex; align-items: baseline; gap: 0.6rem;
+}
+.brand-name {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+.brand-meta {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+}
+.nav-links { display: flex; gap: 2.2rem; align-items: center; }
+.nav-link {
+  font-size: 0.9rem;
+  color: var(--fg);
+  font-weight: 400;
+  transition: color 0.3s var(--ease);
+}
+.nav-link:hover { color: var(--accent); }
+.nav-cta {
+  padding: 0.6rem 1.2rem;
+  background: var(--accent);
+  color: var(--bg);
+  font-size: 0.8rem;
+  border-radius: 4px;
+  transition: all 0.3s var(--ease);
+}
+.nav-cta:hover { transform: translateY(-1px); }
+
+/* ━━━━━━ HERO ━━━━━━ */
+.hero {
+  min-height: 100vh;
+  padding: 10rem 2.5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  background: var(--bg);
+}
+.hero-grid {
+  max-width: var(--max);
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+.hero-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  display: flex; align-items: center; gap: 1rem;
+  margin-bottom: 2rem;
+}
+.hero-eyebrow::before {
+  content: ''; width: 50px; height: 1px; background: var(--accent);
+}
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(3rem, 9vw, 9rem);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  max-width: 1200px;
+}
+.hero-title em {
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 300;
+}
+.hero-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin-top: 3rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--line);
+  align-items: end;
+}
+.hero-desc {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  max-width: 560px;
+  color: var(--muted);
+}
+.hero-desc strong { color: var(--fg); font-weight: 500; }
+.hero-cta-row {
+  display: flex; gap: 1rem;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.95rem 1.6rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s var(--ease);
+}
+.btn-primary { background: var(--accent); color: var(--bg); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px var(--accent-soft); }
+.btn-ghost { border: 1px solid var(--line); color: var(--fg); }
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+.arrow { transition: transform 0.3s var(--ease); }
+.btn:hover .arrow { transform: translateX(3px); }
+
+/* ━━━━━━ TICKER ━━━━━━ */
+.ticker {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
+  padding: 1.2rem 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.ticker-track {
+  display: inline-flex;
+  gap: 3rem;
+  animation: tick 50s linear infinite;
+}
+.ticker-item {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--fg);
+  display: inline-flex; align-items: center; gap: 1rem;
+}
+.ticker-item .dot { color: var(--accent); }
+@keyframes tick { to { transform: translateX(-50%); } }
+
+/* ━━━━━━ STATS ━━━━━━ */
+.stats {
+  padding: 6rem 2.5rem;
+  background: var(--paper);
+}
+.stats-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3rem;
+  position: relative;
+}
+.stats-inner::before {
+  content: '';
+  position: absolute;
+  left: 25%; right: 25%; top: 50%;
+  height: 1px;
+  background: var(--line);
+  transform: translateY(-50%);
+}
+.stat {
+  text-align: left;
+}
+.stat-num {
+  font-family: var(--serif);
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--accent);
+  margin-bottom: 0.8rem;
+}
+.stat-label {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+}
+
+/* ━━━━━━ SECTION ━━━━━━ */
+.section {
+  padding: 8rem 2.5rem;
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.section-header {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4rem;
+  margin-bottom: 5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--line);
+  align-items: end;
+}
+.section-num {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  display: flex; flex-direction: column; gap: 0.5rem;
+}
+.section-num small {
+  font-family: var(--serif);
+  font-size: 1rem;
+  color: var(--muted);
+  letter-spacing: 0;
+  text-transform: none;
+  font-style: italic;
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+.section-title em { font-style: italic; color: var(--accent); }
+
+/* ━━━━━━ EXPERTISE ━━━━━━ */
+.expertise {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+.expertise-card {
+  padding: 3rem 2.5rem;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  transition: background 0.4s var(--ease);
+  position: relative;
+  cursor: pointer;
+}
+.expertise-card:hover {
+  background: var(--accent-soft);
+}
+.expertise-card::after {
+  content: '→';
+  position: absolute;
+  top: 3rem; right: 2.5rem;
+  font-size: 1.5rem;
+  color: var(--muted);
+  transition: all 0.3s var(--ease);
+}
+.expertise-card:hover::after {
+  color: var(--accent);
+  transform: translateX(4px);
+}
+.expertise-num {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+}
+.expertise-name {
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+.expertise-desc {
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 480px;
+  margin-bottom: 1.5rem;
+}
+.expertise-tags {
+  display: flex; gap: 0.5rem; flex-wrap: wrap;
+}
+.expertise-tag {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.3rem 0.7rem;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+}
+
+/* ━━━━━━ PRINCIPAL ━━━━━━ */
+.principal {
+  background: var(--paper);
+  padding: 8rem 2.5rem;
+  position: relative;
+}
+.principal-grid {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 5rem;
+  align-items: center;
+}
+.principal-img {
+  position: relative;
+  height: 700px;
+  overflow: hidden;
+}
+.principal-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: grayscale(0.9) contrast(1.05);
+}
+.principal-content { padding: 2rem 0; }
+.principal-quote {
+  font-family: var(--serif);
+  font-size: clamp(1.75rem, 3vw, 2.75rem);
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin: 2rem 0 3rem;
+}
+.principal-quote em {
+  color: var(--accent);
+  font-weight: 400;
+}
+.principal-name {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+.principal-title {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+}
+.principal-credentials {
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+.credential {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.credential b {
+  display: block;
+  color: var(--fg);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.3rem;
+}
+
+/* ━━━━━━ CASES ━━━━━━ */
+.cases {
+  padding: 8rem 2.5rem;
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.case-list {
+  border-top: 1px solid var(--line);
+}
+.case-item {
+  display: grid;
+  grid-template-columns: 80px 1fr 200px 100px;
+  gap: 2rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--line);
+  align-items: center;
+  transition: background 0.3s var(--ease), padding-left 0.3s var(--ease);
+  cursor: pointer;
+}
+.case-item:hover {
+  background: var(--accent-soft);
+  padding-left: 1rem;
+}
+.case-num {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+}
+.case-title {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.case-cat {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+}
+.case-arrow {
+  text-align: right;
+  color: var(--muted);
+  font-size: 1.2rem;
+  transition: color 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.case-item:hover .case-arrow { color: var(--accent); transform: translateX(4px); }
+
+/* ━━━━━━ TESTIMONIAL ━━━━━━ */
+.testimonial {
+  padding: 10rem 2.5rem;
+  background: var(--accent);
+  color: var(--bg);
+  text-align: left;
+}
+.testimonial-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.testimonial-mark {
+  font-family: var(--serif);
+  font-size: 8rem;
+  line-height: 0.8;
+  font-weight: 300;
+  margin-bottom: 1rem;
+  opacity: 0.3;
+}
+.testimonial-quote {
+  font-family: var(--serif);
+  font-size: clamp(1.75rem, 3.5vw, 3rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin-bottom: 3rem;
+}
+.testimonial-author {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  opacity: 0.85;
+  display: flex; gap: 1rem; align-items: center;
+}
+.testimonial-author::before {
+  content: '—'; opacity: 0.6;
+}
+
+/* ━━━━━━ CTA ━━━━━━ */
+.cta {
+  padding: 10rem 2.5rem;
+  text-align: center;
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.cta-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  margin-bottom: 2rem;
+}
+.cta-title {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 7vw, 6rem);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  max-width: 1100px;
+  margin: 0 auto 2.5rem;
+}
+.cta-title em { font-style: italic; color: var(--accent); }
+.cta-text {
+  color: var(--muted);
+  font-size: 1.1rem;
+  max-width: 540px;
+  margin: 0 auto 3rem;
+  line-height: 1.6;
+}
+.cta-actions {
+  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+}
+
+/* ━━━━━━ FOOTER ━━━━━━ */
+.footer {
+  padding: 5rem 2.5rem 2rem;
+  background: var(--bg);
+}
+.footer-inner { max-width: var(--max); margin: 0 auto; }
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 4rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid var(--line);
+}
+.footer-brand-name {
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+.footer-tag {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-width: 320px;
+}
+.footer-col h4 {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  margin-bottom: 1.2rem;
+}
+.footer-col ul { list-style: none; }
+.footer-col li {
+  margin-bottom: 0.6rem;
+  font-size: 0.9rem;
+  color: var(--fg);
+  transition: color 0.3s var(--ease);
+}
+.footer-col li:hover { color: var(--accent); cursor: pointer; }
+.footer-bottom {
+  padding-top: 2rem;
+  display: flex; justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  flex-wrap: wrap; gap: 1rem;
+}
+
+/* ━━━━━━ REVEAL ━━━━━━ */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+/* ━━━━━━ MOBILE ━━━━━━ */
+@media (max-width: 968px) {
+  .nav { padding: 1rem 1.2rem; }
+  .nav-links { display: none; }
+  .hero { padding: 7rem 1.2rem 3rem; }
+  .hero-bottom { grid-template-columns: 1fr; gap: 2rem; }
+  .hero-cta-row { justify-content: flex-start; }
+  .stats-inner { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+  .stats-inner::before { display: none; }
+  .section { padding: 5rem 1.2rem; }
+  .section-header { grid-template-columns: 1fr; gap: 1.5rem; }
+  .expertise { grid-template-columns: 1fr; }
+  .principal { padding: 5rem 1.2rem; }
+  .principal-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .principal-img { height: 400px; }
+  .principal-credentials { grid-template-columns: 1fr; }
+  .cases { padding: 5rem 1.2rem; }
+  .case-item { grid-template-columns: 60px 1fr; gap: 1rem; }
+  .case-cat, .case-arrow { display: none; }
+  .testimonial { padding: 6rem 1.2rem; }
+  .testimonial-mark { font-size: 5rem; }
+  .cta { padding: 6rem 1.2rem; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; padding-bottom: 2rem; }
+  .footer-bottom { justify-content: flex-start; }
+}
+</style>
+</head>
+
+<!--
+  THEMES:
+  theme-classic (default — bleu marine)
+  theme-bordeaux (rouge bordeaux — élégance traditionnelle)
+  theme-forest (vert forêt — droit environnement / discrétion)
+  theme-charcoal (dark mode — modernité)
+  theme-ivory (ivoire — minimal premium)
+-->
+<body class="theme-classic">
+
+<nav class="nav" id="nav">
+  <div class="brand">
+    <span class="brand-name">DUPONT & ASSOCIÉS</span>
+    <span class="brand-meta">EST. 2026</span>
+  </div>
+  <div class="nav-links">
+    <a class="nav-link" href="#expertise">Expertise</a>
+    <a class="nav-link" href="#equipe">Équipe</a>
+    <a class="nav-link" href="#cas">Affaires</a>
+    <a class="nav-link" href="#contact">Contact</a>
+    <a class="nav-cta" href="#contact">Consultation</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-eyebrow">Lyon 2ᵉ — Cabinet d'avocats indépendant</div>
+    <h1 class="hero-title">
+      Une <em>approche</em> rigoureuse.<br>Une défense <em>incisive</em>.
+    </h1>
+    <div class="hero-bottom">
+      <p class="hero-desc">
+        Depuis 2026, DUPONT & ASSOCIÉS accompagne <strong>dirigeants, entreprises et particuliers</strong>
+        dans les dossiers les plus exigeants. Droit des affaires · Droit fiscal · Contentieux.
+      </p>
+      <div class="hero-cta-row">
+        <a class="btn btn-ghost" href="#expertise">Nos expertises</a>
+        <a class="btn btn-primary" href="#contact">Première consultation <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item">Droit des affaires <span class="dot">●</span></span>
+    <span class="ticker-item">Droit social <span class="dot">●</span></span>
+    <span class="ticker-item">Droit pénal <span class="dot">●</span></span>
+    <span class="ticker-item">Contentieux <span class="dot">●</span></span>
+    <span class="ticker-item">Droit fiscal <span class="dot">●</span></span>
+    <span class="ticker-item">Famille & patrimoine <span class="dot">●</span></span>
+    <span class="ticker-item">Droit des affaires <span class="dot">●</span></span>
+    <span class="ticker-item">Droit social <span class="dot">●</span></span>
+    <span class="ticker-item">Droit pénal <span class="dot">●</span></span>
+    <span class="ticker-item">Contentieux <span class="dot">●</span></span>
+    <span class="ticker-item">Droit fiscal <span class="dot">●</span></span>
+    <span class="ticker-item">Famille & patrimoine <span class="dot">●</span></span>
+  </div>
+</div>
+
+<section class="stats">
+  <div class="stats-inner">
+    <div class="stat reveal">
+      <div class="stat-num">27</div>
+      <div class="stat-label">Années d'exercice</div>
+    </div>
+    <div class="stat reveal">
+      <div class="stat-num">2,400+</div>
+      <div class="stat-label">Dossiers traités</div>
+    </div>
+    <div class="stat reveal">
+      <div class="stat-num">94%</div>
+      <div class="stat-label">Taux de succès</div>
+    </div>
+    <div class="stat reveal">
+      <div class="stat-num">5</div>
+      <div class="stat-label">Avocats associés</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="expertise">
+  <div class="section-header">
+    <div class="section-num">
+      <span>— 01 / Domaines</span>
+      <small>Six expertises</small>
+    </div>
+    <h2 class="section-title">Nos <em>compétences</em></h2>
+  </div>
+
+  <div class="expertise">
+    <article class="expertise-card reveal">
+      <div class="expertise-num">/01 — Affaires</div>
+      <h3 class="expertise-name">Droit des affaires</h3>
+      <p class="expertise-desc">
+        Conseil et contentieux pour entreprises et dirigeants. Cessions, fusions, gouvernance,
+        restructurations, baux commerciaux.
+      </p>
+      <div class="expertise-tags">
+        <span class="expertise-tag">M&A</span>
+        <span class="expertise-tag">Corporate</span>
+        <span class="expertise-tag">Contrats</span>
+      </div>
+    </article>
+
+    <article class="expertise-card reveal">
+      <div class="expertise-num">/02 — Social</div>
+      <h3 class="expertise-name">Droit social</h3>
+      <p class="expertise-desc">
+        Relations individuelles et collectives du travail. Licenciements, ruptures conventionnelles,
+        négociations d'accords, contentieux prud'homaux.
+      </p>
+      <div class="expertise-tags">
+        <span class="expertise-tag">Travail</span>
+        <span class="expertise-tag">CSE</span>
+        <span class="expertise-tag">Prud'hommes</span>
+      </div>
+    </article>
+
+    <article class="expertise-card reveal">
+      <div class="expertise-num">/03 — Pénal</div>
+      <h3 class="expertise-name">Droit pénal des affaires</h3>
+      <p class="expertise-desc">
+        Défense pénale des dirigeants et des entreprises. Abus de biens sociaux, blanchiment,
+        corruption, fraude fiscale, enquêtes internes.
+      </p>
+      <div class="expertise-tags">
+        <span class="expertise-tag">Défense</span>
+        <span class="expertise-tag">Garde à vue</span>
+        <span class="expertise-tag">Compliance</span>
+      </div>
+    </article>
+
+    <article class="expertise-card reveal">
+      <div class="expertise-num">/04 — Fiscal</div>
+      <h3 class="expertise-name">Droit fiscal</h3>
+      <p class="expertise-desc">
+        Optimisation fiscale, contrôles, redressements et contentieux fiscaux. Conseil patrimonial
+        pour personnes physiques et structures complexes.
+      </p>
+      <div class="expertise-tags">
+        <span class="expertise-tag">Fiscalité</span>
+        <span class="expertise-tag">Contrôle</span>
+        <span class="expertise-tag">Patrimoine</span>
+      </div>
+    </article>
+
+    <article class="expertise-card reveal">
+      <div class="expertise-num">/05 — Contentieux</div>
+      <h3 class="expertise-name">Contentieux & arbitrage</h3>
+      <p class="expertise-desc">
+        Représentation devant toutes les juridictions civiles, commerciales et administratives.
+        Procédures collectives, médiation et arbitrage.
+      </p>
+      <div class="expertise-tags">
+        <span class="expertise-tag">Plaidoirie</span>
+        <span class="expertise-tag">Arbitrage</span>
+        <span class="expertise-tag">Médiation</span>
+      </div>
+    </article>
+
+    <article class="expertise-card reveal">
+      <div class="expertise-num">/06 — Famille</div>
+      <h3 class="expertise-name">Famille & patrimoine</h3>
+      <p class="expertise-desc">
+        Divorce, succession, donations, régimes matrimoniaux. Une approche humaine pour les
+        moments décisifs de la vie privée.
+      </p>
+      <div class="expertise-tags">
+        <span class="expertise-tag">Divorce</span>
+        <span class="expertise-tag">Succession</span>
+        <span class="expertise-tag">Régimes</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="principal" id="equipe">
+  <div class="principal-grid">
+    <div class="principal-img reveal">
+      <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?w=900&q=80" alt="">
+    </div>
+    <div class="principal-content reveal">
+      <div class="section-num">— 02 / L'avocat</div>
+      <h2 class="section-title" style="margin-top: 1rem;">Une <em>signature</em> qui engage.</h2>
+      <p class="principal-quote">
+        Le droit n'est pas un outil neutre. C'est une <em>arme de précision</em>. Notre métier :
+        l'aiguiser pour défendre vos intérêts les plus stratégiques.
+      </p>
+      <div class="principal-name">Maître Sophie Dupont</div>
+      <div class="principal-title">Associé fondateur — Avocat au Barreau de Lyon 2ᵉ</div>
+
+      <div class="principal-credentials">
+        <div class="credential">
+          <b>Formation</b>
+          DESS Droit des Affaires — Université Paris II Panthéon-Assas
+        </div>
+        <div class="credential">
+          <b>Distinctions</b>
+          Best Lawyers · Décideurs · Legal 500
+        </div>
+        <div class="credential">
+          <b>Langues</b>
+          Français · Anglais · Italien
+        </div>
+        <div class="credential">
+          <b>Barreau</b>
+          Lyon 2ᵉ — Inscrit depuis 2026
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cases" id="cas">
+  <div class="section-header">
+    <div class="section-num">
+      <span>— 03 / Affaires</span>
+      <small>Sélection 2024–2026</small>
+    </div>
+    <h2 class="section-title">Affaires <em>marquantes</em></h2>
+  </div>
+
+  <div class="case-list">
+    <div class="case-item reveal">
+      <div class="case-num">— 001</div>
+      <div class="case-title">Défense pénale d'un dirigeant — abus de biens sociaux</div>
+      <div class="case-cat">Pénal des affaires</div>
+      <div class="case-arrow">→</div>
+    </div>
+    <div class="case-item reveal">
+      <div class="case-num">— 002</div>
+      <div class="case-title">Cession d'un groupe industriel — €42M</div>
+      <div class="case-cat">M&A · Corporate</div>
+      <div class="case-arrow">→</div>
+    </div>
+    <div class="case-item reveal">
+      <div class="case-num">— 003</div>
+      <div class="case-title">Contentieux prud'homal — licenciement nul</div>
+      <div class="case-cat">Droit social</div>
+      <div class="case-arrow">→</div>
+    </div>
+    <div class="case-item reveal">
+      <div class="case-num">— 004</div>
+      <div class="case-title">Redressement fiscal — annulation totale en appel</div>
+      <div class="case-cat">Droit fiscal</div>
+      <div class="case-arrow">→</div>
+    </div>
+    <div class="case-item reveal">
+      <div class="case-num">— 005</div>
+      <div class="case-title">Procédure collective — sauvegarde réussie</div>
+      <div class="case-cat">Contentieux</div>
+      <div class="case-arrow">→</div>
+    </div>
+    <div class="case-item reveal">
+      <div class="case-num">— 006</div>
+      <div class="case-title">Divorce contentieux — patrimoine international</div>
+      <div class="case-cat">Famille</div>
+      <div class="case-arrow">→</div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonial">
+  <div class="testimonial-inner reveal">
+    <div class="testimonial-mark">"</div>
+    <p class="testimonial-quote">
+      Une précision chirurgicale dans l'analyse, une combativité totale en plaidoirie. DUPONT & ASSOCIÉS
+      ne défend pas un dossier — il défend une cause.
+    </p>
+    <div class="testimonial-author">PDG, Groupe industriel coté · Client depuis 2018</div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="reveal">
+    <div class="cta-eyebrow">— Prêt à parler ?</div>
+    <h2 class="cta-title">Une <em>première consultation</em><br>change tout.</h2>
+    <p class="cta-text">
+      Toute consultation est strictement confidentielle. Premier rendez-vous d'évaluation
+      stratégique sans engagement.
+    </p>
+    <div class="cta-actions">
+      <a class="btn btn-primary" href="tel:+33 4 78 42 51 09">+33 4 78 42 51 09 <span class="arrow">→</span></a>
+      <a class="btn btn-ghost" href="mailto:contact@dupont-avocats.fr">contact@dupont-avocats.fr</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">DUPONT & ASSOCIÉS</div>
+        <p class="footer-tag">
+          Cabinet d'avocats indépendant. Conseil et contentieux pour dirigeants, entreprises
+          et particuliers exigeants depuis 2026.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Cabinet</h4>
+        <ul><li>L'équipe</li><li>Approche</li><li>Honoraires</li><li>Recrutement</li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Expertises</h4>
+        <ul><li>Affaires</li><li>Social</li><li>Pénal</li><li>Fiscal</li><li>Contentieux</li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul><li>8 Place Bellecour</li><li>+33 4 78 42 51 09</li><li>contact@dupont-avocats.fr</li><li>LinkedIn</li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 DUPONT & ASSOCIÉS — Tous droits réservés</span>
+      <span>Mentions légales · RGPD · Honoraires · Médiateur</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('solid', window.scrollY > 60);
+});
+
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// Theme cycler — press T
+const themes = ['theme-classic','theme-bordeaux','theme-forest','theme-charcoal','theme-ivory'];
+let ti = 0;
+window.addEventListener('keydown', (e) => {
+  if (e.key === 't' || e.key === 'T') {
+    document.body.className = '';
+    ti = (ti + 1) % themes.length;
+    document.body.classList.add(themes[ti]);
+    console.log('Theme:', themes[ti]);
+  }
+});
+</script>
+
+<script src="_enhance.js"></script>
+</body>
+</html>

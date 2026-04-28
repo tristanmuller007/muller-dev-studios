@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAISON BLANC — Immobilier de Prestige</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   THEME SYSTEM — change body class to swap palette
+   theme-noir  · theme-emerald · theme-cobalt
+   theme-sunset · theme-rose · theme-mocha
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+:root {
+  --bg: #0a0a0a;
+  --fg: #f5f5f5;
+  --muted: rgba(245, 245, 245, 0.55);
+  --line: rgba(245, 245, 245, 0.08);
+  --accent: #d4ff00;
+  --accent-soft: rgba(212, 255, 0, 0.15);
+  --glass: rgba(245, 245, 245, 0.04);
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Geist', -apple-system, sans-serif;
+  --mono: 'Geist Mono', monospace;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --max: 1440px;
+}
+
+body.theme-noir { --bg: #0a0a0a; --fg: #f5f5f5; --accent: #d4ff00; --accent-soft: rgba(212,255,0,0.15); }
+body.theme-emerald { --bg: #0a1410; --fg: #f0f4f1; --accent: #00d4a3; --accent-soft: rgba(0,212,163,0.15); }
+body.theme-cobalt { --bg: #06091a; --fg: #eef0ff; --accent: #4f6dff; --accent-soft: rgba(79,109,255,0.18); }
+body.theme-sunset { --bg: #150a08; --fg: #fdf3ee; --accent: #ff6b35; --accent-soft: rgba(255,107,53,0.18); }
+body.theme-rose { --bg: #140a10; --fg: #fbf0f5; --accent: #ff4d8f; --accent-soft: rgba(255,77,143,0.18); }
+body.theme-mocha { --bg: #14100b; --fg: #f5ede0; --accent: #d4a574; --accent-soft: rgba(212,165,116,0.18); }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--sans);
+  font-weight: 400;
+  line-height: 1.5;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  cursor: none;
+}
+@media (max-width: 768px) { body { cursor: auto; } }
+
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; background: none; border: none; color: inherit; cursor: none; }
+
+::selection { background: var(--accent); color: var(--bg); }
+
+/* ━━━━━━ CUSTOM CURSOR ━━━━━━ */
+.cursor {
+  position: fixed;
+  width: 8px; height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.15s var(--ease), width 0.3s var(--ease), height 0.3s var(--ease);
+  mix-blend-mode: difference;
+}
+.cursor.hover { width: 60px; height: 60px; background: var(--fg); }
+@media (max-width: 768px) { .cursor { display: none; } }
+
+/* ━━━━━━ MESH BG ━━━━━━ */
+.mesh-bg {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  opacity: 0.7;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 10%, var(--accent-soft), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 90% 80%, var(--accent-soft), transparent 60%),
+    radial-gradient(circle at 50% 50%, transparent, var(--bg) 70%);
+  animation: meshFloat 20s ease-in-out infinite;
+}
+@keyframes meshFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-2%, -3%) scale(1.05); }
+}
+
+/* Grain */
+body::before {
+  content: ''; position: fixed; inset: 0; z-index: 1;
+  pointer-events: none; opacity: 0.05; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ━━━━━━ NAV ━━━━━━ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 1.5rem 2rem;
+  display: flex; justify-content: space-between; align-items: center;
+  transition: all 0.4s var(--ease);
+  mix-blend-mode: difference;
+}
+.nav.solid { mix-blend-mode: normal; background: rgba(10,10,10,0.7); backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid var(--line); }
+.logo {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -0.02em;
+}
+.logo .dot { color: var(--accent); }
+.nav-right { display: flex; align-items: center; gap: 2.5rem; }
+.nav-links { display: flex; gap: 2rem; }
+.nav-link {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--fg);
+  position: relative;
+  transition: color 0.3s var(--ease);
+}
+.nav-link::before {
+  content: '·'; color: var(--accent); margin-right: 0.4rem;
+  opacity: 0; transition: opacity 0.3s var(--ease);
+}
+.nav-link:hover::before { opacity: 1; }
+.nav-cta {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.7rem 1.2rem;
+  border: 1px solid var(--fg);
+  border-radius: 999px;
+  transition: all 0.4s var(--ease);
+}
+.nav-cta:hover { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+
+/* ━━━━━━ HERO ━━━━━━ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  padding: 8rem 2rem 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 2;
+}
+.hero-top {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2rem;
+  align-items: end;
+  margin-bottom: 4rem;
+}
+.hero-meta {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  display: flex; flex-direction: column; gap: 0.25rem;
+}
+.hero-meta b { color: var(--accent); font-weight: 500; }
+
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(4rem, 14vw, 16rem);
+  font-weight: 300;
+  line-height: 0.85;
+  letter-spacing: -0.05em;
+  margin-bottom: 2rem;
+}
+.hero-title .line { display: block; overflow: hidden; }
+.hero-title .line span {
+  display: inline-block;
+  transform: translateY(110%);
+  animation: rise 1.4s var(--ease) forwards;
+}
+.hero-title .line:nth-child(2) span { animation-delay: 0.1s; }
+.hero-title .line:nth-child(3) span { animation-delay: 0.2s; }
+.hero-title em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--accent);
+}
+@keyframes rise { to { transform: translateY(0); } }
+
+.hero-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: end;
+  border-top: 1px solid var(--line);
+  padding-top: 2rem;
+}
+.hero-desc {
+  max-width: 480px;
+  font-size: 1.05rem;
+  color: var(--muted);
+  line-height: 1.6;
+  opacity: 0;
+  animation: fadeIn 1s var(--ease) 0.6s forwards;
+}
+.hero-desc strong { color: var(--fg); font-weight: 500; }
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  opacity: 0;
+  animation: fadeIn 1s var(--ease) 0.8s forwards;
+}
+@keyframes fadeIn { to { opacity: 1; } }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem 1.6rem;
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: all 0.4s var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+  font-weight: 600;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px var(--accent-soft); }
+.btn-ghost {
+  border: 1px solid var(--line);
+  color: var(--fg);
+}
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+.btn .arrow {
+  transition: transform 0.4s var(--ease);
+}
+.btn:hover .arrow { transform: translateX(4px); }
+
+/* ━━━━━━ MARQUEE ━━━━━━ */
+.marquee {
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 1.5rem 0;
+  overflow: hidden;
+  white-space: nowrap;
+  background: var(--bg);
+}
+.marquee-track {
+  display: inline-flex;
+  gap: 3rem;
+  animation: marquee 40s linear infinite;
+}
+.marquee-track span {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+.marquee-track span.dot { color: var(--accent); font-style: normal; }
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ━━━━━━ STATS ━━━━━━ */
+.stats {
+  position: relative;
+  z-index: 2;
+  padding: 4rem 2rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  max-width: var(--max);
+  margin: 0 auto;
+  gap: 2rem;
+}
+.stat {
+  display: flex; flex-direction: column; gap: 0.5rem;
+}
+.stat-num {
+  font-family: var(--serif);
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+.stat-num em { font-style: italic; color: var(--accent); }
+.stat-label {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+}
+
+/* ━━━━━━ SECTION ━━━━━━ */
+.section {
+  position: relative;
+  z-index: 2;
+  padding: 8rem 2rem;
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.section-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 4rem;
+  align-items: end;
+  margin-bottom: 4rem;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 2rem;
+}
+.section-num {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+.section-title em { font-style: italic; color: var(--accent); }
+.section-link {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 0.3rem;
+}
+
+/* ━━━━━━ BENTO PROPERTIES ━━━━━━ */
+.bento {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: 280px;
+  gap: 1rem;
+}
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--glass);
+  border: 1px solid var(--line);
+  transition: all 0.5s var(--ease);
+}
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+}
+.card.span-3 { grid-column: span 3; }
+.card.span-4 { grid-column: span 4; }
+.card.span-2 { grid-column: span 2; }
+.card.row-2 { grid-row: span 2; }
+
+.card img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.8s var(--ease);
+}
+.card:hover img { transform: scale(1.06); }
+
+.card-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.85) 100%);
+  pointer-events: none;
+}
+.card-content {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 1.5rem;
+  z-index: 2;
+}
+.card-tag {
+  display: inline-block;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--bg);
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+.card-name {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.4rem;
+}
+.card.row-2 .card-name { font-size: 2.2rem; }
+.card-meta {
+  display: flex; gap: 0.8rem;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+.card-price {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  color: var(--accent);
+  font-weight: 400;
+}
+
+/* Stat card inside bento */
+.card-stat {
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: 2rem;
+  background: var(--accent-soft);
+  border-color: transparent;
+}
+.card-stat-num {
+  font-family: var(--serif);
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--accent);
+}
+.card-stat-label {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--fg);
+}
+
+/* ━━━━━━ APPROACH ━━━━━━ */
+.approach {
+  position: relative; z-index: 2;
+  padding: 8rem 2rem;
+  background: var(--accent-soft);
+}
+.approach-inner {
+  max-width: var(--max); margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 6rem;
+  align-items: center;
+}
+.approach-img {
+  position: relative;
+  height: 700px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.approach-img img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.approach-img::after {
+  content: ''; position: absolute; inset: 0;
+  border-radius: 8px;
+  border: 1px solid var(--accent);
+  pointer-events: none;
+}
+.approach-quote {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 2rem 0 3rem;
+}
+.approach-quote em { color: var(--accent); }
+.approach-sig {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+.approach-sig b { color: var(--accent); }
+
+/* ━━━━━━ SERVICES ━━━━━━ */
+.services {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.service-card {
+  position: relative;
+  padding: 2.5rem;
+  background: var(--glass);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  transition: all 0.4s var(--ease);
+  overflow: hidden;
+}
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease);
+}
+.service-card:hover::before { transform: scaleX(1); }
+.service-card:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+.service-num {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--accent);
+  letter-spacing: 0.15em;
+  margin-bottom: 1.5rem;
+}
+.service-name {
+  font-family: var(--serif);
+  font-size: 1.75rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.8rem;
+}
+.service-desc {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* ━━━━━━ TESTIMONIAL ━━━━━━ */
+.testimonial {
+  position: relative; z-index: 2;
+  padding: 8rem 2rem;
+  text-align: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.testimonial-quote {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 2.5rem;
+}
+.testimonial-quote::before, .testimonial-quote::after {
+  color: var(--accent); font-style: normal;
+}
+.testimonial-quote::before { content: '" '; }
+.testimonial-quote::after { content: ' "'; }
+.testimonial-author {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+}
+.testimonial-author b { color: var(--accent); }
+
+/* ━━━━━━ CTA ━━━━━━ */
+.cta {
+  position: relative; z-index: 2;
+  padding: 8rem 2rem;
+  border-top: 1px solid var(--line);
+  text-align: center;
+  background: linear-gradient(180deg, var(--bg) 0%, var(--accent-soft) 100%);
+}
+.cta-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  margin-bottom: 2rem;
+}
+.cta-title {
+  font-family: var(--serif);
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 300;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  max-width: 1100px;
+  margin: 0 auto 2rem;
+}
+.cta-title em { font-style: italic; color: var(--accent); }
+.cta-text {
+  color: var(--muted);
+  font-size: 1.1rem;
+  max-width: 540px;
+  margin: 0 auto 3rem;
+  line-height: 1.6;
+}
+.cta-actions {
+  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+}
+
+/* ━━━━━━ FOOTER ━━━━━━ */
+.footer {
+  position: relative; z-index: 2;
+  padding: 6rem 2rem 2rem;
+  border-top: 1px solid var(--line);
+}
+.footer-inner {
+  max-width: var(--max); margin: 0 auto;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 4rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid var(--line);
+}
+.footer-brand {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
+.footer-brand .dot { color: var(--accent); font-style: normal; }
+.footer-tag {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-width: 320px;
+}
+.footer-col h4 {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  margin-bottom: 1.2rem;
+  font-weight: 500;
+}
+.footer-col ul { list-style: none; }
+.footer-col li {
+  margin-bottom: 0.6rem;
+  color: var(--fg);
+  font-size: 0.9rem;
+  transition: color 0.3s var(--ease);
+}
+.footer-col li:hover { color: var(--accent); }
+.footer-bottom {
+  padding-top: 2rem;
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  flex-wrap: wrap; gap: 1rem;
+}
+
+/* ━━━━━━ REVEAL ━━━━━━ */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s var(--ease), transform 1s var(--ease);
+}
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+/* ━━━━━━ MOBILE ━━━━━━ */
+@media (max-width: 968px) {
+  .nav { padding: 1rem 1.2rem; }
+  .nav-links { display: none; }
+  .hero { padding: 6rem 1.2rem 3rem; }
+  .hero-top { grid-template-columns: 1fr; }
+  .hero-bottom { grid-template-columns: 1fr; gap: 2rem; }
+  .hero-actions { justify-content: flex-start; flex-wrap: wrap; }
+  .stats { grid-template-columns: repeat(2, 1fr); padding: 3rem 1.2rem; }
+  .section { padding: 5rem 1.2rem; }
+  .section-head { grid-template-columns: 1fr; gap: 1.5rem; }
+  .bento { grid-template-columns: 1fr; grid-auto-rows: 320px; }
+  .card.span-3, .card.span-4, .card.span-2 { grid-column: span 1; }
+  .card.row-2 { grid-row: span 1; }
+  .approach { padding: 5rem 1.2rem; }
+  .approach-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .approach-img { height: 400px; }
+  .services { grid-template-columns: 1fr; }
+  .testimonial { padding: 5rem 1.2rem; }
+  .cta { padding: 5rem 1.2rem; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; padding-bottom: 2rem; }
+  .footer-bottom { justify-content: flex-start; }
+}
+</style>
+</head>
+
+<!--
+  THEMES (change body class):
+  theme-noir · theme-emerald · theme-cobalt · theme-sunset · theme-rose · theme-mocha
+-->
+<body class="theme-noir">
+
+<div class="cursor" id="cursor"></div>
+<div class="mesh-bg"></div>
+
+<nav class="nav" id="nav">
+  <div class="logo">MAISON BLANC<span class="dot">.</span></div>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a class="nav-link" href="#properties">Biens</a>
+      <a class="nav-link" href="#approach">Approche</a>
+      <a class="nav-link" href="#services">Services</a>
+      <a class="nav-link" href="#contact">Contact</a>
+    </div>
+    <a class="nav-cta" href="#contact">Estimation →</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-top">
+    <div class="hero-meta">
+      <span><b>●</b> Paris 16ᵉ / France</span>
+      <span>Depuis 2026 · 320 biens vendus</span>
+    </div>
+    <div class="hero-meta" style="text-align: right;">
+      <span>Avril 2026</span>
+      <span>48.8709, 2.2898</span>
+    </div>
+  </div>
+
+  <h1 class="hero-title">
+    <span class="line"><span>L'art de vivre</span></span>
+    <span class="line"><span><em>en propriétés</em></span></span>
+    <span class="line"><span>d'exception.</span></span>
+  </h1>
+
+  <div class="hero-bottom">
+    <p class="hero-desc">
+      Une <strong>sélection rigoureuse</strong> de biens d'exception. Une approche confidentielle,
+      exigeante, taillée pour les acquéreurs et vendeurs qui recherchent l'excellence à chaque étape.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-ghost" href="#properties">Voir les biens</a>
+      <a class="btn btn-primary" href="#contact">Estimation gratuite <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span>Vente off-market</span><span class="dot">●</span>
+    <span>Recherche dédiée</span><span class="dot">●</span>
+    <span>Estimation experte</span><span class="dot">●</span>
+    <span>Conseil patrimonial</span><span class="dot">●</span>
+    <span>Vente off-market</span><span class="dot">●</span>
+    <span>Recherche dédiée</span><span class="dot">●</span>
+    <span>Estimation experte</span><span class="dot">●</span>
+    <span>Conseil patrimonial</span><span class="dot">●</span>
+  </div>
+</div>
+
+<section class="stats">
+  <div class="stat reveal">
+    <div class="stat-num">240<em>+</em></div>
+    <div class="stat-label">Biens vendus</div>
+  </div>
+  <div class="stat reveal">
+    <div class="stat-num">€<em>185M</em></div>
+    <div class="stat-label">Volume transactions</div>
+  </div>
+  <div class="stat reveal">
+    <div class="stat-num">98<em>%</em></div>
+    <div class="stat-label">Clients satisfaits</div>
+  </div>
+  <div class="stat reveal">
+    <div class="stat-num">17<em>y</em></div>
+    <div class="stat-label">Années d'expertise</div>
+  </div>
+</section>
+
+<section class="section" id="properties">
+  <div class="section-head">
+    <div class="section-num">— 01 / Sélection</div>
+    <h2 class="section-title">Biens <em>d'exception</em></h2>
+    <a class="section-link" href="#">Voir tout →</a>
+  </div>
+
+  <div class="bento">
+    <article class="card span-4 row-2 reveal">
+      <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1600&q=80" alt="">
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <span class="card-tag">Exclusivité</span>
+        <h3 class="card-name">Hôtel particulier XVIIIe siècle</h3>
+        <div class="card-meta">
+          <span>● 480 m²</span>
+          <span>● 6 chambres</span>
+          <span>● Jardin privatif</span>
+          <span>● Paris 16ᵉ</span>
+        </div>
+        <div class="card-price">€ 4 800 000</div>
+      </div>
+    </article>
+
+    <article class="card span-2 reveal">
+      <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=900&q=80" alt="">
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <span class="card-tag">Nouveau</span>
+        <h3 class="card-name">Villa contemporaine</h3>
+        <div class="card-meta"><span>● 320 m²</span></div>
+        <div class="card-price">€ 6 200 000</div>
+      </div>
+    </article>
+
+    <article class="card span-2 card-stat reveal">
+      <div class="card-stat-num">€2.4M</div>
+      <div>
+        <div class="card-stat-label">Prix moyen</div>
+        <div style="margin-top:0.5rem; font-family:var(--mono); font-size:0.7rem; color:var(--muted); letter-spacing:0.1em;">PORTEFEUILLE 2026</div>
+      </div>
+    </article>
+
+    <article class="card span-3 reveal">
+      <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80" alt="">
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <span class="card-tag">Coup de cœur</span>
+        <h3 class="card-name">Penthouse vue panoramique</h3>
+        <div class="card-meta">
+          <span>● 220 m²</span>
+          <span>● Terrasse 80m²</span>
+        </div>
+        <div class="card-price">€ 2 950 000</div>
+      </div>
+    </article>
+
+    <article class="card span-3 reveal">
+      <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=80" alt="">
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <span class="card-tag">Sous mandat</span>
+        <h3 class="card-name">Demeure de caractère</h3>
+        <div class="card-meta">
+          <span>● 380 m²</span>
+          <span>● Parc 2000m²</span>
+        </div>
+        <div class="card-price">€ 3 450 000</div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="approach" id="approach">
+  <div class="approach-inner">
+    <div class="approach-img reveal">
+      <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1000&q=80" alt="">
+    </div>
+    <div class="reveal">
+      <div class="section-num">— 02 / L'approche</div>
+      <h2 class="section-title" style="margin-top: 1rem;">Sur-<em>mesure</em>.<br>Confidentielle.</h2>
+      <p class="approach-quote">
+        Vendre un bien d'exception ne s'improvise pas. Chaque propriété raconte une histoire,
+        chaque acquéreur cherche un lieu qui <em>lui ressemble</em>.
+      </p>
+      <div class="approach-sig">
+        <b>Camille Reynaud</b> — Directrice<br>
+        MAISON BLANC
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="services">
+  <div class="section-head">
+    <div class="section-num">— 03 / Services</div>
+    <h2 class="section-title">Trois <em>engagements</em></h2>
+    <span></span>
+  </div>
+
+  <div class="services">
+    <div class="service-card reveal">
+      <div class="service-num">/01</div>
+      <h3 class="service-name">Vente off-market</h3>
+      <p class="service-desc">
+        Diffusion ciblée à un réseau qualifié d'acquéreurs internationaux. Aucune publicité
+        de masse. Votre bien reste privé jusqu'à la signature.
+      </p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-num">/02</div>
+      <h3 class="service-name">Recherche dédiée</h3>
+      <p class="service-desc">
+        Mandat personnalisé. Nous identifions les biens correspondant à vos critères, y
+        compris ceux qui ne sont pas sur le marché.
+      </p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-num">/03</div>
+      <h3 class="service-name">Estimation experte</h3>
+      <p class="service-desc">
+        Évaluation argumentée, basée sur l'analyse comparative, le potentiel du bien et l'état
+        du marché de prestige local.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="testimonial">
+  <div class="reveal">
+    <p class="testimonial-quote">
+      Une expérience d'une élégance rare. Camille Reynaud a su comprendre nos attentes et nous
+      accompagner avec une discrétion remarquable. Vente conclue en six semaines, au prix demandé.
+    </p>
+    <div class="testimonial-author"><b>M. & Mme L.</b> — Propriétaires</div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="reveal">
+    <div class="cta-eyebrow">— Prêt à parler ?</div>
+    <h1 class="cta-title">Une <em>conversation</em> vaut<br>mille estimations.</h1>
+    <p class="cta-text">
+      Estimation confidentielle, conseil patrimonial, recherche personnalisée. Nos équipes
+      vous reçoivent en agence ou à votre domicile.
+    </p>
+    <div class="cta-actions">
+      <a class="btn btn-primary" href="tel:+33 1 47 23 89 12">Nous appeler <span class="arrow">→</span></a>
+      <a class="btn btn-ghost" href="mailto:contact@maisonblanc.fr">contact@maisonblanc.fr</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">MAISON BLANC<span class="dot">.</span></div>
+        <p class="footer-tag">
+          Agence immobilière de prestige spécialisée dans la vente, l'acquisition et la mise en
+          valeur de biens d'exception depuis 2026.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Agence</h4>
+        <ul><li>L'équipe</li><li>Approche</li><li>Carrières</li><li>Presse</li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul><li>Vente</li><li>Acquisition</li><li>Estimation</li><li>Conseil</li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul><li>12 Avenue Foch</li><li>+33 1 47 23 89 12</li><li>contact@maisonblanc.fr</li><li>Instagram · LinkedIn</li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 MAISON BLANC · Tous droits réservés</span>
+      <span>Carte pro T · Mentions · Cookies</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Cursor follower
+const cursor = document.getElementById('cursor');
+let cx = 0, cy = 0, mx = 0, my = 0;
+window.addEventListener('mousemove', (e) => { mx = e.clientX; my = e.clientY; });
+function loop() {
+  cx += (mx - cx) * 0.18; cy += (my - cy) * 0.18;
+  cursor.style.transform = `translate(${cx - 4}px, ${cy - 4}px)`;
+  requestAnimationFrame(loop);
+}
+loop();
+document.querySelectorAll('a, button, .card, .service-card').forEach(el => {
+  el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+  el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+});
+
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('solid', window.scrollY > 60);
+});
+
+// Reveal
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// Theme cycler (dev only — remove in prod)
+// Press T to cycle themes
+const themes = ['theme-noir','theme-emerald','theme-cobalt','theme-sunset','theme-rose','theme-mocha'];
+let ti = 0;
+window.addEventListener('keydown', (e) => {
+  if (e.key === 't' || e.key === 'T') {
+    document.body.className = '';
+    ti = (ti + 1) % themes.length;
+    document.body.classList.add(themes[ti]);
+    console.log('Theme:', themes[ti]);
+  }
+});
+</script>
+
+<script src="_enhance.js"></script>
+</body>
+</html>

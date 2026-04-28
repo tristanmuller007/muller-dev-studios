@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L'ARDOISE — Cuisine</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #1a1410;
+  --fg: #f8ede0;
+  --muted: rgba(248,237,224,0.6);
+  --line: rgba(248,237,224,0.1);
+  --accent: #d4a574;
+  --accent-soft: rgba(212,165,116,0.12);
+  --paper: #221a14;
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Geist', sans-serif;
+  --mono: 'Geist Mono', monospace;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --max: 1440px;
+}
+
+body.theme-warm { --bg: #1a1410; --accent: #d4a574; --accent-soft: rgba(212,165,116,0.12); }
+body.theme-bistro { --bg: #1a0f0a; --paper: #221510; --accent: #c44d27; --accent-soft: rgba(196,77,39,0.15); }
+body.theme-forest { --bg: #0f1410; --paper: #151c17; --accent: #8fb893; --accent-soft: rgba(143,184,147,0.15); }
+body.theme-noir { --bg: #0a0a0a; --paper: #14140f; --accent: #f0d4a3; --accent-soft: rgba(240,212,163,0.12); }
+body.theme-burgundy { --bg: #160810; --paper: #1f0d15; --accent: #c8627a; --accent-soft: rgba(200,98,122,0.15); }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--sans);
+  font-weight: 300;
+  line-height: 1.55;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+::selection { background: var(--accent); color: var(--bg); }
+
+/* ━━━━━━ NAV ━━━━━━ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 1.5rem 2.5rem;
+  display: flex; justify-content: space-between; align-items: center;
+  transition: all 0.4s var(--ease);
+}
+.nav.solid {
+  background: rgba(26,20,16,0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--line);
+}
+.brand {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  font-style: italic;
+}
+.brand .star { color: var(--accent); margin-right: 0.5rem; font-style: normal; }
+.nav-right { display: flex; align-items: center; gap: 2rem; }
+.nav-links { display: flex; gap: 2rem; }
+.nav-link {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--fg);
+  transition: color 0.3s var(--ease);
+}
+.nav-link:hover { color: var(--accent); }
+.nav-cta {
+  padding: 0.7rem 1.4rem;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  border-radius: 999px;
+  transition: all 0.3s var(--ease);
+}
+.nav-cta:hover { background: var(--accent); color: var(--bg); }
+
+/* ━━━━━━ HERO ━━━━━━ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  overflow: hidden;
+}
+.hero-content {
+  padding: 8rem 4rem 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 2;
+  position: relative;
+}
+.hero-img-side {
+  position: relative;
+  overflow: hidden;
+}
+.hero-img-side img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: brightness(0.85) contrast(1.05);
+}
+.hero-img-side::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(26,20,16,0.4) 100%);
+}
+.hero-stars {
+  display: flex; align-items: center; gap: 1rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  margin-bottom: 3rem;
+}
+.hero-stars .star-row { letter-spacing: 0.4em; }
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(3.5rem, 9vw, 9rem);
+  font-weight: 300;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  margin-bottom: 2.5rem;
+}
+.hero-title em {
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 300;
+}
+.hero-meta {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+.hero-meta b { color: var(--accent); font-weight: 500; }
+.hero-bottom {
+  display: flex; flex-direction: column; gap: 1rem;
+}
+.hero-desc {
+  font-size: 1.05rem;
+  color: var(--muted);
+  max-width: 480px;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 1rem 1.6rem;
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 500;
+  transition: all 0.4s var(--ease);
+}
+.btn-primary { background: var(--accent); color: var(--bg); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px var(--accent-soft); }
+.btn-ghost { border: 1px solid var(--line); color: var(--fg); }
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+.arrow { transition: transform 0.3s var(--ease); }
+.btn:hover .arrow { transform: translateX(3px); }
+
+/* ━━━━━━ HOURS BAR ━━━━━━ */
+.hours-bar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
+}
+.hours-day {
+  padding: 1.5rem 1rem;
+  border-right: 1px solid var(--line);
+  text-align: center;
+}
+.hours-day:last-child { border-right: none; }
+.hours-day-name {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+.hours-day-time {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--fg);
+}
+.hours-day.closed .hours-day-time {
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-decoration: line-through;
+}
+.hours-day.today .hours-day-name { color: var(--accent); }
+.hours-day.today { background: var(--accent-soft); }
+
+/* ━━━━━━ SECTION ━━━━━━ */
+.section {
+  padding: 8rem 2.5rem;
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.section-head {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 3rem;
+  margin-bottom: 5rem;
+  align-items: end;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 2rem;
+}
+.section-num {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+.section-title em { font-style: italic; color: var(--accent); }
+
+/* ━━━━━━ MENU ━━━━━━ */
+.menu-tabs {
+  display: flex; gap: 0; margin-bottom: 4rem;
+  border-bottom: 1px solid var(--line);
+}
+.menu-tab {
+  padding: 1rem 2rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  cursor: pointer;
+  position: relative;
+  transition: color 0.3s var(--ease);
+}
+.menu-tab.active { color: var(--accent); }
+.menu-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 0; right: 0;
+  height: 2px;
+  background: var(--accent);
+}
+.menu-tab:hover { color: var(--fg); }
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem 5rem;
+}
+.menu-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px dashed var(--line);
+  align-items: end;
+  transition: padding-left 0.3s var(--ease);
+}
+.menu-item:hover { padding-left: 0.5rem; }
+.menu-item-name {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.5rem;
+}
+.menu-item-name em { color: var(--accent); font-style: italic; }
+.menu-item-desc {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+.menu-item-tags {
+  display: flex; gap: 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+}
+.menu-item-tags span::before { content: '·'; margin-right: 0.5rem; color: var(--muted); }
+.menu-item-tags span:first-child::before { display: none; }
+.menu-item-price {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  color: var(--accent);
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+/* ━━━━━━ MARQUEE ━━━━━━ */
+.marquee {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 2rem 0;
+  overflow: hidden;
+  white-space: nowrap;
+  background: var(--paper);
+}
+.marquee-track {
+  display: inline-flex;
+  gap: 4rem;
+  animation: tick 35s linear infinite;
+}
+.marquee-item {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.75rem, 3vw, 2.75rem);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+.marquee-item.dot { color: var(--accent); font-style: normal; font-size: 1rem; align-self: center; }
+@keyframes tick { to { transform: translateX(-50%); } }
+
+/* ━━━━━━ STORY ━━━━━━ */
+.story {
+  background: var(--paper);
+  padding: 8rem 2.5rem;
+}
+.story-inner {
+  max-width: var(--max); margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 6rem;
+  align-items: center;
+}
+.story-img {
+  position: relative;
+  height: 700px;
+  overflow: hidden;
+}
+.story-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: brightness(0.95);
+}
+.story-content { padding: 2rem 0; }
+.story-quote {
+  font-family: var(--serif);
+  font-size: clamp(1.75rem, 3vw, 2.75rem);
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin: 2rem 0 3rem;
+}
+.story-quote em { color: var(--accent); }
+.story-chef {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+.story-role {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+}
+
+/* ━━━━━━ GALLERY ━━━━━━ */
+.gallery {
+  padding: 6rem 2.5rem;
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: 200px;
+  gap: 0.5rem;
+}
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.gallery-item img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.6s var(--ease);
+}
+.gallery-item:hover img { transform: scale(1.06); }
+.gallery-item.span-2 { grid-column: span 2; }
+.gallery-item.span-3 { grid-column: span 3; }
+.gallery-item.row-2 { grid-row: span 2; }
+
+/* ━━━━━━ RESERVATION ━━━━━━ */
+.reservation {
+  padding: 8rem 2.5rem;
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.res-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+.res-form {
+  background: var(--paper);
+  padding: 3rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.res-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.res-field { display: flex; flex-direction: column; gap: 0.5rem; }
+.res-field label {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+}
+.res-field input, .res-field select {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  color: var(--fg);
+  padding: 0.9rem 1rem;
+  border-radius: 4px;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  transition: border-color 0.3s var(--ease);
+}
+.res-field input:focus, .res-field select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.res-submit {
+  width: 100%;
+  padding: 1.1rem;
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s var(--ease);
+  margin-top: 1rem;
+}
+.res-submit:hover { transform: translateY(-2px); box-shadow: 0 6px 20px var(--accent-soft); }
+
+.res-info {
+  padding: 2rem 0;
+}
+.res-info-block { margin-bottom: 2.5rem; }
+.res-info-label {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+.res-info-value {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.res-info-value a:hover { color: var(--accent); }
+
+/* ━━━━━━ PRESS ━━━━━━ */
+.press {
+  padding: 6rem 2.5rem;
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.press-inner {
+  max-width: var(--max); margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4rem;
+  align-items: center;
+}
+.press-quote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  color: var(--fg);
+}
+.press-source {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+}
+
+/* ━━━━━━ FOOTER ━━━━━━ */
+.footer {
+  padding: 6rem 2.5rem 2rem;
+}
+.footer-inner { max-width: var(--max); margin: 0 auto; }
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 3rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid var(--line);
+}
+.footer-brand-name {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
+.footer-tag {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-width: 300px;
+}
+.footer-col h4 {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  margin-bottom: 1.2rem;
+}
+.footer-col ul { list-style: none; }
+.footer-col li {
+  margin-bottom: 0.6rem;
+  color: var(--fg);
+  font-size: 0.9rem;
+  transition: color 0.3s var(--ease);
+}
+.footer-col li:hover { color: var(--accent); cursor: pointer; }
+.footer-bottom {
+  padding-top: 2rem;
+  display: flex; justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  flex-wrap: wrap; gap: 1rem;
+}
+
+/* ━━━━━━ REVEAL ━━━━━━ */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+/* ━━━━━━ MOBILE ━━━━━━ */
+@media (max-width: 968px) {
+  .nav { padding: 1rem 1.2rem; }
+  .nav-links { display: none; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-content { padding: 6rem 1.2rem 3rem; }
+  .hero-img-side { height: 400px; }
+  .hours-bar { grid-template-columns: repeat(2, 1fr); border-bottom: none; }
+  .hours-day { border-right: none; border-bottom: 1px solid var(--line); }
+  .hours-day:nth-child(2n) { border-right: none; }
+  .section { padding: 5rem 1.2rem; }
+  .section-head { grid-template-columns: 1fr; gap: 1.5rem; }
+  .menu-tabs { overflow-x: auto; }
+  .menu-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .gallery { padding: 3rem 1.2rem; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 160px; }
+  .gallery-item.span-3 { grid-column: span 2; }
+  .gallery-item.span-2 { grid-column: span 1; }
+  .story { padding: 5rem 1.2rem; }
+  .story-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .story-img { height: 400px; }
+  .reservation { padding: 5rem 1.2rem; }
+  .res-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .res-row { grid-template-columns: 1fr; }
+  .res-form { padding: 2rem; }
+  .press-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; padding-bottom: 2rem; }
+  .footer-bottom { justify-content: flex-start; }
+}
+</style>
+</head>
+
+<!--
+  THEMES:
+  theme-warm (default — chaud bois)
+  theme-bistro (rouge brique — bistro français)
+  theme-forest (vert forêt — végétal / bistronomique)
+  theme-noir (noir profond — gastronomie pure)
+  theme-burgundy (bordeaux — table prestige)
+-->
+<body class="theme-warm">
+
+<nav class="nav" id="nav">
+  <div class="brand"><span class="star">★</span>L'ARDOISE</div>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a class="nav-link" href="#menu">Carte</a>
+      <a class="nav-link" href="#chef">Le Chef</a>
+      <a class="nav-link" href="#galerie">Galerie</a>
+      <a class="nav-link" href="#reserver">Contact</a>
+    </div>
+    <a class="nav-cta" href="#reserver">Réserver →</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <div>
+      <div class="hero-stars">
+        <span class="star-row">★ ★ ★</span>
+        <span>Guide Michelin 2026</span>
+      </div>
+      <h1 class="hero-title">
+        Une <em>cuisine</em><br>de <em>terroir</em><br>réinventée.
+      </h1>
+      <div class="hero-meta">
+        <b>●</b> Lyon · Vieux Lyon · France
+      </div>
+      <div class="hero-meta">
+        Depuis 2026 · Chef Chef Antoine Marceau
+      </div>
+    </div>
+    <div class="hero-bottom">
+      <p class="hero-desc">
+        Une <strong>table d'auteur</strong> où la tradition française rencontre l'audace contemporaine.
+        Produits du marché, cuisson maîtrisée, accords vins inspirés.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#reserver">Réserver une table <span class="arrow">→</span></a>
+        <a class="btn btn-ghost" href="#menu">Découvrir la carte</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-img-side">
+    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&q=80" alt="">
+  </div>
+</section>
+
+<div class="hours-bar">
+  <div class="hours-day"><div class="hours-day-name">Lundi</div><div class="hours-day-time">12–14 / 19–22</div></div>
+  <div class="hours-day"><div class="hours-day-name">Mardi</div><div class="hours-day-time">12–14 / 19–22</div></div>
+  <div class="hours-day"><div class="hours-day-name">Mercredi</div><div class="hours-day-time">12–14 / 19–22</div></div>
+  <div class="hours-day"><div class="hours-day-name">Jeudi</div><div class="hours-day-time">12–14 / 19–22</div></div>
+  <div class="hours-day today"><div class="hours-day-name">Vendredi</div><div class="hours-day-time">12–14 / 19–23</div></div>
+  <div class="hours-day"><div class="hours-day-name">Samedi</div><div class="hours-day-time">12–14 / 19–23</div></div>
+  <div class="hours-day closed"><div class="hours-day-name">Dimanche</div><div class="hours-day-time">Fermé</div></div>
+</div>
+
+<section class="section" id="menu">
+  <div class="section-head">
+    <div>
+      <div class="section-num">— 01 / La Carte</div>
+      <h2 class="section-title">Au gré <em>des saisons</em></h2>
+    </div>
+    <a class="btn btn-ghost" href="#">Carte complète <span class="arrow">→</span></a>
+  </div>
+
+  <div class="menu-tabs">
+    <div class="menu-tab active">Entrées</div>
+    <div class="menu-tab">Plats</div>
+    <div class="menu-tab">Desserts</div>
+    <div class="menu-tab">Carte des vins</div>
+    <div class="menu-tab">Menu Dégustation</div>
+  </div>
+
+  <div class="menu-grid">
+    <div class="menu-item">
+      <div>
+        <h3 class="menu-item-name">Foie gras <em>poêlé</em></h3>
+        <p class="menu-item-desc">Foie gras de canard du Périgord, figue rôtie, pain d'épices, jus corsé au porto.</p>
+        <div class="menu-item-tags"><span>Signature</span><span>Sans gluten</span></div>
+      </div>
+      <div class="menu-item-price">€38</div>
+    </div>
+    <div class="menu-item">
+      <div>
+        <h3 class="menu-item-name">Saint-Jacques <em>de Bretagne</em></h3>
+        <p class="menu-item-desc">Noix poêlées au beurre noisette, purée de panais, émulsion citron yuzu, caviar Aquitaine.</p>
+        <div class="menu-item-tags"><span>Saison</span><span>Pêche durable</span></div>
+      </div>
+      <div class="menu-item-price">€42</div>
+    </div>
+    <div class="menu-item">
+      <div>
+        <h3 class="menu-item-name">Tartare de <em>bœuf wagyu</em></h3>
+        <p class="menu-item-desc">Bœuf wagyu A5, condiments minute, jaune d'œuf bio, frites maison à la graisse de canard.</p>
+        <div class="menu-item-tags"><span>Cru</span><span>Made-to-order</span></div>
+      </div>
+      <div class="menu-item-price">€36</div>
+    </div>
+    <div class="menu-item">
+      <div>
+        <h3 class="menu-item-name">Burrata <em>des Pouilles</em></h3>
+        <p class="menu-item-desc">Burrata crémeuse, tomates anciennes du jardin, basilic, huile d'olive vierge extra.</p>
+        <div class="menu-item-tags"><span>Végétarien</span><span>Bio</span></div>
+      </div>
+      <div class="menu-item-price">€26</div>
+    </div>
+    <div class="menu-item">
+      <div>
+        <h3 class="menu-item-name">Ris de veau <em>aux morilles</em></h3>
+        <p class="menu-item-desc">Ris de veau croustillants, morilles fraîches, jus de viande corsé au vin jaune du Jura.</p>
+        <div class="menu-item-tags"><span>Signature</span></div>
+      </div>
+      <div class="menu-item-price">€48</div>
+    </div>
+    <div class="menu-item">
+      <div>
+        <h3 class="menu-item-name">Pigeon <em>désossé</em></h3>
+        <p class="menu-item-desc">Pigeon de Bresse, foie gras, navets glacés, jus à la truffe noire du Périgord.</p>
+        <div class="menu-item-tags"><span>Hiver</span></div>
+      </div>
+      <div class="menu-item-price">€52</div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span class="marquee-item">Produits du marché</span><span class="marquee-item dot">●</span>
+    <span class="marquee-item">Cuisine d'auteur</span><span class="marquee-item dot">●</span>
+    <span class="marquee-item">Carte des vins</span><span class="marquee-item dot">●</span>
+    <span class="marquee-item">Privatisation</span><span class="marquee-item dot">●</span>
+    <span class="marquee-item">Produits du marché</span><span class="marquee-item dot">●</span>
+    <span class="marquee-item">Cuisine d'auteur</span><span class="marquee-item dot">●</span>
+    <span class="marquee-item">Carte des vins</span><span class="marquee-item dot">●</span>
+    <span class="marquee-item">Privatisation</span><span class="marquee-item dot">●</span>
+  </div>
+</div>
+
+<section class="story" id="chef">
+  <div class="story-inner">
+    <div class="story-img reveal">
+      <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=1000&q=80" alt="">
+    </div>
+    <div class="story-content reveal">
+      <div class="section-num">— 02 / Le Chef</div>
+      <h2 class="section-title" style="margin-top: 1rem;">Une <em>obsession</em> du goût.</h2>
+      <p class="story-quote">
+        Cuisiner, c'est <em>traduire</em> un produit dans son moment juste. Pas le travestir.
+        Le révéler. C'est l'inverse de la performance — c'est de l'écoute.
+      </p>
+      <div class="story-chef">Chef Antoine Marceau</div>
+      <div class="story-role">Chef Propriétaire — L'ARDOISE</div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="galerie">
+  <div class="section-head">
+    <div>
+      <div class="section-num">— 03 / Atmosphère</div>
+      <h2 class="section-title">Le <em>cadre</em></h2>
+    </div>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item span-3 row-2">
+      <img src="https://images.unsplash.com/photo-1567521464027-f127ff144326?w=1200&q=80" alt="">
+    </div>
+    <div class="gallery-item span-3">
+      <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=900&q=80" alt="">
+    </div>
+    <div class="gallery-item span-2">
+      <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?w=700&q=80" alt="">
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=500&q=80" alt="">
+    </div>
+    <div class="gallery-item span-2">
+      <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=700&q=80" alt="">
+    </div>
+    <div class="gallery-item span-2">
+      <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=700&q=80" alt="">
+    </div>
+    <div class="gallery-item span-2">
+      <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=700&q=80" alt="">
+    </div>
+  </div>
+</section>
+
+<section class="press">
+  <div class="press-inner">
+    <div class="reveal">
+      <p class="press-quote">"Une table où chaque plat raconte un savoir-faire. Une adresse devenue incontournable."</p>
+      <div class="press-source">— Guide Michelin</div>
+    </div>
+    <div class="reveal">
+      <p class="press-quote">"L'une des cuisines les plus précises de sa génération. Le talent à l'état brut."</p>
+      <div class="press-source">— Le Figaro Magazine</div>
+    </div>
+    <div class="reveal">
+      <p class="press-quote">"Un dîner ici n'est pas un repas, c'est une expérience qui marque."</p>
+      <div class="press-source">— Gault & Millau</div>
+    </div>
+    <div class="reveal">
+      <p class="press-quote">"Le chef sublime ses produits avec une humilité rare. Inoubliable."</p>
+      <div class="press-source">— Atabula</div>
+    </div>
+  </div>
+</section>
+
+<section class="reservation" id="reserver">
+  <div class="section-head">
+    <div>
+      <div class="section-num">— 04 / Réserver</div>
+      <h2 class="section-title">Une <em>table</em><br>vous attend.</h2>
+    </div>
+  </div>
+
+  <div class="res-grid">
+    <form class="res-form" onsubmit="event.preventDefault(); alert('Demande envoyée');">
+      <div class="res-row">
+        <div class="res-field">
+          <label>Prénom</label>
+          <input type="text" placeholder="Jean">
+        </div>
+        <div class="res-field">
+          <label>Nom</label>
+          <input type="text" placeholder="Dupont">
+        </div>
+      </div>
+      <div class="res-row">
+        <div class="res-field">
+          <label>Email</label>
+          <input type="email" placeholder="jean@email.fr">
+        </div>
+        <div class="res-field">
+          <label>Téléphone</label>
+          <input type="tel" placeholder="+33 6 ...">
+        </div>
+      </div>
+      <div class="res-row">
+        <div class="res-field">
+          <label>Date</label>
+          <input type="date">
+        </div>
+        <div class="res-field">
+          <label>Service</label>
+          <select>
+            <option>Déjeuner — 12h30</option>
+            <option>Déjeuner — 13h00</option>
+            <option>Dîner — 19h30</option>
+            <option>Dîner — 20h00</option>
+            <option>Dîner — 21h00</option>
+          </select>
+        </div>
+      </div>
+      <div class="res-field">
+        <label>Nombre de couverts</label>
+        <select>
+          <option>2 personnes</option>
+          <option>3 personnes</option>
+          <option>4 personnes</option>
+          <option>5+ personnes (privatisation)</option>
+        </select>
+      </div>
+      <button type="submit" class="res-submit">Confirmer la réservation →</button>
+    </form>
+
+    <div class="res-info">
+      <div class="res-info-block">
+        <div class="res-info-label">Adresse</div>
+        <div class="res-info-value">24 rue Mercière</div>
+      </div>
+      <div class="res-info-block">
+        <div class="res-info-label">Téléphone</div>
+        <div class="res-info-value"><a href="tel:+33 4 78 37 28 91">+33 4 78 37 28 91</a></div>
+      </div>
+      <div class="res-info-block">
+        <div class="res-info-label">Email</div>
+        <div class="res-info-value"><a href="mailto:reservation@lardoise-lyon.fr">reservation@lardoise-lyon.fr</a></div>
+      </div>
+      <div class="res-info-block">
+        <div class="res-info-label">Privatisation & événements</div>
+        <div class="res-info-value" style="font-size: 1rem; color: var(--muted); font-style: italic;">
+          Soirées privées, mariages, séminaires.<br>
+          Salle privative jusqu'à 24 couverts.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">★ L'ARDOISE</div>
+        <p class="footer-tag">
+          Une cuisine d'auteur, des produits exigeants, une expérience à part. Lyon · Vieux Lyon, depuis 2026.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Le Restaurant</h4>
+        <ul><li>La carte</li><li>Le chef</li><li>L'équipe</li><li>Privatisation</li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Pratique</h4>
+        <ul><li>Réserver</li><li>Horaires</li><li>Bons cadeaux</li><li>Parking</li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul><li>24 rue Mercière</li><li>+33 4 78 37 28 91</li><li>reservation@lardoise-lyon.fr</li><li>Instagram</li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 L'ARDOISE</span>
+      <span>Mentions · CGV · Allergènes</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('solid', window.scrollY > 60);
+});
+
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// Menu tabs
+document.querySelectorAll('.menu-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+  });
+});
+
+// Theme cycler — press T
+const themes = ['theme-warm','theme-bistro','theme-forest','theme-noir','theme-burgundy'];
+let ti = 0;
+window.addEventListener('keydown', (e) => {
+  if (e.key === 't' || e.key === 'T') {
+    document.body.className = '';
+    ti = (ti + 1) % themes.length;
+    document.body.classList.add(themes[ti]);
+    console.log('Theme:', themes[ti]);
+  }
+});
+</script>
+
+<script src="_enhance.js"></script>
+</body>
+</html>
