@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Disallow: /.git/
+
+Sitemap: https://tristanmuller007.github.io/muller-dev-studios/sitemap.xml
+
+# Block AI crawlers from training (optional — uncomment to enable)
+# User-agent: GPTBot
+# Disallow: /
+# User-agent: CCBot
+# Disallow: /
+# User-agent: anthropic-ai
+# Disallow: /
