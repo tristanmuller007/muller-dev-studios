@@ -58,7 +58,7 @@
       "description": "Studio de création de sites web professionnels pour artisans, commerçants et indépendants. Livrés en 7 jours à partir de 890€.",
       "url": "https://tristanmuller007.github.io/muller-dev-studios/",
       "telephone": "+33749498137",
-      "email": "tristan@familymuller.me",
+      "email": "tristanmuller007@gmail.com",
       "priceRange": "€€",
       "image": "https://tristanmuller007.github.io/muller-dev-studios/og-image.png",
       "logo": "https://tristanmuller007.github.io/muller-dev-studios/og-image.png",
@@ -87,13 +87,11 @@
         "jobTitle": "Développeur web · Auto-entrepreneur",
         "alumniOf": "BUT Informatique",
         "sameAs": [
-          "https://github.com/tristanmuller007",
-          "https://www.instagram.com/tristan_muller.5/"
+          "https://github.com/tristanmuller007"
         ]
       },
       "sameAs": [
-        "https://github.com/tristanmuller007",
-        "https://www.instagram.com/tristan_muller.5/"
+        "https://github.com/tristanmuller007"
       ],
       "openingHoursSpecification": {
         "@type": "OpeningHoursSpecification",
@@ -127,12 +125,6 @@
             "priceCurrency": "EUR"
           }
         ]
-      },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "5",
-        "bestRating": "5",
-        "ratingCount": "6"
       }
     },
     {
@@ -184,7 +176,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- Lenis smooth scroll (≈4KB, used by Awwwards-tier sites) -->
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
@@ -260,8 +254,19 @@ nav{
   letter-spacing:.5px;text-transform:uppercase;
   transition:all .2s;
   display:inline-flex;align-items:center;gap:8px;
+  flex-shrink:0;white-space:nowrap;
 }
 .nav-cta:hover{background:var(--neon);color:#000;transform:translateY(-1px);box-shadow:0 6px 20px rgba(222,254,0,.4)}
+.nav-cta-short{display:none}
+@media (max-width:760px){
+  .nav-cta-full{display:none}
+  .nav-cta-short{display:inline}
+  .nav-cta{padding:9px 14px;font-size:12px;letter-spacing:0}
+}
+@media (max-width:560px){
+  .nav-cta{padding:8px 12px;font-size:11px}
+  .nav-cta i{font-size:11px}
+}
 .nav-toggle{display:none}
 
 /* ===== HERO — FUTURISTIC + FLOW FIELD + PHOTO ===== */
@@ -672,11 +677,8 @@ nav{
 }
 .proj:hover .proj-shine{opacity:1}
 
-/* ===== CUSTOM CURSOR ===== */
-@media (hover:hover) and (pointer:fine){
-  body{cursor:none}
-  a,button,.proj,.faq-q,.bento-card,.who-card,.contact-row,input,textarea,select{cursor:none}
-}
+/* ===== CUSTOM CURSOR (disabled — using native cursor) ===== */
+/* The native cursor is shown; .cur-dot/.cur-ring/.cur-label are hidden via v2 override below */
 .cur-dot{
   position:fixed;top:0;left:0;
   width:6px;height:6px;border-radius:50%;
@@ -1619,6 +1621,1975 @@ footer{
   .btn{padding:14px 22px;font-size:13px}
   .hero-tag{font-size:14px}
 }
+
+/* ===== Mobile nav comprehensive fix ===== */
+@media (max-width:760px){
+  nav{padding:12px 0}
+  .nav-in{padding:0 14px;gap:8px}
+  .logo{font-size:15px;letter-spacing:1px;gap:6px;flex-shrink:1;min-width:0}
+  .logo .lmark{width:26px;height:26px;font-size:13px;flex-shrink:0}
+  .lang-toggle{margin-right:6px;padding:2px;flex-shrink:0}
+  .lang-toggle button{padding:4px 7px;font-size:9px;letter-spacing:.5px}
+}
+@media (max-width:560px){
+  .logo .lstu{display:none}     /* hide "STUDIOS" word */
+  .logo{font-size:13px}
+  .logo em{margin:0 2px}
+}
+@media (max-width:420px){
+  .logo .lmark{width:24px;height:24px;font-size:12px}
+  .nav-in{padding:0 10px}
+}
+
+/* ===== Hero / sections mobile polish ===== */
+@media (max-width:560px){
+  .wrap{padding:0 18px}
+  .hero{padding:90px 0 50px}
+  .hero h1{font-size:16vw;letter-spacing:-1.5px;line-height:.9}
+  .hero-tag{font-size:13px;line-height:1.5}
+  .hero-cta{flex-direction:column;align-items:stretch;width:100%;gap:10px}
+  .hero-cta .btn{width:100%;justify-content:center}
+  .hero-stats{padding-top:22px;gap:0}
+  .h-stat{flex:1 1 50%;padding:12px 14px!important}
+  .h-stat-num{font-size:26px}
+  .h-stat-lbl{font-size:9px;letter-spacing:1px}
+  .eyebrow{font-size:10px;letter-spacing:1.5px;padding:6px 12px}
+  .sec{padding:55px 0}
+  .sec-head{margin-bottom:36px}
+  .sec h2{font-size:32px;line-height:1.05}
+  .sec-eyebrow{font-size:11px;letter-spacing:1.5px}
+  .sec-desc{font-size:15px}
+  .marquee-track{font-size:15px;letter-spacing:1px}
+  .feat,.bento-card,.who-card,.testi{padding:22px 20px}
+  .feat h3,.bento-card h3{font-size:15px}
+  .feat p,.bento-card p{font-size:13px}
+  .price{padding:28px 22px}
+  .price-amount{font-size:42px}
+  .price-name{font-size:19px}
+  .price li{font-size:13px;padding:8px 0}
+  .step{padding:24px 18px}
+  .step h3{font-size:15px}
+  .testi{flex-basis:280px;padding:24px}
+  .testi-quote{font-size:14px}
+  .trades-pills span{font-size:11px;padding:5px 9px}
+  .trades-cloud{padding:30px 18px;margin-top:40px}
+  .trades-cloud-head span{font-size:10px;letter-spacing:2px;padding:6px 14px}
+  .form-card{padding:22px 18px}
+  .contact-row{padding:16px}
+  .foot-grid{gap:24px}
+  .kbd-hint{display:none}
+}
+
+/* ============================================================
+   v2 EDITORIAL OVERRIDES — less AI, more pro, scroll-rich
+   ============================================================ */
+:root{
+  --serif:'Fraunces',Georgia,serif;
+  --mono:'DM Mono',ui-monospace,monospace;
+}
+
+/* Kill AI tells */
+.grain{display:none}
+#flowfield{display:none!important}
+.race-stripe,.race-stripe-2{display:none}
+.cur-dot,.cur-ring,.cur-label{display:none!important}
+.kbd-hint,#cmdk{display:none!important}
+
+/* Mobile menu button + drawer */
+.nav-toggle{display:none;background:transparent;border:1px solid var(--line);width:42px;height:42px;border-radius:10px;cursor:pointer;align-items:center;justify-content:center;color:var(--text);font-size:18px;transition:background .2s,border-color .2s}
+.nav-toggle:hover{background:rgba(0,0,0,.04);border-color:var(--text-2)}
+.nav-toggle.open{background:var(--text);color:#fff;border-color:var(--text)}
+.nav-mobile-cta{display:none}
+body.menu-open{overflow:hidden}
+
+/* Hero v2: editorial */
+.hero{padding:80px 0 100px;min-height:auto}
+.hero .wrap{position:relative;z-index:5}
+.hero-content{max-width:none}
+.hero .eyebrow{
+  font-family:var(--mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
+  background:transparent;border:none;border-top:1px solid rgba(255,255,255,.18);
+  padding:18px 0 0;display:flex;align-items:center;gap:12px;
+  margin-bottom:36px;width:100%;max-width:560px;color:rgba(255,255,255,.7);border-radius:0;
+}
+.hero .eyebrow .live{position:static;width:6px;height:6px;background:var(--neon);box-shadow:0 0 0 4px rgba(222,254,0,.18)}
+.hero h1{
+  font-family:var(--serif);font-weight:300;
+  font-size:clamp(56px,8.4vw,148px);line-height:.95;letter-spacing:-3px;
+  text-transform:none;margin:0 0 36px;color:var(--white);
+  font-variation-settings:"opsz" 144;max-width:14ch;
+}
+.hero h1 .line{display:block;margin:0;overflow:hidden}
+.hero h1 .line > span{
+  display:inline-block;font-family:var(--serif);font-weight:300;letter-spacing:-3px;
+  text-transform:none;-webkit-text-stroke:0;color:var(--white);
+  background:transparent;-webkit-text-fill-color:initial;text-shadow:none;
+}
+.hero h1 .line > span.outline{-webkit-text-stroke:0;color:rgba(255,255,255,.32);font-style:italic;font-weight:400}
+.hero h1 .line > span.accent{color:var(--white);background:transparent;font-weight:500;font-style:italic;position:relative}
+.hero h1 .line > span.accent::after{
+  content:"";display:block;height:5px;width:100%;
+  background:var(--neon);margin-top:-12px;transform:translateY(8px);border-radius:2px;
+}
+.hero-tag{font-family:'Inter',sans-serif;font-size:18px;line-height:1.55;color:rgba(255,255,255,.78);max-width:54ch;margin:0 0 36px}
+.hero-tag .mark{background:transparent;color:var(--neon);font-weight:600;padding:0;border-radius:0}
+.hero-tag .mark::before{display:none!important}
+.hero-tag .mark.outline{color:var(--neon)}
+.hero-tag strong{color:var(--white);font-weight:600}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:64px}
+.hero-cta .btn{font-family:'Inter',sans-serif;font-weight:600;letter-spacing:0;text-transform:none;font-size:15px;padding:16px 24px;border-radius:999px;transition:transform .25s,background .25s,color .25s,border-color .25s}
+.hero-cta .btn-primary{background:var(--neon);color:#0c0e1a;border:1px solid var(--neon);box-shadow:none}
+.hero-cta .btn-primary:hover{transform:translateY(-2px);background:#fff;color:#0c0e1a;border-color:#fff}
+.hero-cta .btn-ghost{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.25)}
+.hero-cta .btn-ghost:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.5);transform:translateY(-2px)}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid rgba(255,255,255,.14);padding-top:28px;max-width:780px}
+.h-stat{padding:0 24px 0 0;border-right:1px solid rgba(255,255,255,.14);background:transparent}
+.h-stat:nth-child(2),.h-stat:nth-child(3){padding-left:24px}
+.h-stat:last-child{border-right:none;padding-left:24px}
+.h-stat-num{font-family:var(--serif);font-weight:400;font-size:38px;line-height:1;letter-spacing:-1px;color:var(--white);margin-bottom:6px}
+.h-stat-num em{font-family:var(--mono);font-style:normal;font-size:14px;font-weight:400;margin-left:4px;color:rgba(255,255,255,.55);letter-spacing:0}
+.h-stat-lbl{font-family:var(--mono);font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.hero-vside{font-family:var(--mono);font-size:10px;letter-spacing:2px;color:rgba(255,255,255,.4)}
+.hero-photo{opacity:.5;mix-blend-mode:luminosity;filter:contrast(.95) saturate(.6)}
+.hero-photo::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 80% at 30% 50%,rgba(6,7,15,.95) 30%,rgba(6,7,15,.4) 70%,rgba(6,7,15,.85));z-index:1}
+
+/* Section eyebrows + h2 — editorial */
+.sec-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-2);display:inline-flex;align-items:center;gap:8px}
+.sec-eyebrow::before{content:"";width:24px;height:1px;background:currentColor;display:inline-block}
+.sec h2,#trustbar h2,#temoignages h2{
+  font-family:var(--serif);font-weight:300;
+  font-size:clamp(40px,5.4vw,72px);line-height:1.02;letter-spacing:-2px;text-transform:none;
+  font-variation-settings:"opsz" 144;max-width:18ch;
+}
+.sec h2 .accent,#temoignages h2 .accent{font-style:italic;font-weight:400;color:var(--blue)}
+#offre h2 .accent,#temoignages h2 .accent{color:var(--neon)!important}
+#temoignages h2{color:var(--white)}
+
+/* Trustbar — calmer */
+#trustbar{padding:48px 0 32px;background:transparent;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.trust-head{font-family:var(--mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-2);margin-bottom:20px}
+.trust-track .tl{font-family:var(--mono);font-size:13px;letter-spacing:.5px;text-transform:none;color:var(--text-2);opacity:.85}
+
+/* Marquee — calmer */
+.marquee{padding:14px 0;background:transparent;border:none;font-family:var(--mono);font-size:12px;letter-spacing:.5px;color:var(--text-2);text-transform:none}
+
+/* Form feedback states */
+.form-feedback{display:flex;gap:10px;align-items:flex-start;margin-top:14px;padding:14px 16px;border-radius:12px;font-size:14px;line-height:1.5}
+.form-feedback[hidden]{display:none!important}
+.form-feedback i{flex-shrink:0;margin-top:2px;font-size:18px}
+.form-feedback-ok{background:rgba(80,200,120,.12);border:1px solid rgba(80,200,120,.4);color:#7ee2a3}
+.form-feedback-ok strong{color:#bff5d2}
+.form-feedback-err{background:rgba(255,90,90,.12);border:1px solid rgba(255,90,90,.4);color:#ffabab}
+.form-feedback-err strong{color:#ffd1d1}
+.form-feedback-err a{color:#fff;text-decoration:underline}
+.form-submit .btn-spinner{display:none;width:14px;height:14px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:spin .7s linear infinite;margin:0 4px}
+.form-submit.loading .btn-spinner{display:inline-block}
+.form-submit.loading .btn-label,.form-submit.loading > i.fa-paper-plane{opacity:.6}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Scroll progress bar */
+.scroll-progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--neon);z-index:9998;transition:width .15s linear;pointer-events:none}
+
+/* Scroll reveal utilities */
+.fx-fade{opacity:0;transform:translateY(20px);transition:opacity .9s cubic-bezier(.22,.61,.36,1),transform .9s cubic-bezier(.22,.61,.36,1)}
+.fx-fade.in{opacity:1;transform:none}
+.fx-words{display:inline-block}
+.fx-words .w{display:inline-block;opacity:0;transform:translateY(.4em) rotateX(40deg);transition:opacity .55s ease,transform .65s cubic-bezier(.22,.61,.36,1);transform-origin:50% 100%}
+.fx-words.in .w{opacity:1;transform:none}
+.fx-img-reveal{position:relative;overflow:hidden}
+.fx-img-reveal::after{content:"";position:absolute;inset:0;background:#0c0e1a;transform-origin:right center;transform:scaleX(1);transition:transform 1s cubic-bezier(.77,0,.18,1)}
+.fx-img-reveal.in::after{transform:scaleX(0)}
+.fx-card{opacity:0;transform:translateY(28px) scale(.985);transition:opacity .8s ease,transform .9s cubic-bezier(.22,.61,.36,1)}
+.fx-card.in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  .fx-fade,.fx-words .w,.fx-card{transition:none!important;opacity:1!important;transform:none!important}
+  .fx-img-reveal::after{display:none}
+}
+
+/* Mobile drawer */
+@media(max-width:900px){
+  .nav-links{
+    display:flex!important;position:fixed;inset:64px 0 0 0;flex-direction:column;align-items:flex-start;gap:0;
+    padding:32px 28px 40px;background:var(--bg);border-top:1px solid var(--line);
+    transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);z-index:90;overflow-y:auto;
+  }
+  .nav-links.open{transform:translateX(0)}
+  .nav-links li{width:100%;border-bottom:1px solid var(--line)}
+  .nav-links li:last-child{border-bottom:none;margin-top:18px}
+  .nav-links a{display:block;padding:18px 0;font-size:18px;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:1px}
+  .nav-mobile-cta{display:flex!important;align-items:center;gap:10px;justify-content:space-between;background:var(--text);color:var(--bg)!important;padding:16px 20px!important;border-radius:12px;font-size:15px!important;letter-spacing:0!important;text-transform:none!important}
+  .nav-toggle{display:inline-flex}
+  .nav-in > .nav-cta{display:none}
+  .hero h1{font-size:14vw;letter-spacing:-1.5px;max-width:none}
+  .hero .eyebrow{max-width:none}
+  .hero-tag{font-size:16px}
+  .hero-stats{grid-template-columns:repeat(2,1fr);gap:0;border:none;padding-top:0}
+  .h-stat{padding:18px 0!important;border-right:1px solid rgba(255,255,255,.14)!important;border-bottom:1px solid rgba(255,255,255,.14)}
+  .h-stat:nth-child(even){border-right:none!important}
+  .h-stat:nth-last-child(-n+2){border-bottom:none}
+  .h-stat-num{font-size:30px}
+  .sec h2,#temoignages h2{font-size:42px;letter-spacing:-1px}
+}
+
+/* ============================================================
+   v3 — Lenis-style polish: floating CTA, theme switch, photo
+   ============================================================ */
+
+/* Bigger photo, less hidden — feels more "studio" */
+.hero-photo{opacity:.78;mix-blend-mode:normal;filter:contrast(1) saturate(1)}
+.hero-photo::after{
+  background:linear-gradient(90deg,rgba(6,7,15,.95) 0%,rgba(6,7,15,.7) 40%,rgba(6,7,15,.15) 75%,rgba(6,7,15,.6) 100%);
+}
+.hero-photo img{object-position:center 25%;filter:contrast(1.05) brightness(.92)}
+
+/* Floating "Devis" pill — always visible while scrolling */
+.float-cta{
+  position:fixed;
+  bottom:24px;right:24px;
+  z-index:80;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:14px 22px;
+  border-radius:999px;
+  background:var(--neon);
+  color:#0c0e1a;
+  font-family:'Inter',sans-serif;
+  font-weight:600;
+  font-size:14px;
+  letter-spacing:.2px;
+  text-decoration:none;
+  box-shadow:0 8px 32px rgba(222,254,0,.35),0 2px 8px rgba(0,0,0,.2);
+  transform:translateY(140%);
+  transition:transform .5s cubic-bezier(.22,.61,.36,1),box-shadow .25s,scale .15s;
+  opacity:0;
+}
+.float-cta.visible{transform:translateY(0);opacity:1}
+.float-cta:hover{box-shadow:0 12px 40px rgba(222,254,0,.5),0 4px 12px rgba(0,0,0,.25);scale:1.04}
+.float-cta i{font-size:13px;transition:transform .25s}
+.float-cta:hover i{transform:translateX(3px)}
+.float-cta-icon{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:22px;height:22px;
+  border-radius:50%;
+  background:#0c0e1a;
+  color:var(--neon);
+  font-size:11px;
+}
+@media(max-width:560px){
+  .float-cta{bottom:16px;right:16px;padding:12px 18px;font-size:13px}
+}
+
+/* Section theme switching: nav goes light on light sections, dark on dark */
+nav{transition:background .35s ease,backdrop-filter .35s ease,border-color .35s ease}
+nav.theme-light{background:rgba(255,255,255,.85);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px)}
+nav.theme-light .logo,nav.theme-light .nav-links a,nav.theme-light .lang-toggle button{color:#0c0e1a}
+nav.theme-light .nav-cta{background:#0c0e1a;color:#fff}
+nav.theme-light .nav-toggle{border-color:rgba(0,0,0,.15);color:#0c0e1a}
+
+/* Background color shifts at section boundaries (subtle) */
+body{transition:background-color .55s ease}
+
+/* Hero is dark, FAQ is light — nav theme tracks this naturally via JS */
+
+/* ============================================================
+   MANIFESTO — personal section, no neon, magazine-feel
+   ============================================================ */
+.manifesto{
+  background:#f8f6f1;
+  color:#0c0e1a;
+  padding:120px 0 140px;
+  position:relative;
+  overflow:hidden;
+}
+.manifesto::before{
+  content:"";
+  position:absolute;
+  top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(0,0,0,.12),transparent);
+}
+.manifesto-wrap{
+  display:grid;
+  grid-template-columns:42% 1fr;
+  gap:80px;
+  align-items:center;
+  max-width:1100px;
+}
+.manifesto-card{
+  position:relative;
+  aspect-ratio:4/5;
+  background:#0c0e1a;
+  color:#fafbff;
+  overflow:hidden;
+  border-radius:3px;
+  transform:rotate(-1.2deg);
+  box-shadow:0 30px 60px -20px rgba(0,0,0,.35),0 8px 20px -8px rgba(0,0,0,.22);
+  padding:32px 28px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  font-family:'DM Mono',monospace;
+}
+.manifesto-card::before,
+.manifesto-card::after{
+  content:"";
+  position:absolute;
+  width:18px;height:18px;
+  border:1px solid rgba(255,255,255,.25);
+}
+.manifesto-card::before{top:14px;left:14px;border-right:none;border-bottom:none}
+.manifesto-card::after{bottom:14px;right:14px;border-left:none;border-top:none}
+.mc-top{
+  display:flex;justify-content:space-between;align-items:baseline;
+  font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:rgba(255,255,255,.55);
+}
+.mc-label::before{content:"— "}
+.mc-num{font-weight:500;color:rgba(255,255,255,.75)}
+.mc-mark{
+  font-family:'Fraunces',Georgia,serif;
+  font-size:clamp(140px,18vw,220px);
+  line-height:.85;
+  letter-spacing:-8px;
+  font-weight:300;
+  font-style:italic;
+  text-align:center;
+  margin:0 0 -10px;
+  color:#fafbff;
+  font-variation-settings:"opsz" 144;
+  position:relative;
+}
+.mc-mark::after{
+  content:"";
+  position:absolute;
+  bottom:18px;
+  left:50%;
+  transform:translateX(-50%);
+  width:42px;height:2px;
+  background:var(--neon);
+}
+.mc-mid{
+  display:flex;align-items:center;gap:12px;
+  margin:0 0 22px;
+}
+.mc-line{flex:1;height:1px;background:rgba(255,255,255,.18)}
+.mc-tag{
+  font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:rgba(255,255,255,.7);
+}
+.mc-meta{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px 18px;
+  margin:0 0 22px;
+  font-size:11px;
+}
+.mc-meta > div{
+  display:flex;
+  justify-content:space-between;
+  border-bottom:1px dashed rgba(255,255,255,.12);
+  padding-bottom:6px;
+}
+.mc-k{color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:1px;font-size:9px}
+.mc-v{color:#fafbff;font-weight:500}
+.mc-bottom{
+  display:flex;align-items:center;justify-content:center;gap:14px;
+  font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  color:rgba(255,255,255,.55);
+  border-top:1px solid rgba(255,255,255,.1);
+  padding-top:14px;
+}
+.mc-dot{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.4)}
+.mc-stamp{font-weight:500}
+.manifesto-eyebrow{
+  font-family:'DM Mono',monospace;
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:rgba(12,14,26,.55);
+  margin-bottom:24px;
+}
+.manifesto-quote{
+  font-family:'Fraunces',Georgia,serif;
+  font-weight:400;
+  font-size:clamp(28px,3.4vw,44px);
+  line-height:1.2;
+  letter-spacing:-1px;
+  color:#0c0e1a;
+  margin:0 0 28px;
+  font-variation-settings:"opsz" 144;
+}
+.manifesto-quote em{font-style:italic;font-weight:500}
+.manifesto-body{
+  font-family:'Inter',sans-serif;
+  font-size:17px;
+  line-height:1.65;
+  color:rgba(12,14,26,.78);
+  max-width:46ch;
+  margin:0 0 36px;
+}
+.manifesto-body strong{color:#0c0e1a;font-weight:600}
+.manifesto-sign{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  border-top:1px solid rgba(12,14,26,.15);
+  padding-top:18px;
+  max-width:300px;
+}
+.ms-name{
+  font-family:'Fraunces',Georgia,serif;
+  font-style:italic;
+  font-weight:500;
+  font-size:22px;
+  color:#0c0e1a;
+}
+.ms-role{
+  font-family:'DM Mono',monospace;
+  font-size:11px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:rgba(12,14,26,.55);
+}
+@media(max-width:780px){
+  .manifesto{padding:80px 0}
+  .manifesto-wrap{grid-template-columns:1fr;gap:48px}
+  .manifesto-card{max-width:320px;margin:0 auto;transform:rotate(-1deg);padding:26px 22px}
+  .mc-mark{font-size:140px;letter-spacing:-6px}
+  .mc-meta{grid-template-columns:1fr;gap:6px}
+  .manifesto-quote{font-size:28px}
+  .manifesto-body{font-size:16px}
+}
+
+/* ============================================================
+   CINEMATIC + LAMP — Aceternity-style intro for the gallery
+   ============================================================ */
+.sec-cinematic{
+  background:#06070f;
+  padding:0 0 120px;
+  position:relative;
+  overflow:hidden;
+}
+
+/* Lamp intro */
+.lamp-intro{
+  position:relative;
+  width:100%;
+  min-height:520px;
+  background:#06070f;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  isolation:isolate;
+}
+.lamp-cone{
+  position:absolute;
+  top:0;
+  width:60%;
+  height:100%;
+  pointer-events:none;
+  filter:blur(70px);
+  opacity:0;
+  animation:lampIn 1.6s .15s cubic-bezier(.22,.61,.36,1) forwards;
+}
+.lamp-cone-l{
+  left:-10%;
+  background:conic-gradient(from 70deg at top right,transparent 0%,var(--neon) 25%,transparent 60%);
+  transform-origin:top right;
+}
+.lamp-cone-r{
+  right:-10%;
+  background:conic-gradient(from -70deg at top left,transparent 40%,var(--neon) 75%,transparent 100%);
+  transform-origin:top left;
+}
+@keyframes lampIn{
+  0%{opacity:0;transform:scaleX(.4)}
+  100%{opacity:.7;transform:scaleX(1)}
+}
+.lamp-bar{
+  position:absolute;
+  top:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:0;
+  height:2px;
+  background:var(--neon);
+  box-shadow:0 0 18px var(--neon),0 0 36px var(--neon),0 0 72px rgba(222,254,0,.6);
+  animation:lampBar 1.4s .1s cubic-bezier(.22,.61,.36,1) forwards;
+  z-index:2;
+}
+@keyframes lampBar{
+  0%{width:0}
+  100%{width:60%}
+}
+.lamp-glow{
+  position:absolute;
+  top:0;
+  left:50%;
+  transform:translateX(-50%) translateY(-40%);
+  width:480px;
+  height:300px;
+  background:radial-gradient(ellipse at center top,rgba(222,254,0,.55) 0%,rgba(222,254,0,.2) 30%,transparent 60%);
+  filter:blur(40px);
+  pointer-events:none;
+  opacity:0;
+  animation:lampGlow 1.6s .25s ease-out forwards;
+  z-index:1;
+}
+@keyframes lampGlow{
+  0%{opacity:0}
+  100%{opacity:1}
+}
+.lamp-content{
+  position:relative;
+  z-index:5;
+  text-align:center;
+  padding:160px 24px 80px;
+  max-width:780px;
+}
+.lamp-eyebrow{
+  display:inline-flex!important;
+  margin-bottom:28px;
+  color:rgba(255,255,255,.55);
+  justify-content:center;
+}
+.lamp-eyebrow::before{background:rgba(255,255,255,.55)!important}
+.lamp-title{
+  font-family:var(--serif);
+  font-weight:300;
+  font-size:clamp(48px,7vw,96px);
+  line-height:1;
+  letter-spacing:-2.5px;
+  color:#fff;
+  margin:0 0 24px;
+  font-variation-settings:"opsz" 144;
+  max-width:none!important;
+}
+.lamp-title .accent{
+  font-style:italic;
+  color:var(--neon)!important;
+  font-weight:400;
+}
+.lamp-desc{
+  font-family:'Inter',sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  color:rgba(255,255,255,.65);
+  max-width:52ch;
+  margin:0 auto;
+}
+
+/* Cinematic rail — HORIZONTAL scroll with snap (awwwards-tier) */
+.cinematic-rail{
+  display:flex;
+  flex-direction:row;
+  gap:0;
+  margin:0;
+  position:relative;
+  z-index:5;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(222,254,0,.3) transparent;
+  padding:0 0 24px;
+}
+.cinematic-rail::-webkit-scrollbar{height:4px;background:transparent}
+.cinematic-rail::-webkit-scrollbar-thumb{background:rgba(222,254,0,.4);border-radius:999px}
+.cinematic-rail::-webkit-scrollbar-thumb:hover{background:var(--neon)}
+.cinematic-rail .proj{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0;
+  align-items:stretch;
+  flex:0 0 100vw;
+  min-width:100vw;
+  max-width:100vw;
+  min-height:75vh;
+  max-height:80vh;
+  scroll-snap-align:start;
+  scroll-snap-stop:always;
+  background:transparent!important;
+  border-radius:0;
+  overflow:hidden;
+  border-right:1px solid rgba(255,255,255,.08);
+  border-top:none;
+  border-bottom:none;
+  text-decoration:none;
+  transition:background .4s ease;
+}
+.cinematic-rail .proj:last-child{border-right:none}
+.cinematic-rail .proj:hover{background:rgba(255,255,255,.02)!important}
+
+/* Horizontal scroll hint */
+.cinematic-rail-hint{
+  position:absolute;
+  bottom:30px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:6;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.5);
+  padding:8px 16px;
+  background:rgba(0,0,0,.4);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:999px;
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  pointer-events:none;
+  animation:hintPulse 2s ease-in-out infinite;
+}
+.cinematic-rail-hint i{font-size:12px;animation:hintArrow 1.5s ease-in-out infinite}
+.hint-en{display:none}
+html[lang="en"] .hint-fr{display:none}
+html[lang="en"] .hint-en{display:inline}
+@keyframes hintPulse{
+  0%,100%{opacity:.6}
+  50%{opacity:1}
+}
+@keyframes hintArrow{
+  0%,100%{transform:translateX(0)}
+  50%{transform:translateX(4px)}
+}
+.sec-cinematic{position:relative}
+.cinematic-rail .proj-img{
+  position:relative;
+  aspect-ratio:auto;
+  min-height:100%;
+  background:var(--proj-bg)!important;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  border-radius:0;
+  margin:0;
+  padding:60px 40px;
+  transition:transform .8s cubic-bezier(.22,.61,.36,1);
+}
+.cinematic-rail .proj:hover .proj-img{transform:scale(1.015)}
+.cinematic-rail .proj-tag{
+  top:24px;left:24px;
+  font-family:var(--mono);
+  font-size:10px;letter-spacing:1.8px;
+  background:rgba(255,255,255,.08);
+  color:rgba(255,255,255,.85);
+  padding:6px 12px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.18);
+  backdrop-filter:blur(8px);
+}
+.cinematic-rail .proj-num{
+  top:24px;right:24px;
+  font-family:var(--mono);
+  font-size:10px;letter-spacing:1.5px;
+  color:rgba(255,255,255,.5);
+}
+.cinematic-rail .proj-mini{
+  font-family:var(--proj-font,'Barlow Condensed',sans-serif);
+  font-size:clamp(28px,4vw,56px);
+  font-weight:300;
+  line-height:.95;
+  text-align:center;
+  letter-spacing:-1.5px;
+  color:#fff;
+  max-width:90%;
+  word-wrap:break-word;
+  overflow-wrap:break-word;
+  hyphens:auto;
+}
+.cinematic-rail .proj-mini em{
+  display:block;
+  margin-top:14px;
+  font-family:var(--mono);
+  font-style:normal;
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  font-weight:400;
+}
+.cinematic-rail .proj-body{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:64px 64px;
+  background:transparent!important;
+  border:none;
+  color:#fafbff;
+}
+.cinematic-rail .proj-body h3{
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(36px,4.5vw,60px);
+  line-height:1;
+  letter-spacing:-1.5px;
+  margin:0 0 20px;
+  color:#fff;
+  font-variation-settings:"opsz" 144;
+}
+.cinematic-rail .proj-body p{
+  font-family:'Inter',sans-serif;
+  font-size:16px;
+  line-height:1.65;
+  color:rgba(255,255,255,.7);
+  margin:0 0 32px;
+  max-width:46ch;
+}
+.cinematic-rail .proj-meta{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:24px;
+  margin-top:auto;
+  padding-top:32px;
+  border-top:1px solid rgba(255,255,255,.1);
+  flex-wrap:wrap;
+}
+.cinematic-rail .proj-tech{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.cinematic-rail .proj-tech span{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.5);
+  padding:6px 10px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:999px;
+  background:transparent;
+}
+.cinematic-rail .proj-link{
+  font-family:'Inter',sans-serif;
+  font-size:14px;
+  font-weight:600;
+  color:var(--neon);
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  transition:gap .25s ease;
+}
+.cinematic-rail .proj:hover .proj-link{gap:14px}
+.cinematic-cta{
+  text-align:center;
+  margin:80px auto 0;
+  padding:0 24px;
+}
+
+@media(max-width:780px){
+  .lamp-intro{min-height:380px}
+  .lamp-content{padding:120px 24px 60px}
+  .cinematic-rail .proj{grid-template-columns:1fr}
+  .cinematic-rail .proj:nth-child(even){direction:ltr}
+  .cinematic-rail .proj-body{padding:40px 24px}
+  .cinematic-rail .proj-body h3{font-size:32px}
+}
+
+/* ============================================================
+   CHAPTER COUNTER — fixed corner UI (Motto-style)
+   ============================================================ */
+.chapter-counter{
+  position:fixed;
+  bottom:24px;
+  left:24px;
+  z-index:75;
+  display:flex;
+  align-items:baseline;
+  gap:6px;
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.85);
+  background:rgba(0,0,0,.4);
+  backdrop-filter:blur(12px) saturate(1.4);
+  -webkit-backdrop-filter:blur(12px) saturate(1.4);
+  padding:10px 14px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.1);
+  pointer-events:none;
+  transition:opacity .3s,color .3s,background .3s,border-color .3s;
+}
+.chapter-counter .cc-num{font-weight:500;color:var(--neon)}
+.chapter-counter .cc-sep{opacity:.4}
+.chapter-counter .cc-total{opacity:.6}
+.chapter-counter .cc-lbl{
+  margin-left:8px;
+  padding-left:10px;
+  border-left:1px solid rgba(255,255,255,.18);
+  font-weight:500;
+}
+/* Light theme variant */
+nav.theme-light ~ .chapter-counter,body:has(nav.theme-light) .chapter-counter{
+  background:rgba(255,255,255,.6);
+  color:rgba(12,14,26,.8);
+  border-color:rgba(0,0,0,.08);
+}
+@media(max-width:560px){
+  .chapter-counter{display:none}
+}
+
+/* ============================================================
+   CHAPTER BREAK — full-screen typographic divider (chainzoku-style)
+   ============================================================ */
+.chapter-break{
+  background:#06070f;
+  color:#fff;
+  padding:140px 0;
+  position:relative;
+  overflow:hidden;
+}
+.chapter-break-inner{
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 24px;
+  position:relative;
+}
+.cb-num{
+  font-family:var(--serif);
+  font-size:clamp(120px,18vw,260px);
+  font-weight:300;
+  font-style:italic;
+  line-height:1;
+  letter-spacing:-8px;
+  color:rgba(255,255,255,.08);
+  margin:0 0 -.3em;
+  font-variation-settings:"opsz" 144;
+}
+.cb-num em{
+  font-style:normal;
+  color:var(--neon);
+  font-weight:400;
+}
+.cb-title{
+  font-family:var(--serif);
+  font-size:clamp(48px,7vw,100px);
+  font-weight:300;
+  line-height:1;
+  letter-spacing:-2px;
+  color:#fff;
+  margin:0 0 28px;
+  font-variation-settings:"opsz" 144;
+  position:relative;
+}
+.cb-title em{font-style:italic;font-weight:400;color:var(--neon)}
+.cb-desc{
+  font-family:'Inter',sans-serif;
+  font-size:18px;
+  line-height:1.55;
+  color:rgba(255,255,255,.65);
+  max-width:48ch;
+  margin:0;
+}
+.cb-marquee{
+  position:absolute;
+  bottom:0;
+  left:0;right:0;
+  font-family:var(--serif);
+  font-style:italic;
+  font-weight:300;
+  font-size:clamp(80px,13vw,200px);
+  line-height:1;
+  letter-spacing:-4px;
+  color:rgba(255,255,255,.04);
+  white-space:nowrap;
+  pointer-events:none;
+  transform:translateY(35%);
+  font-variation-settings:"opsz" 144;
+}
+@media(max-width:780px){
+  .chapter-break{padding:80px 0}
+}
+
+/* ============================================================
+   MEGA MARQUEE — full-bleed scrolling type (Motto/Chainzoku)
+   ============================================================ */
+.mega-marquee{
+  background:#06070f;
+  color:#fafbff;
+  padding:80px 0;
+  overflow:hidden;
+  position:relative;
+  border-top:1px solid rgba(255,255,255,.08);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.mega-marquee.mm-light{
+  background:#f4f6fc;
+  color:#0c0e1a;
+  border-color:rgba(0,0,0,.06);
+}
+.mega-marquee::before,
+.mega-marquee::after{
+  content:"";
+  position:absolute;
+  top:0;bottom:0;
+  width:120px;
+  z-index:2;
+  pointer-events:none;
+}
+.mega-marquee::before{
+  left:0;
+  background:linear-gradient(90deg,#06070f,transparent);
+}
+.mega-marquee::after{
+  right:0;
+  background:linear-gradient(-90deg,#06070f,transparent);
+}
+.mega-marquee.mm-light::before{background:linear-gradient(90deg,#f4f6fc,transparent)}
+.mega-marquee.mm-light::after{background:linear-gradient(-90deg,#f4f6fc,transparent)}
+.mm-track{
+  display:flex;
+  gap:0;
+  white-space:nowrap;
+  animation:mmScroll 40s linear infinite;
+  will-change:transform;
+}
+.mm-track > span{
+  font-family:var(--serif);
+  font-weight:300;
+  font-size:clamp(60px,9vw,140px);
+  line-height:1;
+  letter-spacing:-3px;
+  padding:0 32px;
+  font-variation-settings:"opsz" 144;
+}
+.mm-track > span em{
+  font-style:italic;
+  font-weight:400;
+  color:var(--neon);
+}
+.mega-marquee.mm-light .mm-track > span em{color:#0c0e1a;font-style:italic}
+@keyframes mmScroll{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-50%)}
+}
+/* Pause on hover for accessibility */
+.mega-marquee:hover .mm-track{animation-play-state:paused}
+@media(max-width:780px){
+  .mega-marquee{padding:50px 0}
+  .mm-track > span{font-size:60px;letter-spacing:-2px}
+}
+
+/* ============================================================
+   SCROLL EXPANSION — frame grows from small to fullscreen
+   ============================================================ */
+.scroll-xp{
+  height:280vh;
+  position:relative;
+  background:#06070f;
+}
+.sxp-pin{
+  position:sticky;
+  top:0;
+  height:100vh;
+  width:100%;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  isolation:isolate;
+}
+.sxp-bg{
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(ellipse at 50% 80%,rgba(222,254,0,.08),transparent 60%),
+    radial-gradient(ellipse at 30% 30%,rgba(79,124,255,.06),transparent 50%),
+    #06070f;
+  z-index:0;
+}
+.sxp-text{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  text-align:center;
+  z-index:5;
+  width:90%;
+  max-width:780px;
+  pointer-events:none;
+}
+.sxp-text-top{top:120px}
+.sxp-text-bottom{bottom:120px}
+.sxp-eyebrow{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.55);
+  margin-bottom:18px;
+  display:inline-block;
+}
+.sxp-title{
+  font-family:var(--serif);
+  font-weight:300;
+  font-size:clamp(48px,7vw,96px);
+  line-height:1;
+  letter-spacing:-2px;
+  color:#fafbff;
+  margin:0;
+  font-variation-settings:"opsz" 144;
+}
+.sxp-title em{font-style:italic;color:var(--neon);font-weight:400}
+.sxp-desc{
+  font-family:'Inter',sans-serif;
+  font-size:18px;
+  line-height:1.5;
+  color:rgba(255,255,255,.65);
+  margin:0;
+}
+.sxp-desc em{font-style:italic;color:var(--neon);font-weight:500}
+
+/* The expanding frame — now a giant M logo placeholder */
+.sxp-frame{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:30vw;
+  max-width:480px;
+  aspect-ratio:1/1;
+  z-index:3;
+  transform:scale(var(--sxp-scale,1));
+  transform-origin:center center;
+  transition:transform 80ms linear;
+  will-change:transform;
+}
+.sxp-logo{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  height:100%;
+}
+.sxp-logo-mark{
+  font-family:var(--display);
+  font-weight:900;
+  font-size:clamp(160px,24vw,360px);
+  line-height:.8;
+  letter-spacing:-12px;
+  color:var(--neon);
+  /* Sharp text — only a very subtle glow halo behind */
+  text-shadow:0 0 60px rgba(222,254,0,.18);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:geometricPrecision;
+}
+.sxp-logo-line{
+  display:block;
+  width:60px;
+  height:2px;
+  background:rgba(255,255,255,.4);
+  margin:18px 0 14px;
+}
+.sxp-logo-tag{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.55);
+}
+
+/* Scroll hint at the bottom */
+.sxp-hint{
+  position:absolute;
+  bottom:32px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.5);
+  z-index:5;
+  pointer-events:none;
+  animation:sxpHintBob 2s ease-in-out infinite;
+}
+.sxp-hint i{font-size:14px}
+@keyframes sxpHintBob{
+  0%,100%{transform:translateX(-50%) translateY(0);opacity:.5}
+  50%{transform:translateX(-50%) translateY(6px);opacity:1}
+}
+.sxp-window{
+  width:100%;
+  height:100%;
+  background:#fafbff;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 60px 120px -30px rgba(0,0,0,.6),0 30px 80px -30px rgba(222,254,0,.12);
+}
+.sxp-bar{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  background:#0c0e1a;
+  padding:10px 14px;
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+.sxp-dot{
+  width:10px;height:10px;border-radius:50%;
+}
+.sxp-dot:nth-child(1){background:#ff5f57}
+.sxp-dot:nth-child(2){background:#febc2e}
+.sxp-dot:nth-child(3){background:#28c841}
+.sxp-url{
+  margin-left:auto;margin-right:auto;
+  font-family:var(--mono);
+  font-size:11px;
+  color:rgba(255,255,255,.45);
+  letter-spacing:.5px;
+}
+.sxp-screen{
+  height:calc(100% - 38px);
+  background:linear-gradient(180deg,#fafbff 0%,#f4f6fc 100%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:6%;
+}
+.sxp-content{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:18px;
+  width:100%;
+  max-width:78%;
+}
+.sxp-eyebrow-mini{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:1.8px;
+  text-transform:uppercase;
+  color:rgba(12,14,26,.5);
+}
+.sxp-h{
+  font-family:var(--serif);
+  font-weight:300;
+  font-size:clamp(36px,5vw,72px);
+  line-height:.95;
+  letter-spacing:-2px;
+  color:#0c0e1a;
+  font-variation-settings:"opsz" 144;
+}
+.sxp-h em{font-style:italic;font-weight:500}
+.sxp-row{
+  display:flex;
+  gap:10px;
+  width:100%;
+}
+.sxp-card{
+  flex:1;
+  aspect-ratio:1.1/1;
+  border-radius:8px;
+  position:relative;
+  overflow:hidden;
+}
+.sxp-card-1{background:linear-gradient(135deg,#defe00,#a8c700)}
+.sxp-card-2{background:linear-gradient(135deg,#4f7cff,#2c4dad)}
+.sxp-card-3{background:linear-gradient(135deg,#ff7a45,#cc4a1a)}
+.sxp-cta{
+  display:inline-flex;
+  background:#0c0e1a;
+  color:#fafbff;
+  padding:14px 22px;
+  border-radius:999px;
+  font-family:'Inter',sans-serif;
+  font-weight:600;
+  font-size:14px;
+}
+
+@media(max-width:780px){
+  .scroll-xp{height:200vh}
+  .sxp-frame{width:80vw}
+  .sxp-text-top,.sxp-text-bottom{padding:0 24px}
+}
+
+/* ============================================================
+   HERO MOCKUP — browser window preview on the right
+   ============================================================ */
+.hero-mockup{
+  position:absolute;
+  right:5%;
+  top:50%;
+  width:42%;
+  max-width:580px;
+  transform:translateY(-50%) rotate(-2deg);
+  z-index:3;
+  pointer-events:none;
+  opacity:0;
+  animation:hmFadeIn 1.4s cubic-bezier(.22,.61,.36,1) .8s forwards;
+}
+@keyframes hmFadeIn{
+  0%{opacity:0;transform:translateY(-30%) rotate(-2deg) scale(.92)}
+  100%{opacity:1;transform:translateY(-50%) rotate(-2deg) scale(1)}
+}
+.hm-window{
+  background:#fafbff;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:
+    0 50px 100px -20px rgba(0,0,0,.6),
+    0 30px 60px -30px rgba(222,254,0,.15),
+    inset 0 1px 0 rgba(255,255,255,.06);
+  transform-style:preserve-3d;
+}
+.hm-bar{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  background:#0c0e1a;
+  padding:10px 14px;
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+.hm-dot{
+  width:10px;height:10px;
+  border-radius:50%;
+  background:rgba(255,255,255,.18);
+}
+.hm-dot:nth-child(1){background:#ff5f57}
+.hm-dot:nth-child(2){background:#febc2e}
+.hm-dot:nth-child(3){background:#28c841}
+.hm-url{
+  margin-left:auto;
+  margin-right:auto;
+  font-family:var(--mono);
+  font-size:10px;
+  color:rgba(255,255,255,.4);
+  letter-spacing:.5px;
+}
+.hm-screen{
+  background:linear-gradient(180deg,#fafbff 0%,#f4f6fc 100%);
+  padding:18px;
+  min-height:340px;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+.hm-nav{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding-bottom:14px;
+  border-bottom:1px solid rgba(12,14,26,.08);
+}
+.hm-logo{
+  font-family:var(--display);
+  font-weight:900;
+  font-size:14px;
+  color:#0c0e1a;
+  width:24px;
+  height:24px;
+  border-radius:6px;
+  background:#0c0e1a;
+  color:var(--neon);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+.hm-link{
+  width:38px;height:6px;
+  background:rgba(12,14,26,.18);
+  border-radius:3px;
+}
+.hm-cta{
+  margin-left:auto;
+  width:64px;height:24px;
+  background:#0c0e1a;
+  border-radius:999px;
+}
+.hm-hero{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  padding:8px 4px;
+}
+.hm-eyebrow{
+  font-family:var(--mono);
+  font-size:9px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:rgba(12,14,26,.45);
+}
+.hm-title{
+  font-family:var(--serif);
+  font-weight:300;
+  font-size:34px;
+  line-height:.95;
+  letter-spacing:-1.5px;
+  color:#0c0e1a;
+  font-variation-settings:"opsz" 144;
+  margin:4px 0 6px;
+}
+.hm-title em{
+  font-style:italic;
+  font-weight:500;
+  position:relative;
+}
+.hm-title em::after{
+  content:"";
+  display:block;
+  height:2px;
+  width:78%;
+  background:var(--neon);
+  margin-top:-3px;
+}
+.hm-tag{
+  display:block;
+  height:6px;
+  width:65%;
+  background:rgba(12,14,26,.14);
+  border-radius:3px;
+}
+.hm-tag:nth-of-type(2){width:50%}
+.hm-button{
+  display:inline-flex;
+  align-self:flex-start;
+  align-items:center;
+  background:var(--neon);
+  color:#0c0e1a;
+  padding:9px 14px;
+  border-radius:999px;
+  font-family:'Inter',sans-serif;
+  font-size:11px;
+  font-weight:600;
+  margin-top:8px;
+}
+.hm-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  padding-top:10px;
+  border-top:1px solid rgba(12,14,26,.08);
+}
+.hm-card{
+  aspect-ratio:1.2/1;
+  background:linear-gradient(135deg,rgba(12,14,26,.06),rgba(12,14,26,.12));
+  border-radius:6px;
+  position:relative;
+  overflow:hidden;
+}
+.hm-card::after{
+  content:"";
+  position:absolute;
+  bottom:6px;left:6px;
+  width:60%;height:4px;
+  background:rgba(12,14,26,.2);
+  border-radius:2px;
+}
+.hm-card:nth-child(1)::before{
+  content:"";
+  position:absolute;
+  inset:6px 6px 14px;
+  background:linear-gradient(135deg,#defe00,#a8c700);
+  border-radius:4px;
+  opacity:.4;
+}
+.hm-card:nth-child(2)::before{
+  content:"";
+  position:absolute;
+  inset:6px 6px 14px;
+  background:linear-gradient(135deg,#4f7cff,#2c4dad);
+  border-radius:4px;
+  opacity:.4;
+}
+.hm-card:nth-child(3)::before{
+  content:"";
+  position:absolute;
+  inset:6px 6px 14px;
+  background:linear-gradient(135deg,#ff7a45,#cc4a1a);
+  border-radius:4px;
+  opacity:.4;
+}
+
+/* Floating badges */
+.hm-badge{
+  position:absolute;
+  background:rgba(12,14,26,.85);
+  backdrop-filter:blur(12px) saturate(1.4);
+  -webkit-backdrop-filter:blur(12px) saturate(1.4);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:14px;
+  padding:14px 18px;
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  color:#fafbff;
+  box-shadow:0 18px 40px -10px rgba(0,0,0,.5);
+}
+.hb-num{
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:32px;
+  line-height:1;
+  letter-spacing:-1px;
+  color:var(--neon);
+  font-variation-settings:"opsz" 144;
+}
+.hb-num em{font-family:var(--mono);font-style:normal;font-size:14px;color:rgba(255,255,255,.55);letter-spacing:0;margin-left:2px}
+.hb-lbl{
+  font-family:var(--mono);
+  font-size:9px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.55);
+}
+.hm-badge-1{
+  top:-2%;
+  left:-12%;
+  transform:rotate(-4deg);
+  animation:floatA 6s ease-in-out infinite;
+}
+.hm-badge-2{
+  bottom:8%;
+  right:-10%;
+  transform:rotate(3deg);
+  animation:floatB 7s ease-in-out infinite;
+}
+.hm-badge-3{
+  bottom:-5%;
+  left:12%;
+  transform:rotate(-6deg);
+  flex-direction:row;
+  align-items:center;
+  gap:10px;
+  padding:12px 16px;
+  animation:floatC 5.5s ease-in-out infinite;
+}
+.hm-badge-3 i{color:var(--neon);font-size:14px}
+@keyframes floatA{0%,100%{transform:rotate(-4deg) translateY(0)}50%{transform:rotate(-4deg) translateY(-10px)}}
+@keyframes floatB{0%,100%{transform:rotate(3deg) translateY(0)}50%{transform:rotate(3deg) translateY(-12px)}}
+@keyframes floatC{0%,100%{transform:rotate(-6deg) translateY(0)}50%{transform:rotate(-6deg) translateY(-8px)}}
+
+@media(max-width:1100px){
+  .hero-mockup{display:none}
+}
+
+/* ============================================================
+   INTRO STAGE — animated self-presentation
+   ============================================================ */
+.intro-stage{
+  background:#f8f6f1;
+  color:#0c0e1a;
+  padding:140px 0 160px;
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+}
+.intro-noise{
+  position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+  opacity:.06;
+  mix-blend-mode:multiply;
+  pointer-events:none;
+  z-index:0;
+}
+.intro-inner{
+  position:relative;
+  z-index:2;
+  max-width:1100px;
+  margin:0 auto;
+  padding:0 48px;
+}
+.intro-stamp{
+  position:absolute;
+  top:48px;right:48px;
+  display:flex;align-items:center;gap:10px;
+  font-family:var(--mono);
+  font-size:11px;letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:rgba(12,14,26,.55);
+  z-index:5;
+}
+.is-line{width:24px;height:1px;background:rgba(12,14,26,.4)}
+.is-k{color:#c91e1e;font-weight:600;display:flex;align-items:center;gap:6px}
+.is-k::before{content:"";width:6px;height:6px;background:#c91e1e;border-radius:50%;animation:recBlink 1.4s ease-in-out infinite}
+@keyframes recBlink{0%,100%{opacity:1}50%{opacity:.3}}
+.is-dot{width:3px;height:3px;background:rgba(12,14,26,.4);border-radius:50%}
+
+/* 1. Greet "Bonjour." — full descender room, no clipping */
+.intro-greet{
+  margin-bottom:64px;
+  padding-bottom:.35em; /* generous room for J descender + breathing */
+  overflow:visible;
+  line-height:1.2;
+}
+.ig-word{
+  display:inline-block;
+  font-family:var(--serif);
+  font-weight:300;
+  font-style:italic;
+  font-size:clamp(64px,11vw,180px);
+  line-height:1.15;
+  letter-spacing:-4px;
+  color:#0c0e1a;
+  font-variation-settings:"opsz" 144;
+  position:relative;
+  padding-bottom:.2em;
+  transform:translateY(40px);
+  opacity:0;
+  transition:transform 1.2s cubic-bezier(.2,.7,.2,1) .15s,opacity .9s ease .15s;
+  /* No clip-path — was cutting descenders */
+}
+.intro-stage.in .ig-word{transform:translateY(0);opacity:1}
+.ig-dot{color:var(--neon);font-style:normal;font-weight:400;display:inline-block;transform:scale(0);transition:transform .5s cubic-bezier(.6,-0.4,.4,1.4) 1.1s}
+.intro-stage.in .ig-dot{transform:scale(1)}
+
+/* 2. Identity headline */
+.intro-id{
+  font-family:var(--serif);
+  font-weight:300;
+  font-size:clamp(36px,5vw,64px);
+  line-height:1.1;
+  letter-spacing:-1.5px;
+  color:#0c0e1a;
+  margin:0 0 80px;
+  font-variation-settings:"opsz" 144;
+  max-width:none;
+  display:flex;
+  flex-wrap:wrap;
+  gap:.3em;
+  align-items:baseline;
+}
+.intro-id .ii-static{
+  opacity:0;transform:translateY(20px);
+  transition:opacity .7s ease .8s,transform .7s ease .8s;
+}
+.intro-stage.in .intro-id .ii-static{opacity:1;transform:none}
+.intro-id .ii-typed{
+  font-style:italic;
+  font-weight:500;
+  color:#0c0e1a;
+  position:relative;
+}
+.ii-cursor{
+  display:inline-block;
+  font-weight:300;
+  font-style:normal;
+  color:var(--neon);
+  animation:cursorBlink 1.1s steps(2) infinite;
+  margin-left:2px;
+}
+@keyframes cursorBlink{0%,49%{opacity:1}50%,100%{opacity:0}}
+
+/* 3. Facts list — staggered fade-up */
+.intro-facts{
+  list-style:none;padding:0;margin:0 0 96px;
+  border-top:1px solid rgba(12,14,26,.12);
+}
+.intro-facts .if{
+  display:grid;
+  grid-template-columns:160px 1fr;
+  gap:32px;
+  align-items:baseline;
+  padding:24px 0;
+  border-bottom:1px solid rgba(12,14,26,.12);
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity .8s ease,transform .9s cubic-bezier(.22,.61,.36,1);
+}
+.intro-stage.in .if{opacity:1;transform:none}
+.intro-stage.in .if[data-delay="0"]{transition-delay:1.1s}
+.intro-stage.in .if[data-delay="1"]{transition-delay:1.25s}
+.intro-stage.in .if[data-delay="2"]{transition-delay:1.4s}
+.intro-stage.in .if[data-delay="3"]{transition-delay:1.55s}
+.intro-stage.in .if[data-delay="4"]{transition-delay:1.7s}
+.intro-stage.in .if[data-delay="5"]{transition-delay:1.85s}
+.if-k{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:rgba(12,14,26,.45);
+  font-weight:500;
+}
+.if-v{
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(20px,2.4vw,30px);
+  line-height:1.2;
+  letter-spacing:-.5px;
+  color:#0c0e1a;
+  font-variation-settings:"opsz" 144;
+}
+.if-v em{font-style:italic;font-weight:500;color:#0c0e1a}
+.if-blip{
+  display:inline-block;
+  width:8px;height:8px;
+  border-radius:50%;
+  background:var(--neon);
+  box-shadow:0 0 0 4px rgba(222,254,0,.25);
+  animation:blip 1.6s ease-in-out infinite;
+  margin-right:6px;
+  vertical-align:middle;
+}
+@keyframes blip{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.7);opacity:.6}}
+
+/* 4. Closing quote + signature */
+.intro-close{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:64px;
+  align-items:end;
+  opacity:0;
+  transform:translateY(20px);
+  transition:opacity .9s ease 2.1s,transform .9s ease 2.1s;
+}
+.intro-stage.in .intro-close{opacity:1;transform:none}
+.ic-quote{
+  font-family:var(--serif);
+  font-weight:400;
+  font-style:italic;
+  font-size:clamp(22px,2.6vw,34px);
+  line-height:1.35;
+  color:rgba(12,14,26,.85);
+  margin:0;
+  max-width:50ch;
+  font-variation-settings:"opsz" 144;
+  position:relative;
+}
+.ic-q-mark{
+  font-style:normal;
+  color:var(--neon);
+  font-weight:500;
+  font-size:1.3em;
+  display:inline-block;
+  transform:translateY(.1em);
+}
+.ic-sign{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  border-left:1px solid rgba(12,14,26,.2);
+  padding-left:24px;
+}
+.ic-name{
+  font-family:var(--serif);
+  font-style:italic;
+  font-weight:500;
+  font-size:24px;
+  color:#0c0e1a;
+}
+.ic-role{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:rgba(12,14,26,.55);
+}
+
+@media(max-width:780px){
+  .intro-stage{padding:80px 0}
+  .intro-inner{padding:0 24px}
+  .intro-stamp{top:24px;right:24px}
+  .intro-greet{margin-bottom:40px}
+  .ig-word{font-size:64px;letter-spacing:-2px}
+  .intro-id{margin-bottom:48px}
+  .intro-id .ii-static{font-size:32px}
+  .intro-facts .if{grid-template-columns:1fr;gap:6px}
+  .if-v{font-size:20px}
+  .intro-close{grid-template-columns:1fr;gap:24px}
+  .ic-sign{border-left:none;padding-left:0;border-top:1px solid rgba(12,14,26,.2);padding-top:16px}
+}
+
+/* ============================================================
+   POUR QUI v3 — editorial audience list (replaces bento)
+   ============================================================ */
+.sec-audience{
+  background:#f8f6f1!important;
+  color:#0c0e1a;
+  padding:140px 0 160px;
+}
+.sec-audience [hidden]{display:none!important}
+.sec-audience .sec-head{margin-bottom:80px}
+.sec-audience .sec-eyebrow{color:rgba(12,14,26,.55)}
+.sec-audience h2{color:#0c0e1a}
+.sec-audience h2 .accent{color:#0c0e1a;font-style:italic;font-weight:400}
+.sec-audience .sec-desc{color:rgba(12,14,26,.7);max-width:54ch}
+
+.audience-list{
+  list-style:none;
+  margin:0;padding:0;
+  border-top:1px solid rgba(12,14,26,.12);
+}
+.audience-item{
+  display:grid;
+  grid-template-columns:120px 1fr;
+  gap:48px;
+  align-items:start;
+  padding:42px 0 44px;
+  border-bottom:1px solid rgba(12,14,26,.12);
+  position:relative;
+  transition:background .35s ease;
+}
+.audience-item:hover{background:rgba(12,14,26,.02)}
+.audience-item:hover .ai-title{transform:translateX(8px)}
+.ai-num{
+  font-family:var(--mono);
+  font-size:13px;
+  letter-spacing:2px;
+  color:rgba(12,14,26,.45);
+  padding-top:14px;
+  font-weight:500;
+}
+.ai-content{max-width:64ch}
+.ai-title{
+  font-family:var(--serif);
+  font-weight:300;
+  font-size:clamp(28px,3.6vw,44px);
+  line-height:1.1;
+  letter-spacing:-1.2px;
+  color:#0c0e1a;
+  margin:0 0 14px;
+  font-variation-settings:"opsz" 144;
+  transition:transform .4s cubic-bezier(.22,.61,.36,1);
+}
+.ai-title em{
+  font-style:italic;
+  font-weight:500;
+  color:#0c0e1a;
+  position:relative;
+  white-space:nowrap;
+}
+.ai-title em::after{
+  content:"";
+  position:absolute;
+  bottom:.05em;
+  left:0;right:0;
+  height:6px;
+  background:var(--neon);
+  z-index:-1;
+  opacity:.45;
+}
+.ai-desc{
+  font-family:'Inter',sans-serif;
+  font-size:16px;
+  line-height:1.65;
+  color:rgba(12,14,26,.7);
+  margin:0;
+}
+.ai-desc strong{color:#0c0e1a;font-weight:600}
+.ai-link{
+  color:#0c0e1a;
+  text-decoration:underline;
+  text-decoration-color:var(--neon);
+  text-decoration-thickness:3px;
+  text-underline-offset:3px;
+  font-weight:500;
+}
+.ai-link:hover{text-decoration-thickness:5px}
+@media(max-width:780px){
+  .audience-item{grid-template-columns:1fr;gap:12px;padding:32px 0}
+  .ai-num{padding-top:0}
+}
+
+/* ============================================================
+   TARIFS v3 — editorial tier cards (replaces 3-pack template)
+   ============================================================ */
+.sec-tarifs{
+  background:#f8f6f1!important;
+  color:#0c0e1a;
+  padding:140px 0 160px;
+}
+.sec-tarifs .sec-head{margin-bottom:80px;text-align:left}
+.sec-tarifs .sec-eyebrow{color:rgba(12,14,26,.55)}
+.sec-tarifs h2{color:#0c0e1a;max-width:none}
+.sec-tarifs h2 .accent{color:#0c0e1a;font-style:italic;font-weight:400}
+.sec-tarifs .sec-desc{color:rgba(12,14,26,.7);max-width:54ch}
+
+.tarifs-rail{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:0;
+  border-top:1px solid rgba(12,14,26,.12);
+  border-bottom:1px solid rgba(12,14,26,.12);
+}
+.tier{
+  position:relative;
+  padding:48px 36px 56px;
+  background:transparent;
+  border-right:1px solid rgba(12,14,26,.12);
+  display:flex;
+  flex-direction:column;
+  transition:background .35s ease;
+}
+.tier:last-child{border-right:none}
+.tier:hover{background:rgba(12,14,26,.025)}
+
+.tier-featured{
+  background:#0c0e1a;
+  color:#fafbff;
+}
+.tier-featured:hover{background:#0c0e1a}
+.tier-featured .tier-num,
+.tier-featured .tier-name,
+.tier-featured .tp-num,
+.tier-featured .tp-cur{color:#fafbff}
+.tier-featured .tier-desc,
+.tier-featured .tier-meta{color:rgba(255,255,255,.65)}
+.tier-featured .tier-list li{color:rgba(255,255,255,.78);border-bottom-color:rgba(255,255,255,.1)}
+.tier-featured .tier-list li::before{color:var(--neon)}
+.tier-featured .tier-list li strong{color:#fff}
+.tier-featured .tier-cta{background:var(--neon);color:#0c0e1a;border-color:var(--neon)}
+.tier-featured .tier-cta:hover{background:#fff;border-color:#fff;color:#0c0e1a}
+.tier-flag{
+  position:absolute;
+  top:-1px;left:24px;
+  background:var(--neon);
+  color:#0c0e1a;
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  padding:6px 12px;
+  border-radius:0 0 6px 6px;
+  font-weight:500;
+}
+
+.tier-head{margin-bottom:24px}
+.tier-num{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:2px;
+  color:rgba(12,14,26,.45);
+  display:block;
+  margin-bottom:14px;
+}
+.tier-name{
+  font-family:var(--serif);
+  font-weight:300;
+  font-size:38px;
+  line-height:1;
+  letter-spacing:-1px;
+  color:#0c0e1a;
+  margin:0 0 10px;
+  font-variation-settings:"opsz" 144;
+}
+.tier-desc{
+  font-family:'Inter',sans-serif;
+  font-size:14px;
+  line-height:1.55;
+  color:rgba(12,14,26,.65);
+  margin:0;
+}
+.tier-price{
+  display:flex;
+  align-items:baseline;
+  gap:4px;
+  margin:0 0 6px;
+}
+.tp-num{
+  font-family:var(--serif);
+  font-weight:300;
+  font-size:80px;
+  line-height:1;
+  letter-spacing:-3px;
+  color:#0c0e1a;
+  font-variation-settings:"opsz" 144;
+}
+.tp-cur{
+  font-family:var(--serif);
+  font-weight:300;
+  font-size:32px;
+  color:rgba(12,14,26,.5);
+  font-style:italic;
+}
+.tier-meta{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
+  color:rgba(12,14,26,.5);
+  margin:0 0 32px;
+}
+.tier-list{
+  list-style:none;
+  padding:0;
+  margin:0 0 36px;
+  flex:1;
+}
+.tier-list li{
+  font-family:'Inter',sans-serif;
+  font-size:14px;
+  line-height:1.5;
+  color:rgba(12,14,26,.78);
+  padding:14px 0 14px 24px;
+  border-bottom:1px solid rgba(12,14,26,.08);
+  position:relative;
+}
+.tier-list li:last-child{border-bottom:none}
+.tier-list li::before{
+  content:"+";
+  position:absolute;
+  left:0;
+  top:14px;
+  color:rgba(12,14,26,.4);
+  font-family:var(--mono);
+  font-weight:500;
+}
+.tier-list li strong{color:#0c0e1a;font-weight:600}
+.tier-cta{
+  font-family:'Inter',sans-serif;
+  font-size:13px;
+  font-weight:600;
+  letter-spacing:.2px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  background:transparent;
+  color:#0c0e1a;
+  border:1px solid rgba(12,14,26,.2);
+  padding:14px 20px;
+  border-radius:999px;
+  text-decoration:none;
+  transition:background .25s,color .25s,border-color .25s,gap .25s;
+  margin-top:auto;
+}
+.tier-cta:hover{background:#0c0e1a;color:#fafbff;border-color:#0c0e1a;gap:14px}
+.tier-cta i{font-size:11px}
+
+.tarifs-foot{
+  text-align:center;
+  margin:48px auto 0;
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:rgba(12,14,26,.55);
+}
+.tarifs-foot i{color:rgba(12,14,26,.7);margin-right:6px}
+
+@media(max-width:900px){
+  .tarifs-rail{grid-template-columns:1fr;border-bottom:none}
+  .tier{border-right:none;border-bottom:1px solid rgba(12,14,26,.12)}
+  .tier:last-child{border-bottom:1px solid rgba(12,14,26,.12)}
+}
+
+/* Lenis scroll behavior fix (Lenis disables native smooth scrolling) */
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
+.lenis.lenis-stopped{overflow:hidden}
+.lenis.lenis-scrolling iframe{pointer-events:none}
 </style>
 </head>
 <body>
@@ -1659,27 +3630,57 @@ footer{
       <span class="lmark">M</span>
       MULLER <em>DEV</em> <span class="lstu">STUDIOS</span>
     </a>
-    <ul class="nav-links">
+    <ul class="nav-links" id="navLinks">
       <li><a href="#pour-qui">Pour qui</a></li>
       <li><a href="#offre">L'offre</a></li>
       <li><a href="#tarifs">Tarifs</a></li>
       <li><a href="#projets">Démos</a></li>
+      <li><a href="#temoignages">Promesse</a></li>
       <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact" class="nav-mobile-cta">Devis gratuit <i class="fas fa-arrow-right"></i></a></li>
     </ul>
     <div class="lang-toggle" role="tablist" aria-label="Language">
       <button data-lang="fr" class="active">FR</button>
       <button data-lang="en">EN</button>
     </div>
-    <a href="#contact" class="nav-cta">Devis gratuit <i class="fas fa-arrow-right"></i></a>
+    <a href="#contact" class="nav-cta"><span class="nav-cta-full">Devis gratuit</span><span class="nav-cta-short">Devis</span> <i class="fas fa-arrow-right"></i></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navLinks">
+      <i class="fas fa-bars" id="navIcon"></i>
+    </button>
   </div>
 </nav>
+
+<!-- ======= SCROLL EXPANSION INTRO (TOP) ======= -->
+<section class="scroll-xp" id="scrollXp">
+  <div class="sxp-pin">
+    <div class="sxp-bg"></div>
+    <div class="sxp-text sxp-text-top">
+      <span class="sxp-eyebrow">— Studio</span>
+    </div>
+    <!-- Logo placeholder — REPLACE .sxp-logo content when real logo is ready -->
+    <div class="sxp-frame" id="sxpFrame">
+      <div class="sxp-logo">
+        <span class="sxp-logo-mark">M</span>
+        <span class="sxp-logo-line"></span>
+        <span class="sxp-logo-tag">Muller Dev Studios</span>
+      </div>
+    </div>
+    <div class="sxp-text sxp-text-bottom">
+      <p class="sxp-desc">Sites web sur-mesure pour artisans, indépendants & commerces. Bourg-en-Bresse.</p>
+    </div>
+    <div class="sxp-hint">
+      <span>Faites défiler</span>
+      <i class="fas fa-arrow-down"></i>
+    </div>
+  </div>
+</section>
 
 <span id="hero-anchor"></span>
 <!-- ======= HERO ======= -->
 <section class="hero">
   <!-- Background photo -->
   <div class="hero-photo">
-    <img src="Tristan.jpeg" alt="Tristan Muller" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#06070f 0%,#0f1124 50%,#1a1d3a 100%)'">
+    <img src="tristan.jpg" alt="Tristan Muller, fondateur de Muller Dev Studios" loading="eager" decoding="async" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#06070f 0%,#0f1124 50%,#1a1d3a 100%)'">
   </div>
 
   <!-- Animated flow field overlay -->
@@ -1696,44 +3697,116 @@ footer{
   <!-- Vertical side text -->
   <div class="hero-vside"><span class="live-dot"></span>BOURG-EN-BRESSE · 01 · FRANCE</div>
 
+
   <div class="wrap">
     <div class="hero-content">
-      <div class="eyebrow"><span class="live"></span> Disponible · Bourg-en-Bresse</div>
+      <div class="eyebrow"><span class="live"></span> Studio indépendant · Bourg-en-Bresse</div>
 
       <h1>
-        <span class="line"><span>BÂTI</span></span>
-        <span class="line"><span class="outline">POUR LE</span></span>
-        <span class="line"><span class="accent">DÉFI.</span></span>
+        <span class="line"><span>UN SITE WEB</span></span>
+        <span class="line"><span class="outline">QUI TRAVAILLE</span></span>
+        <span class="line"><span class="accent">POUR VOUS.</span></span>
       </h1>
 
       <p class="hero-tag">
-        Sites web <span class="mark">sur-mesure</span> pour artisans, commerçants et indépendants. Conçus comme une compétition : <strong>préparation, exécution, victoire</strong>. Livrés en <span class="mark">7 jours</span> · à partir de <span class="mark outline">890€</span>.
+        Site vitrine pro pour artisans, commerçants et indépendants. <strong>Livré en 7 jours</strong>, à partir de <span class="mark">890€</span>. Hébergement et nom de domaine compris la première année. Sans abonnement caché.
       </p>
 
       <div class="hero-cta">
-        <a href="#contact" class="btn btn-primary">Lancer mon projet <i class="fas fa-arrow-right"></i></a>
+        <a href="#contact" class="btn btn-primary">Demander un devis <i class="fas fa-arrow-right"></i></a>
         <a href="#tarifs" class="btn btn-ghost">Voir les tarifs</a>
       </div>
 
       <div class="hero-stats">
         <div class="h-stat">
-          <div class="h-stat-num"><span class="ticker" data-target="5">0</span><em>×</em></div>
-          <div class="h-stat-lbl">Champion</div>
+          <div class="h-stat-num">890<em>€</em></div>
+          <div class="h-stat-lbl">À partir de</div>
         </div>
         <div class="h-stat">
-          <div class="h-stat-num"><span class="ticker" data-target="7">0</span><em>j</em></div>
-          <div class="h-stat-lbl">Délai max</div>
+          <div class="h-stat-num">7<em>j</em></div>
+          <div class="h-stat-lbl">Livraison max</div>
         </div>
         <div class="h-stat">
-          <div class="h-stat-num"><span class="ticker" data-target="100">0</span><em>%</em></div>
-          <div class="h-stat-lbl">Sur-mesure</div>
-        </div>
-        <div class="h-stat">
-          <div class="h-stat-num"><span class="ticker" data-target="24">0</span><em>h</em></div>
+          <div class="h-stat-num">24<em>h</em></div>
           <div class="h-stat-lbl">Réponse devis</div>
+        </div>
+        <div class="h-stat">
+          <div class="h-stat-num">0<em>€</em></div>
+          <div class="h-stat-lbl">Abonnement</div>
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ======= INTRO ANIMÉE / SELF PRESENTATION ======= -->
+<section class="intro-stage" id="manifesto">
+  <div class="intro-noise" aria-hidden="true"></div>
+
+  <!-- Floating timestamp (top-right, ID-card vibe) -->
+  <div class="intro-stamp" aria-hidden="true">
+    <div class="is-line"></div>
+    <span class="is-k">REC</span>
+    <span class="is-dot"></span>
+    <span class="is-v">2025 — 2026</span>
+  </div>
+
+  <div class="intro-inner">
+
+    <!-- 1. Big "Bonjour" that slides in -->
+    <div class="intro-greet">
+      <span class="ig-word ig-w1" data-text="Bonjour">Bonjour<span class="ig-dot">.</span></span>
+    </div>
+
+    <!-- 2. Identity headline that types itself -->
+    <h2 class="intro-id">
+      <span class="ii-static">Je m'appelle</span>
+      <span class="ii-typed" id="introTyped">
+        <span class="ii-cursor">|</span>
+      </span>
+    </h2>
+
+    <!-- 3. Animated facts list — staggered reveal on scroll -->
+    <ul class="intro-facts">
+      <li class="if" data-delay="0">
+        <span class="if-k">Studio</span>
+        <span class="if-v">Muller <em>Dev</em> Studios</span>
+      </li>
+      <li class="if" data-delay="1">
+        <span class="if-k">Basé à</span>
+        <span class="if-v"><em>Bourg-en-Bresse</em> · Ain · France</span>
+      </li>
+      <li class="if" data-delay="2">
+        <span class="if-k">Pour</span>
+        <span class="if-v">Artisans, indépendants, <em>commerces de proximité</em></span>
+      </li>
+      <li class="if" data-delay="3">
+        <span class="if-k">Pas pour</span>
+        <span class="if-v"><em>Startups, agences offshore, projets template</em></span>
+      </li>
+      <li class="if" data-delay="4">
+        <span class="if-k">Promesse</span>
+        <span class="if-v">Site <em>livré en 7 jours</em> · à partir de <em>890€</em></span>
+      </li>
+      <li class="if" data-delay="5">
+        <span class="if-k">Statut</span>
+        <span class="if-v"><span class="if-blip"></span> <em>Disponible</em> pour 2 nouveaux projets</span>
+      </li>
+    </ul>
+
+    <!-- 4. Closing line + signature -->
+    <div class="intro-close">
+      <p class="ic-quote">
+        <span class="ic-q-mark">«</span>
+        Un site web propre, qui parle à vos clients, et qu'on n'oublie pas le lendemain.
+        <span class="ic-q-mark">»</span>
+      </p>
+      <div class="ic-sign">
+        <span class="ic-name">Tristan Muller</span>
+        <span class="ic-role">Fondateur</span>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1748,38 +3821,91 @@ footer{
 <!-- ======= TRUSTBAR / CLIENT LOGOS ======= -->
 <section id="trustbar">
   <div class="wrap">
-    <div class="trust-head">— Inspiré par les meilleures maisons</div>
+    <div class="trust-head">— 6 styles, 6 métiers · démos accessibles ci-dessous</div>
   </div>
   <div class="trust-track-wrap">
     <div class="trust-track">
-      <span class="tl"><i class="fas fa-gem"></i> ELYSÉA <em>Joaillerie</em></span>
-      <span class="tl">MAISON BLANC <em>· Immobilier</em></span>
-      <span class="tl">L'ARDOISE <em>Bistronomie</em></span>
-      <span class="tl">DUPONT &amp; ASSOCIÉS</span>
-      <span class="tl"><i class="fas fa-hammer"></i> DUMONT BTP</span>
-      <span class="tl">ATELIER OZAN <em>Couture</em></span>
+      <span class="tl"><i class="fas fa-gem"></i> Joaillerie <em>· luxe</em></span>
+      <span class="tl"><i class="fas fa-home"></i> Immobilier <em>· éditorial</em></span>
+      <span class="tl"><i class="fas fa-utensils"></i> Restaurant <em>· gastro</em></span>
+      <span class="tl"><i class="fas fa-balance-scale"></i> Avocats <em>· cabinet</em></span>
+      <span class="tl"><i class="fas fa-hammer"></i> Artisan BTP</span>
+      <span class="tl"><i class="fas fa-cut"></i> Couture <em>· atelier</em></span>
       <span class="tl"><i class="fas fa-star"></i></span>
-      <span class="tl">ELYSÉA <em>Joaillerie</em></span>
-      <span class="tl">MAISON BLANC <em>· Immobilier</em></span>
-      <span class="tl">L'ARDOISE <em>Bistronomie</em></span>
-      <span class="tl">DUPONT &amp; ASSOCIÉS</span>
-      <span class="tl"><i class="fas fa-hammer"></i> DUMONT BTP</span>
-      <span class="tl">ATELIER OZAN <em>Couture</em></span>
+      <span class="tl"><i class="fas fa-gem"></i> Joaillerie <em>· luxe</em></span>
+      <span class="tl"><i class="fas fa-home"></i> Immobilier <em>· éditorial</em></span>
+      <span class="tl"><i class="fas fa-utensils"></i> Restaurant <em>· gastro</em></span>
+      <span class="tl"><i class="fas fa-balance-scale"></i> Avocats <em>· cabinet</em></span>
+      <span class="tl"><i class="fas fa-hammer"></i> Artisan BTP</span>
+      <span class="tl"><i class="fas fa-cut"></i> Couture <em>· atelier</em></span>
       <span class="tl"><i class="fas fa-star"></i></span>
     </div>
   </div>
 </section>
 
-<!-- ======= POUR QUI ======= -->
-<section class="sec" id="pour-qui">
+<!-- ======= MEGA MARQUEE ======= -->
+<div class="mega-marquee" aria-hidden="true">
+  <div class="mm-track">
+    <span><em>Sites web</em> sur-mesure ✦ <em>Pas un template</em> ✦ <em>Pas une agence offshore</em> ✦ <em>Tristan Muller</em> · Bourg-en-Bresse ✦</span>
+    <span><em>Sites web</em> sur-mesure ✦ <em>Pas un template</em> ✦ <em>Pas une agence offshore</em> ✦ <em>Tristan Muller</em> · Bourg-en-Bresse ✦</span>
+  </div>
+</div>
+
+<!-- ======= POUR QUI ======= EDITORIAL LIST -->
+<section class="sec sec-audience" id="pour-qui">
   <div class="wrap">
     <div class="sec-head reveal">
       <div class="sec-eyebrow">— Pour qui</div>
-      <h2>Conçu pour les pros <span class="accent">du terrain.</span></h2>
+      <h2>Vous êtes du <span class="accent">terrain.</span></h2>
       <p class="sec-desc">Vous êtes seul·e ou en petite équipe. Vous gérez votre activité au quotidien. Vous avez besoin d'un site qui travaille pour vous, pas de prise de tête.</p>
     </div>
 
-    <div class="bento reveal">
+    <ol class="audience-list reveal">
+      <li class="audience-item">
+        <div class="ai-num">01</div>
+        <div class="ai-content">
+          <h3 class="ai-title">L'<em>artisan</em> qui répare, pose, construit.</h3>
+          <p class="ai-desc">Plombier, électricien, chauffagiste, menuisier, paysagiste, peintre, maçon, carreleur, couvreur. <strong>15+ métiers BTP couverts.</strong></p>
+        </div>
+      </li>
+      <li class="audience-item">
+        <div class="ai-num">02</div>
+        <div class="ai-content">
+          <h3 class="ai-title">Le <em>thérapeute</em>, le coach, le bien-être.</h3>
+          <p class="ai-desc">Kiné, ostéo, podologue, sophrologue, naturopathe, coach sportif, prof de yoga, pilates, crossfit. Vous vendez votre temps — votre site doit pré-qualifier les clients.</p>
+        </div>
+      </li>
+      <li class="audience-item">
+        <div class="ai-num">03</div>
+        <div class="ai-content">
+          <h3 class="ai-title">Le <em>commerce de proximité</em> qui veut être trouvé sur Google.</h3>
+          <p class="ai-desc">Coiffeur, esthéticienne, barbier, restaurant, boulangerie, boucherie, fromagerie, fleuriste, primeur, chocolatier.</p>
+        </div>
+      </li>
+      <li class="audience-item">
+        <div class="ai-num">04</div>
+        <div class="ai-content">
+          <h3 class="ai-title">Le <em>libéral</em> qui veut paraître sérieux.</h3>
+          <p class="ai-desc">Avocat, expert-comptable, notaire, courtier en prêt, conseiller patrimonial, consultant, coach pro. Un site qui inspire confiance avant le premier rendez-vous.</p>
+        </div>
+      </li>
+      <li class="audience-item">
+        <div class="ai-num">05</div>
+        <div class="ai-content">
+          <h3 class="ai-title">Le <em>créatif</em> qui mérite un portfolio à la hauteur.</h3>
+          <p class="ai-desc">Photographe, vidéaste, graphiste, architecte d'intérieur, décorateur, créateur mode, joaillier, ébéniste. Votre travail mérite mieux qu'un Wix générique.</p>
+        </div>
+      </li>
+      <li class="audience-item">
+        <div class="ai-num">06</div>
+        <div class="ai-content">
+          <h3 class="ai-title">Et <em>vous</em>, peut-être.</h3>
+          <p class="ai-desc">Si votre métier exige du sérieux, du local, du visible — <a href="#contact" class="ai-link">on en parle</a>. Devis gratuit, premier échange offert. Sans engagement.</p>
+        </div>
+      </li>
+    </ol>
+
+    <div class="bento reveal" hidden>
 
       <div class="bento-card bento-feature">
         <div class="bc-icon"><i class="fas fa-bolt"></i></div>
@@ -1890,8 +4016,8 @@ footer{
 
     </div>
 
-    <!-- ===== "Et 40 autres métiers" pill cloud ===== -->
-    <div class="trades-cloud reveal">
+    <!-- ===== "Et 40 autres métiers" pill cloud (hidden — superseded by editorial list) ===== -->
+    <div class="trades-cloud reveal" hidden>
       <div class="trades-cloud-head">
         <span>+ 50 AUTRES MÉTIERS COUVERTS</span>
       </div>
@@ -1990,87 +4116,122 @@ footer{
   </div>
 </section>
 
+<!-- ======= MEGA MARQUEE 2 ======= -->
+<div class="mega-marquee mm-light" aria-hidden="true">
+  <div class="mm-track">
+    <span>À partir de <em>890€</em> ✦ Livré en <em>7 jours</em> ✦ Sans abonnement caché ✦ <em>Hébergement compris</em> ✦</span>
+    <span>À partir de <em>890€</em> ✦ Livré en <em>7 jours</em> ✦ Sans abonnement caché ✦ <em>Hébergement compris</em> ✦</span>
+  </div>
+</div>
+
 <!-- ======= TARIFS ======= -->
-<section class="sec" id="tarifs" style="background:#f4f6fc">
+<section class="sec sec-tarifs" id="tarifs">
   <div class="wrap">
-    <div class="sec-head reveal">
+    <div class="sec-head reveal tarifs-head">
       <div class="sec-eyebrow">— Tarifs</div>
       <h2>Tout est <span class="accent">transparent.</span></h2>
-      <p class="sec-desc">À partir de <strong>890€</strong>. Le prix monte ensuite selon le forfait. Pas de petite ligne, pas de surprise — vous savez exactement ce que vous payez et ce que vous obtenez.</p>
+      <p class="sec-desc">Trois formules. Pas de petite ligne, pas de surprise — vous savez exactement ce que vous payez et ce que vous obtenez.</p>
     </div>
 
-    <div class="price-grid reveal">
+    <div class="tarifs-rail reveal">
 
-      <div class="price">
-        <div class="price-name">Essentiel</div>
-        <p class="price-desc">Pour démarrer en ligne avec un site propre et fonctionnel.</p>
-        <div class="price-amount">890<em>€</em></div>
-        <div class="price-tva">TVA non applicable · paiement en 2 fois</div>
-        <ul>
-          <li><i class="fas fa-check-circle"></i> Site 5 pages</li>
-          <li><i class="fas fa-check-circle"></i> Design propre et moderne</li>
-          <li><i class="fas fa-check-circle"></i> Mobile / tablette / ordi</li>
-          <li><i class="fas fa-check-circle"></i> Formulaire de contact</li>
-          <li><i class="fas fa-check-circle"></i> Hébergement + domaine 1 an</li>
-          <li><i class="fas fa-check-circle"></i> 1 série de retouches incluse</li>
-          <li><i class="fas fa-check-circle"></i> Livraison en 7 jours</li>
+      <article class="tier">
+        <header class="tier-head">
+          <span class="tier-num">01</span>
+          <h3 class="tier-name">Essentiel</h3>
+          <p class="tier-desc">Pour démarrer en ligne avec un site propre et fonctionnel.</p>
+        </header>
+        <div class="tier-price"><span class="tp-num">890</span><span class="tp-cur">€</span></div>
+        <div class="tier-meta">TVA non applicable · paiement en 2&nbsp;fois</div>
+        <ul class="tier-list">
+          <li>Site 5 pages, design sur-mesure</li>
+          <li>Mobile, tablette, ordinateur</li>
+          <li>Formulaire de contact</li>
+          <li>Hébergement + nom de domaine 1 an</li>
+          <li>1 série de retouches incluse</li>
+          <li>Livraison en 7 jours</li>
         </ul>
-        <a href="#contact" class="price-cta dark">Choisir Essentiel</a>
-      </div>
+        <a href="#contact" class="tier-cta">Choisir Essentiel <i class="fas fa-arrow-right"></i></a>
+      </article>
 
-      <div class="price featured">
-        <div class="price-tag">Le plus choisi</div>
-        <div class="price-name">Pro</div>
-        <p class="price-desc">L'offre la plus demandée — visibilité Google + identité visuelle.</p>
-        <div class="price-amount">1290<em>€</em></div>
-        <div class="price-tva">TVA non applicable · paiement en 2 fois</div>
-        <ul>
-          <li><i class="fas fa-check-circle"></i> <strong>Tout le pack Essentiel</strong></li>
-          <li><i class="fas fa-check-circle"></i> Identité visuelle sur-mesure (logo, palette)</li>
-          <li><i class="fas fa-check-circle"></i> Référencement Google local optimisé</li>
-          <li><i class="fas fa-check-circle"></i> Configuration Google Business Profile</li>
-          <li><i class="fas fa-check-circle"></i> 2 séries de retouches incluses</li>
-          <li><i class="fas fa-check-circle"></i> Maintenance 3 premiers mois <strong>offerte</strong></li>
-          <li><i class="fas fa-check-circle"></i> Livraison en 7 jours</li>
+      <article class="tier tier-featured">
+        <span class="tier-flag">Le plus choisi</span>
+        <header class="tier-head">
+          <span class="tier-num">02</span>
+          <h3 class="tier-name">Pro</h3>
+          <p class="tier-desc">Visibilité Google + identité visuelle. L'offre la plus demandée.</p>
+        </header>
+        <div class="tier-price"><span class="tp-num">1290</span><span class="tp-cur">€</span></div>
+        <div class="tier-meta">TVA non applicable · paiement en 2&nbsp;fois</div>
+        <ul class="tier-list">
+          <li><strong>Tout le pack Essentiel</strong></li>
+          <li>Identité visuelle (logo, palette, typo)</li>
+          <li>Référencement Google local optimisé</li>
+          <li>Configuration Google Business Profile</li>
+          <li>2 séries de retouches incluses</li>
+          <li>Maintenance 3 mois <strong>offerte</strong></li>
         </ul>
-        <a href="#contact" class="price-cta light">Choisir Pro</a>
-      </div>
+        <a href="#contact" class="tier-cta">Choisir Pro <i class="fas fa-arrow-right"></i></a>
+      </article>
 
-      <div class="price">
-        <div class="price-name">Sur-mesure</div>
-        <p class="price-desc">Site complet avec blog, réservation, espace client ou intégrations.</p>
-        <div class="price-amount">Devis</div>
-        <div class="price-tva">À partir de 1 490€</div>
-        <ul>
-          <li><i class="fas fa-check-circle"></i> <strong>Tout le pack Pro</strong></li>
-          <li><i class="fas fa-check-circle"></i> Pages illimitées</li>
-          <li><i class="fas fa-check-circle"></i> Blog ou actualités dynamiques</li>
-          <li><i class="fas fa-check-circle"></i> Système de réservation en ligne</li>
-          <li><i class="fas fa-check-circle"></i> Espace client / login</li>
-          <li><i class="fas fa-check-circle"></i> Intégrations personnalisées (API, paiement, CRM…)</li>
-          <li><i class="fas fa-check-circle"></i> Délai sur devis selon la complexité</li>
+      <article class="tier">
+        <header class="tier-head">
+          <span class="tier-num">03</span>
+          <h3 class="tier-name">Sur-mesure</h3>
+          <p class="tier-desc">Blog, réservation, espace client, intégrations.</p>
+        </header>
+        <div class="tier-price"><span class="tp-num">Devis</span></div>
+        <div class="tier-meta">À partir de 1 490€</div>
+        <ul class="tier-list">
+          <li><strong>Tout le pack Pro</strong></li>
+          <li>Pages illimitées</li>
+          <li>Blog ou actualités dynamiques</li>
+          <li>Système de réservation en ligne</li>
+          <li>Espace client / login</li>
+          <li>Intégrations API, paiement, CRM</li>
         </ul>
-        <a href="#contact" class="price-cta dark">Demander un devis</a>
-      </div>
+        <a href="#contact" class="tier-cta">Demander un devis <i class="fas fa-arrow-right"></i></a>
+      </article>
 
     </div>
 
-    <p style="text-align:center;margin-top:36px;color:var(--text-3);font-size:13px">
-      <i class="fas fa-shield-alt" style="color:var(--blue)"></i> &nbsp;Maintenance annuelle disponible à 25€/mois (mises à jour, modifs ponctuelles, support).
+    <p class="tarifs-foot">
+      <i class="fas fa-shield-alt"></i> Maintenance annuelle disponible à 25€/mois — mises à jour, modifs ponctuelles, support.
     </p>
   </div>
 </section>
 
-<!-- ======= PROJETS / GALERIE ======= -->
-<section class="sec" id="projets">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="sec-eyebrow">— Galerie de démos</div>
-      <h2>6 sites, 6 univers, <span class="accent" style="color:var(--neon)">une exigence.</span></h2>
-      <p class="sec-desc">Chaque démo ci-dessous est un site complet, livré au pixel près. Cliquez pour explorer en plein écran. Ces designs sont disponibles à la commande, ou peuvent inspirer votre futur site sur-mesure.</p>
-    </div>
+<!-- ======= CHAPTER BREAK — before gallery ======= -->
+<section class="chapter-break" aria-hidden="true">
+  <div class="chapter-break-inner">
+    <div class="cb-num">0<em>3</em></div>
+    <h3 class="cb-title">Le travail<br><em>parle pour moi.</em></h3>
+    <p class="cb-desc">Six démos sectorielles, conçues comme des sites réels, livrables tels quels ou comme point de départ pour le vôtre.</p>
+  </div>
+  <div class="cb-marquee">— Galerie · Galerie · Galerie · Galerie · Galerie</div>
+</section>
 
-    <div class="proj-grid reveal">
+<!-- ======= PROJETS / GALERIE — CINEMATIC ======= -->
+<section class="sec sec-cinematic" id="projets">
+
+  <!-- LAMP intro (Aceternity-style) -->
+  <div class="lamp-intro">
+    <div class="lamp-cone lamp-cone-l"></div>
+    <div class="lamp-cone lamp-cone-r"></div>
+    <div class="lamp-bar"></div>
+    <div class="lamp-glow"></div>
+    <div class="lamp-content">
+      <div class="sec-eyebrow lamp-eyebrow">— Galerie</div>
+      <h2 class="lamp-title">Six sites,<br><span class="accent">six univers.</span></h2>
+      <p class="lamp-desc">Chaque démo ci-dessous est un site complet, livré au pixel près. Cliquez pour explorer en plein écran.</p>
+    </div>
+  </div>
+
+  <div class="cinematic-rail-hint" aria-hidden="true">
+    <span class="hint-fr">Faites défiler</span><span class="hint-en">Scroll</span> <i class="fas fa-arrow-right"></i>
+  </div>
+
+  <div class="cinematic-rail reveal" id="cinematicRail">
 
       <!-- 01 - LUXE IMMOBILIER -->
       <a href="templates/01-luxe-immobilier.html" target="_blank" rel="noopener" class="proj" data-cur="Voir démo" style="--c1:#d4ff00;--c2:#888;--proj-bg:linear-gradient(135deg,#0a0a0a 0%,#1c1c1c 60%,#0a0a0a 100%)">
@@ -2216,11 +4377,10 @@ footer{
         </div>
       </a>
 
-    </div>
+  </div>
 
-    <div style="text-align:center;margin-top:50px">
-      <a href="#contact" class="btn btn-primary">Vous voulez votre démo personnalisée ? <i class="fas fa-arrow-right"></i></a>
-    </div>
+  <div class="cinematic-cta reveal">
+    <a href="#contact" class="btn btn-primary">Vous voulez votre démo personnalisée ? <i class="fas fa-arrow-right"></i></a>
   </div>
 </section>
 
@@ -2228,99 +4388,96 @@ footer{
 <section id="temoignages">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="sec-eyebrow">— Ce qu'ils en disent</div>
-      <h2>La preuve par <span class="accent" style="color:var(--neon)">5 étoiles.</span></h2>
-      <p class="sec-desc">Des artisans, indépendants et commerces qui sont passés du "site qui dort" au "site qui ramène des clients".</p>
+      <div class="sec-eyebrow">— Ma promesse</div>
+      <h2>Ce sur quoi vous pouvez <span class="accent" style="color:var(--neon)">compter.</span></h2>
+      <p class="sec-desc">Je démarre mon studio. Plutôt que d'inventer des témoignages, je préfère vous dire clairement à quoi vous engager avec moi.</p>
     </div>
   </div>
   <div class="testi-track-wrap reveal">
     <div class="testi-track">
 
       <div class="testi">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">Tristan a livré le site en 6 jours, exactement comme promis. En 3 semaines j'avais déjà 4 demandes de devis depuis Google. Bluffant pour le prix.</p>
+        <div class="testi-stars"><i class="fas fa-clock"></i></div>
+        <p class="testi-quote"><strong>Délai tenu, ou rien à payer.</strong> Si je dépasse les 7 jours ouvrés convenus sans raison de votre côté, la dernière échéance saute. C'est écrit noir sur blanc dans le devis.</p>
         <div class="testi-author">
-          <div class="testi-avatar">PD</div>
-          <div><div class="testi-name">Pascal D.</div><div class="testi-role">Plombier · Bourg-en-Bresse</div></div>
+          <div class="testi-avatar"><i class="fas fa-check"></i></div>
+          <div><div class="testi-name">Engagement contractuel</div><div class="testi-role">Sur tous les projets</div></div>
         </div>
       </div>
 
       <div class="testi">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">Le design est moderne, le site est rapide, et surtout je peux le modifier moi-même quand j'ai un nouveau service. Communication ultra fluide.</p>
+        <div class="testi-stars"><i class="fas fa-piggy-bank"></i></div>
+        <p class="testi-quote"><strong>Zéro abonnement caché.</strong> Hébergement et nom de domaine compris la première année. Ensuite, ~25€/mois si vous voulez la maintenance, sinon vous récupérez tout sur votre propre compte.</p>
         <div class="testi-author">
-          <div class="testi-avatar">CR</div>
-          <div><div class="testi-name">Camille R.</div><div class="testi-role">Coach sportive · Lyon</div></div>
+          <div class="testi-avatar"><i class="fas fa-check"></i></div>
+          <div><div class="testi-name">Vous restez propriétaire</div><div class="testi-role">Du code, du domaine, du contenu</div></div>
         </div>
       </div>
 
       <div class="testi">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">J'ai eu 3 devis avant lui : 2400€, 1900€, 1500€. Tristan a fait le même boulot en mieux pour 890€, et il connaît les artisans. Je recommande à fond.</p>
+        <div class="testi-stars"><i class="fas fa-comments"></i></div>
+        <p class="testi-quote"><strong>Vous parlez à moi, pas à un service client.</strong> Un seul interlocuteur, joignable par téléphone, email ou WhatsApp. Pas de jargon, pas de tickets, pas de "merci pour votre patience".</p>
         <div class="testi-author">
-          <div class="testi-avatar">SG</div>
-          <div><div class="testi-name">Sandrine G.</div><div class="testi-role">Esthéticienne · Mâcon</div></div>
+          <div class="testi-avatar"><i class="fas fa-check"></i></div>
+          <div><div class="testi-name">Communication directe</div><div class="testi-role">Tristan Muller · BUT Informatique</div></div>
         </div>
       </div>
 
       <div class="testi">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">Sérieux, à l'écoute, et carré sur les délais. Mon nouveau site est passé en 1ère page Google sur "kiné Bourg" en 2 mois. Game changer.</p>
+        <div class="testi-stars"><i class="fas fa-magnifying-glass"></i></div>
+        <p class="testi-quote"><strong>SEO local pensé dès le départ.</strong> Le site est conçu pour ressortir sur "votre métier + votre ville". Fiche Google Business reliée, pages dédiées par zone si besoin, pas juste un joli design.</p>
         <div class="testi-author">
-          <div class="testi-avatar">MO</div>
-          <div><div class="testi-name">Marc O.</div><div class="testi-role">Kiné · Bourg-en-Bresse</div></div>
+          <div class="testi-avatar"><i class="fas fa-check"></i></div>
+          <div><div class="testi-name">Visibilité Google</div><div class="testi-role">Inclus dans tous les packs</div></div>
         </div>
       </div>
 
       <div class="testi">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">On voulait du moderne sans payer le prix d'une grosse agence. Le résultat dépasse ce qu'on espérait. Et le service après-vente est toujours là.</p>
+        <div class="testi-stars"><i class="fas fa-flag"></i></div>
+        <p class="testi-quote"><strong>Studio basé à Bourg-en-Bresse, vraie facture FR.</strong> Auto-entrepreneur déclaré en France, TVA en franchise, pas d'agence offshore qui sous-traite. On peut se voir sur place ou en visio.</p>
         <div class="testi-author">
-          <div class="testi-avatar">AT</div>
-          <div><div class="testi-name">Antoine T.</div><div class="testi-role">Restaurant · Lyon</div></div>
+          <div class="testi-avatar"><i class="fas fa-check"></i></div>
+          <div><div class="testi-name">Ain · 01 · France</div><div class="testi-role">Disponibilité Lyon, Mâcon, Genève</div></div>
         </div>
       </div>
 
       <div class="testi">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">Pro, jeune, motivé, et il livre. Quand j'ai un projet web maintenant, je passe direct par Muller Dev. Aucune hésitation.</p>
+        <div class="testi-stars"><i class="fas fa-shield-halved"></i></div>
+        <p class="testi-quote"><strong>30 jours d'ajustements offerts.</strong> Une fois le site en ligne, je corrige les retours et ajuste sans frais pendant un mois. C'est inclus, pas un "geste commercial".</p>
         <div class="testi-author">
-          <div class="testi-avatar">JL</div>
-          <div><div class="testi-name">Julien L.</div><div class="testi-role">Artisan menuisier · Ain</div></div>
+          <div class="testi-avatar"><i class="fas fa-check"></i></div>
+          <div><div class="testi-name">Garantie post-livraison</div><div class="testi-role">Sur tous les packs</div></div>
         </div>
       </div>
 
       <!-- Duplicates for seamless loop -->
       <div class="testi">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">Tristan a livré le site en 6 jours, exactement comme promis. En 3 semaines j'avais déjà 4 demandes de devis depuis Google. Bluffant pour le prix.</p>
+        <div class="testi-stars"><i class="fas fa-clock"></i></div>
+        <p class="testi-quote"><strong>Délai tenu, ou rien à payer.</strong> Si je dépasse les 7 jours ouvrés convenus sans raison de votre côté, la dernière échéance saute. C'est écrit noir sur blanc dans le devis.</p>
         <div class="testi-author">
-          <div class="testi-avatar">PD</div>
-          <div><div class="testi-name">Pascal D.</div><div class="testi-role">Plombier · Bourg-en-Bresse</div></div>
+          <div class="testi-avatar"><i class="fas fa-check"></i></div>
+          <div><div class="testi-name">Engagement contractuel</div><div class="testi-role">Sur tous les projets</div></div>
         </div>
       </div>
       <div class="testi">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">Le design est moderne, le site est rapide, et surtout je peux le modifier moi-même quand j'ai un nouveau service. Communication ultra fluide.</p>
+        <div class="testi-stars"><i class="fas fa-piggy-bank"></i></div>
+        <p class="testi-quote"><strong>Zéro abonnement caché.</strong> Hébergement et nom de domaine compris la première année. Ensuite, ~25€/mois si vous voulez la maintenance, sinon vous récupérez tout sur votre propre compte.</p>
         <div class="testi-author">
-          <div class="testi-avatar">CR</div>
-          <div><div class="testi-name">Camille R.</div><div class="testi-role">Coach sportive · Lyon</div></div>
+          <div class="testi-avatar"><i class="fas fa-check"></i></div>
+          <div><div class="testi-name">Vous restez propriétaire</div><div class="testi-role">Du code, du domaine, du contenu</div></div>
         </div>
       </div>
       <div class="testi">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">J'ai eu 3 devis avant lui : 2400€, 1900€, 1500€. Tristan a fait le même boulot en mieux pour 890€, et il connaît les artisans. Je recommande à fond.</p>
+        <div class="testi-stars"><i class="fas fa-comments"></i></div>
+        <p class="testi-quote"><strong>Vous parlez à moi, pas à un service client.</strong> Un seul interlocuteur, joignable par téléphone, email ou WhatsApp. Pas de jargon, pas de tickets, pas de "merci pour votre patience".</p>
         <div class="testi-author">
-          <div class="testi-avatar">SG</div>
-          <div><div class="testi-name">Sandrine G.</div><div class="testi-role">Esthéticienne · Mâcon</div></div>
+          <div class="testi-avatar"><i class="fas fa-check"></i></div>
+          <div><div class="testi-name">Communication directe</div><div class="testi-role">Tristan Muller · BUT Informatique</div></div>
         </div>
       </div>
 
     </div>
   </div>
-  <p style="text-align:center;margin-top:30px;font-size:12px;color:rgba(255,255,255,.4);font-family:'Geist Mono','Courier New',monospace;letter-spacing:1px">
-    *Témoignages composites représentatifs · projets en cours
-  </p>
 </section>
 
 <!-- ======= FAQ ======= -->
@@ -2401,11 +4558,11 @@ footer{
             <div class="value">07 49 49 81 37</div>
           </div>
         </a>
-        <a href="mailto:tristan@familymuller.me" class="contact-row">
+        <a href="mailto:tristanmuller007@gmail.com" class="contact-row">
           <div class="contact-icon"><i class="fas fa-envelope"></i></div>
           <div>
             <div class="label">Email</div>
-            <div class="value">tristan@familymuller.me</div>
+            <div class="value">tristanmuller007@gmail.com</div>
           </div>
         </a>
         <div class="contact-row" style="cursor:default">
@@ -2415,13 +4572,6 @@ footer{
             <div class="value">Bourg-en-Bresse, Ain (01)</div>
           </div>
         </div>
-        <a href="https://www.instagram.com/tristan_muller.5/" target="_blank" rel="noopener" class="contact-row">
-          <div class="contact-icon"><i class="fab fa-instagram"></i></div>
-          <div>
-            <div class="label">Instagram</div>
-            <div class="value">@tristan_muller.5</div>
-          </div>
-        </a>
         <a href="https://github.com/tristanmuller007" target="_blank" rel="noopener" class="contact-row">
           <div class="contact-icon"><i class="fab fa-github"></i></div>
           <div>
@@ -2431,7 +4581,13 @@ footer{
         </a>
       </div>
 
-      <form class="form-card" action="mailto:tristan@familymuller.me" method="post" enctype="text/plain">
+      <!--
+        FORM ACTIF — FormSubmit.co
+        Service gratuit, sans compte. Première soumission = email de validation à confirmer
+        (clic dans le mail). Ensuite, chaque devis arrive directement dans tristanmuller007@gmail.com.
+        Pour changer l'email : remplacer ci-dessous.
+      -->
+      <form id="devisForm" class="form-card" action="https://formsubmit.co/tristanmuller007@gmail.com" method="POST">
         <h3>Demander un devis</h3>
         <p>Réponse sous 24h, et c'est sans engagement.</p>
 
@@ -2472,7 +4628,29 @@ footer{
           <textarea id="msg" name="Message" placeholder="Mon métier, ce que je veux montrer sur le site, ce que je n'aime pas chez les concurrents..."></textarea>
         </div>
 
-        <button type="submit" class="form-submit">Envoyer ma demande <i class="fas fa-paper-plane"></i></button>
+        <!-- FormSubmit options -->
+        <input type="hidden" name="_subject" value="Nouveau devis — Muller Dev Studios">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://tristanmuller007.github.io/muller-dev-studios/?envoye=1">
+        <!-- Honeypot anti-spam (caché aux humains, attrape les bots) -->
+        <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;pointer-events:none" aria-hidden="true">
+
+        <button type="submit" class="form-submit">
+          <span class="btn-label">Envoyer ma demande</span>
+          <span class="btn-spinner" aria-hidden="true"></span>
+          <i class="fas fa-paper-plane"></i>
+        </button>
+
+        <div id="formSuccess" class="form-feedback form-feedback-ok" hidden>
+          <i class="fas fa-circle-check"></i>
+          <strong>Demande reçue.</strong> Je reviens vers vous sous 24h ouvrées avec un premier retour. Merci !
+        </div>
+        <div id="formError" class="form-feedback form-feedback-err" hidden>
+          <i class="fas fa-triangle-exclamation"></i>
+          <strong>Envoi impossible.</strong> Écrivez-moi directement à <a href="mailto:tristanmuller007@gmail.com">tristanmuller007@gmail.com</a> ou par téléphone.
+        </div>
+
         <p class="form-note">Vos infos restent confidentielles. Aucune revente, aucun spam.</p>
       </form>
 
@@ -2492,8 +4670,7 @@ footer{
         <p>Studio de création de sites web pour artisans, commerçants et indépendants. Basé à Bourg-en-Bresse, disponible partout en France.</p>
         <div class="foot-soc">
           <a href="https://github.com/tristanmuller007" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
-          <a href="https://www.instagram.com/tristan_muller.5/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="mailto:tristan@familymuller.me" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          <a href="mailto:tristanmuller007@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
         </div>
       </div>
       <div>
@@ -2510,7 +4687,7 @@ footer{
         <h4>Contact</h4>
         <ul>
           <li><a href="tel:+33749498137">07 49 49 81 37</a></li>
-          <li><a href="mailto:tristan@familymuller.me">tristan@familymuller.me</a></li>
+          <li><a href="mailto:tristanmuller007@gmail.com">tristanmuller007@gmail.com</a></li>
           <li>Bourg-en-Bresse · Ain (01)</li>
           <li><a href="https://tristanmuller007.github.io/Portfolio/" target="_blank">Portfolio complet</a></li>
         </ul>
@@ -2550,19 +4727,456 @@ footer{
 
     /* Hero */
     "Disponible · Bourg-en-Bresse": "Available · Bourg-en-Bresse, France",
+    "Studio indépendant · Bourg-en-Bresse": "Independent studio · Bourg-en-Bresse",
     "BÂTI": "BUILT",
     "POUR LE": "FOR THE",
     "DÉFI.": "CHALLENGE.",
+    "UN SITE WEB": "A WEBSITE",
+    "QUI TRAVAILLE": "THAT WORKS",
+    "POUR VOUS.": "FOR YOU.",
     "sur-mesure": "tailor-made",
     "préparation, exécution, victoire": "preparation, execution, victory",
     "7 jours": "7 days",
     "890€": "€890",
+    "Site vitrine pro pour artisans, commerçants et indépendants.": "Professional showcase site for tradespeople, shops and freelancers.",
+    "Livré en 7 jours": "Delivered in 7 days",
+    ", à partir de": ", starting at",
+    ". Hébergement et nom de domaine compris la première année. Sans abonnement caché.": ". Hosting and domain included for the first year. No hidden subscription.",
     "Lancer mon projet": "Start my project",
+    "Demander un devis": "Request a quote",
     "Voir les tarifs": "See pricing",
     "Champion": "Champion",
     "Délai max": "Max delivery",
+    "Livraison max": "Max delivery",
     "Réponse devis": "Quote response",
+    "À partir de": "Starting at",
+    "Abonnement": "Subscription",
     "BOURG-EN-BRESSE · 01 · FRANCE": "BOURG-EN-BRESSE · FRANCE",
+
+    /* Intro stage / Bonjour animation */
+    "Bonjour": "Hello",
+    "Je m'appelle": "My name is",
+    "Tristan Muller.": "Tristan Muller.",
+    "Studio": "Studio",
+    "Muller": "Muller",
+    "Dev": "Dev",
+    "Studios": "Studios",
+    "Basé à": "Based in",
+    "Bourg-en-Bresse": "Bourg-en-Bresse",
+    "Ain · France": "Ain · France",
+    "Pour": "For",
+    "Artisans, indépendants,": "Tradespeople, freelancers,",
+    "commerces de proximité": "local shops",
+    "Pas pour": "Not for",
+    "Startups, agences offshore, projets template": "Startups, offshore agencies, template projects",
+    "Promesse": "Promise",
+    "Site": "Website",
+    "livré en 7 jours": "delivered in 7 days",
+    "· à partir de": "· starting at",
+    "Statut": "Status",
+    "Disponible": "Available",
+    "pour 2 nouveaux projets": "for 2 new projects",
+    "Un site web propre, qui parle à vos clients, et qu'on n'oublie pas le lendemain.": "A clean website that speaks to your customers and that they remember the day after.",
+    "Tristan Muller": "Tristan Muller",
+    "Fondateur": "Founder",
+
+    /* Mega marquees */
+    "Sites web": "Websites",
+    "Pas un template": "Not a template",
+    "Pas une agence offshore": "Not an offshore agency",
+    "Bourg-en-Bresse ✦": "Bourg-en-Bresse ✦",
+    "Sans abonnement caché ✦": "No hidden subscription ✦",
+    "Hébergement compris": "Hosting included",
+    "Livré en": "Delivered in",
+
+    /* Trustbar */
+    "— 6 styles, 6 métiers · démos accessibles ci-dessous": "— 6 styles, 6 trades · demos accessible below",
+    "Joaillerie": "Jewelry",
+    "· luxe": "· luxury",
+    "Immobilier": "Real Estate",
+    "· éditorial": "· editorial",
+    "Restaurant": "Restaurant",
+    "· gastro": "· fine dining",
+    "Avocats": "Lawyers",
+    "· cabinet": "· firm",
+    "Artisan BTP": "Builder",
+    "Couture": "Couture",
+    "· atelier": "· atelier",
+
+    /* Lamp intro / Galerie chapter */
+    "— Galerie": "— Gallery",
+    "Six sites,": "Six sites,",
+    "six univers.": "six worlds.",
+    "Chaque démo ci-dessous est un site complet, livré au pixel près. Cliquez pour explorer en plein écran.": "Each demo below is a complete site, pixel-perfect. Click to explore full screen.",
+    "Le travail": "The work",
+    "parle pour moi.": "speaks for itself.",
+    "Six démos sectorielles, conçues comme des sites réels, livrables tels quels ou comme point de départ pour le vôtre.": "Six sector demos, designed like real sites, deliverable as-is or as a starting point for yours.",
+    "— Galerie · Galerie · Galerie · Galerie · Galerie": "— Gallery · Gallery · Gallery · Gallery · Gallery",
+    "Scroll": "Scroll",
+
+    /* Cinematic projects */
+    "Maison": "Maison",
+    "Blanc": "Blanc",
+    "Paris 16ᵉ · Prestige": "Paris 16th · Prestige",
+    "Maison Blanc": "Maison Blanc",
+    "Agence immobilier de prestige · catalogue de biens d'exception, mise en valeur cinématographique, rendez-vous privés.": "Prestige real estate agency · exceptional property catalog, cinematic showcasing, private viewings.",
+    "Mesh BG": "Mesh BG",
+    "Custom cursor": "Custom cursor",
+    "Démo": "Demo",
+    "Lyon · Affaires": "Lyon · Business",
+    "Dupont & Associés": "Dupont & Partners",
+    "Cabinet d'avocats premium · présentation des associés, expertises, prise de RDV confidentielle, ressources juridiques.": "Premium law firm · partner presentation, expertise, confidential booking, legal resources.",
+    "Sérif classique": "Classical serif",
+    "Tons or": "Gold tones",
+    "Élégant": "Elegant",
+    "L'Ardoise": "L'Ardoise",
+    "Lyon · Bistronomie": "Lyon · Bistronomy",
+    "Restaurant gastronomique · menu en ligne, réservation, présentation du chef, galerie photo et atmosphère soignée.": "Fine dining restaurant · online menu, booking, chef profile, gallery and crafted atmosphere.",
+    "Tons chauds": "Warm tones",
+    "Menu live": "Live menu",
+    "Réservation": "Booking",
+    "Elyséa": "Elyséa",
+    "Paris · Haute Joaillerie": "Paris · Fine Jewelry",
+    "Maison de joaillerie · collections capsule, savoir-faire, pièces sur-mesure, atelier privé, héritage 1962.": "Jewelry house · capsule collections, craftsmanship, made-to-order pieces, private atelier, heritage since 1962.",
+    "Or rose": "Rose gold",
+    "Galerie": "Gallery",
+    "Heritage": "Heritage",
+    "DUMONT": "DUMONT",
+    "BTP": "BUILD",
+    "Bourg-en-Bresse · Plomberie": "Bourg-en-Bresse · Plumbing",
+    "Dumont BTP": "Dumont BTP",
+    "Artisan plombier-chauffagiste · zone d'intervention 24h/24, formulaire devis express, réalisations chantier, avis clients.": "Plumber-heating engineer · 24/7 service area, fast quote form, project showcase, customer reviews.",
+    "Local SEO": "Local SEO",
+    "Devis 24h": "24h quote",
+    "Mobile-first": "Mobile-first",
+    "Atelier": "Atelier",
+    "Ozan": "Ozan",
+    "Paris · Sur-mesure": "Paris · Made-to-measure",
+    "Atelier Ozan": "Atelier Ozan",
+    "Couture haute facture · pièces signature, processus sur-mesure, lookbook, prise de RDV en showroom privé.": "High craftsmanship couture · signature pieces, custom process, lookbook, private showroom booking.",
+    "Lookbook": "Lookbook",
+    "RDV privé": "Private booking",
+    "Sur-mesure": "Made-to-measure",
+    "Vous voulez votre démo personnalisée ?": "Want your custom demo?",
+
+    /* Pour qui — editorial list */
+    "Vous êtes du": "You're from the",
+    "terrain.": "field.",
+    "Conçu pour les pros": "Built for pros",
+    "du terrain.": "of the field.",
+    "Vous êtes seul·e ou en petite équipe. Vous gérez votre activité au quotidien. Vous avez besoin d'un site qui travaille pour vous, pas de prise de tête.": "You work alone or in a small team. You run your business every day. You need a site that works for you, no hassle.",
+    "L'": "The ",
+    "artisan": "tradesperson",
+    "qui répare, pose, construit.": "who repairs, installs, builds.",
+    "Plombier, électricien, chauffagiste, menuisier, paysagiste, peintre, maçon, carreleur, couvreur.": "Plumber, electrician, heating engineer, carpenter, landscaper, painter, mason, tiler, roofer.",
+    "15+ métiers BTP couverts.": "15+ trades covered.",
+    "Le": "The",
+    "thérapeute": "therapist",
+    ", le coach, le bien-être.": ", coach, wellness pro.",
+    "Kiné, ostéo, podologue, sophrologue, naturopathe, coach sportif, prof de yoga, pilates, crossfit. Vous vendez votre temps — votre site doit pré-qualifier les clients.": "Physio, osteopath, podiatrist, sophrologist, naturopath, fitness coach, yoga, pilates, crossfit. You sell your time — your site needs to pre-qualify clients.",
+    "commerce de proximité": "local shop",
+    "qui veut être trouvé sur Google.": "that wants to be found on Google.",
+    "Coiffeur, esthéticienne, barbier, restaurant, boulangerie, boucherie, fromagerie, fleuriste, primeur, chocolatier.": "Hairdresser, beautician, barber, restaurant, bakery, butcher, cheesemonger, florist, greengrocer, chocolatier.",
+    "libéral": "professional",
+    "qui veut paraître sérieux.": "who wants to look serious.",
+    "Avocat, expert-comptable, notaire, courtier en prêt, conseiller patrimonial, consultant, coach pro. Un site qui inspire confiance avant le premier rendez-vous.": "Lawyer, accountant, notary, mortgage broker, wealth advisor, consultant, business coach. A site that builds trust before the first meeting.",
+    "créatif": "creative",
+    "qui mérite un portfolio à la hauteur.": "who deserves a portfolio worthy of it.",
+    "Photographe, vidéaste, graphiste, architecte d'intérieur, décorateur, créateur mode, joaillier, ébéniste. Votre travail mérite mieux qu'un Wix générique.": "Photographer, videographer, graphic designer, interior architect, decorator, fashion designer, jeweler, cabinetmaker. Your work deserves better than a generic Wix.",
+    "Et": "And",
+    "vous": "you",
+    ", peut-être.": ", perhaps.",
+    "Si votre métier exige du sérieux, du local, du visible —": "If your trade calls for seriousness, local presence, visibility —",
+    "on en parle": "let's talk",
+    ". Devis gratuit, premier échange offert. Sans engagement.": ". Free quote, first call free. No commitment.",
+
+    /* Tarifs v3 */
+    "— Tarifs": "— Pricing",
+    "Tout est": "Everything is",
+    "transparent.": "transparent.",
+    "Trois formules. Pas de petite ligne, pas de surprise — vous savez exactement ce que vous payez et ce que vous obtenez.": "Three plans. No fine print, no surprises — you know exactly what you pay and what you get.",
+    "Essentiel": "Essential",
+    "Pour démarrer en ligne avec un site propre et fonctionnel.": "To get online with a clean, functional site.",
+    "TVA non applicable · paiement en 2 fois": "VAT not applicable · 2 installments",
+    "Site 5 pages, design sur-mesure": "5-page site, custom design",
+    "Mobile, tablette, ordinateur": "Mobile, tablet, desktop",
+    "Formulaire de contact": "Contact form",
+    "Hébergement + nom de domaine 1 an": "Hosting + domain for 1 year",
+    "1 série de retouches incluse": "1 round of revisions included",
+    "Livraison en 7 jours": "Delivery in 7 days",
+    "Choisir Essentiel": "Choose Essential",
+    "Le plus choisi": "Most popular",
+    "Pro": "Pro",
+    "Visibilité Google + identité visuelle. L'offre la plus demandée.": "Google visibility + visual identity. The most requested plan.",
+    "Tout le pack Essentiel": "Everything in Essential",
+    "Identité visuelle (logo, palette, typo)": "Visual identity (logo, palette, type)",
+    "Référencement Google local optimisé": "Optimized local Google SEO",
+    "Configuration Google Business Profile": "Google Business Profile setup",
+    "2 séries de retouches incluses": "2 rounds of revisions included",
+    "Maintenance 3 mois": "3-month maintenance",
+    "offerte": "free",
+    "Choisir Pro": "Choose Pro",
+    "Blog, réservation, espace client, intégrations.": "Blog, booking, customer area, integrations.",
+    "À partir de 1 490€": "Starting at €1,490",
+    "Tout le pack Pro": "Everything in Pro",
+    "Pages illimitées": "Unlimited pages",
+    "Blog ou actualités dynamiques": "Blog or dynamic news",
+    "Système de réservation en ligne": "Online booking system",
+    "Espace client / login": "Customer area / login",
+    "Intégrations API, paiement, CRM": "API, payment, CRM integrations",
+    "Maintenance annuelle disponible à 25€/mois — mises à jour, modifs ponctuelles, support.": "Annual maintenance available at €25/month — updates, edits, support.",
+
+    /* Floating CTA + Counter */
+    "Devis gratuit ": "Get a quote ",
+    "Intro": "Intro",
+    "Pour qui": "For whom",
+    "L'offre": "What's included",
+    "Process": "Process",
+    "Tarifs": "Pricing",
+    "Promesse": "Commitment",
+    "Contact": "Contact",
+
+    /* Section eyebrows */
+    "— Pour qui": "— For whom",
+    "— Ce qui est inclus": "— What's included",
+    "— Le déroulé": "— The process",
+    "— Tarifs": "— Pricing",
+    "— Galerie de démos": "— Demo gallery",
+    "— Ma promesse": "— My commitment",
+    "— Questions fréquentes": "— Frequently asked",
+    "— Localisation": "— Location",
+    "— On en parle ?": "— Let's talk",
+    "— Bonjour": "— Hello",
+
+    /* L'offre section */
+    "Tout ce qu'il faut pour": "Everything you need to",
+    "être visible.": "be visible.",
+    "Pas de fonctionnalités gadget, pas de frais cachés. Juste ce qui fait qu'un site amène des clients aujourd'hui.": "No gadget features, no hidden fees. Just what makes a site bring in customers today.",
+    "Design moderne sur-mesure": "Modern custom design",
+    "Mobile-first, rapide": "Mobile-first, fast",
+    "Référencement Google local": "Local Google SEO",
+    "Hébergement & domaine": "Hosting & domain",
+    "Formulaire de devis intelligent": "Smart quote form",
+    "Maintenance & évolutions": "Maintenance & updates",
+
+    /* Process steps */
+    "Vous prenez le brief en main.": "You set the brief.",
+    "Brief de 30 min en visio ou téléphone. On parle de votre métier, vos clients, ce que vous voulez transmettre.": "30-min brief over video or phone. We talk about your trade, your customers, what you want to convey.",
+    "Jour 1": "Day 1",
+    "Maquette en 48h.": "Mockup in 48h.",
+    "Je vous présente une première maquette du site, prête à être discutée et ajustée.": "I show you a first mockup, ready to be discussed and adjusted.",
+    "Jour 2 à 3": "Day 2 to 3",
+    "Développement & contenu.": "Build & content.",
+    "Je code le site et intègre vos textes, photos, et tout ce qui doit y figurer.": "I code the site and integrate your copy, photos, and everything else.",
+    "Jour 3 à 5": "Day 3 to 5",
+    "Retouches & mise en ligne": "Tweaks & launch",
+    "2 séries de retouches incluses, puis on déploie le site avec votre nom de domaine.": "2 rounds of revisions included, then we deploy with your domain.",
+    "Jours 6 à 7": "Days 6 to 7",
+
+    /* FAQ */
+    "Vous vous demandez": "You may be",
+    "peut-être...": "wondering...",
+    "Quel est le délai exact pour avoir mon site en ligne ?": "What's the exact timeline to get my site live?",
+    "Que se passe-t-il après la livraison ?": "What happens after delivery?",
+    "Est-ce que je peux modifier mon site moi-même ?": "Can I edit my site myself?",
+    "Quels sont les modes de paiement acceptés ?": "What payment methods do you accept?",
+    "Travaillez-vous uniquement à Bourg-en-Bresse ?": "Do you only work in Bourg-en-Bresse?",
+    "Pourquoi 890€ et pas 3000€ comme une agence ?": "Why €890 and not €3,000 like an agency?",
+    "Et si je ne suis pas satisfait du résultat ?": "What if I'm not satisfied with the result?",
+
+    /* Localisation / Globe */
+    "Latitude · Ain (01)": "Latitude · Ain (01)",
+    "Longitude · Auvergne-Rhône-Alpes": "Longitude · Auvergne-Rhône-Alpes",
+    "Disponible partout en France": "Available throughout France",
+
+    /* Contact section */
+    "Devis gratuit sous 24h. Aucun engagement. Le 1er échange est gratuit (téléphone ou café à Bourg).": "Free quote within 24h. No commitment. First call is free (phone or coffee in Bourg).",
+    "Téléphone": "Phone",
+    "Email": "Email",
+    "Localisation": "Location",
+    "Réponse sous 24h, et c'est sans engagement.": "Reply within 24h, no commitment.",
+    "Prénom & Nom": "First & Last Name",
+    "Entreprise": "Company",
+    "Quel pack vous intéresse ?": "Which package?",
+    "Vitrine Pro — 890€ (recommandé)": "Pro Showcase — €890 (recommended)",
+    "Starter — 690€": "Starter — €690",
+    "Je ne sais pas encore": "Not sure yet",
+    "Votre projet en quelques mots": "Your project in a few words",
+    "Mon métier, ce que je veux montrer sur le site, ce que je n'aime pas chez les concurrents...": "My business, what I want to show, what I don't like in competitors...",
+    "Envoyer ma demande": "Send my request",
+    "Vos infos restent confidentielles. Aucune revente, aucun spam.": "Your info stays private. No reselling, no spam.",
+    "Demande reçue.": "Request received.",
+    "Je reviens vers vous sous 24h ouvrées avec un premier retour. Merci !": "I'll get back to you within 24 working hours. Thanks!",
+    "Envoi impossible.": "Sending failed.",
+    "Écrivez-moi directement à": "Email me directly at",
+    "ou par téléphone.": "or by phone.",
+
+    /* Ma promesse cards */
+    "Délai tenu, ou rien à payer.": "On time, or no payment.",
+    "Si je dépasse les 7 jours ouvrés convenus sans raison de votre côté, la dernière échéance saute. C'est écrit noir sur blanc dans le devis.": "If I exceed the agreed 7 working days without your fault, the last payment is waived. Written in black and white on the quote.",
+    "Engagement contractuel": "Contractual commitment",
+    "Sur tous les projets": "On every project",
+    "Zéro abonnement caché.": "Zero hidden subscription.",
+    "Hébergement et nom de domaine compris la première année. Ensuite, ~25€/mois si vous voulez la maintenance, sinon vous récupérez tout sur votre propre compte.": "Hosting and domain included for the first year. Then ~€25/month if you want maintenance — otherwise you keep everything on your own account.",
+    "Vous restez propriétaire": "You stay the owner",
+    "Du code, du domaine, du contenu": "Of the code, domain, content",
+    "Vous parlez à moi, pas à un service client.": "You talk to me, not a support desk.",
+    "Un seul interlocuteur, joignable par téléphone, email ou WhatsApp. Pas de jargon, pas de tickets, pas de \"merci pour votre patience\".": "One person, reachable by phone, email or WhatsApp. No jargon, no tickets, no \"thank you for your patience\".",
+    "Communication directe": "Direct communication",
+    "Tristan Muller · BUT Informatique": "Tristan Muller · BUT Informatique",
+    "SEO local pensé dès le départ.": "Local SEO from day one.",
+    "Le site est conçu pour ressortir sur \"votre métier + votre ville\". Fiche Google Business reliée, pages dédiées par zone si besoin, pas juste un joli design.": "The site is built to rank for \"your trade + your city\". Google Business linked, area-specific pages if needed, not just a pretty design.",
+    "Visibilité Google": "Google visibility",
+    "Inclus dans tous les packs": "Included in all packages",
+    "Studio basé à Bourg-en-Bresse, vraie facture FR.": "Studio in Bourg-en-Bresse, real French invoice.",
+    "Auto-entrepreneur déclaré en France, TVA en franchise, pas d'agence offshore qui sous-traite. On peut se voir sur place ou en visio.": "Registered French sole trader, VAT-exempt, no offshore agency outsourcing. We can meet in person or by video call.",
+    "Ain · 01 · France": "Ain · 01 · France",
+    "Disponibilité Lyon, Mâcon, Genève": "Available in Lyon, Mâcon, Geneva",
+    "30 jours d'ajustements offerts.": "30 days of free adjustments.",
+    "Une fois le site en ligne, je corrige les retours et ajuste sans frais pendant un mois. C'est inclus, pas un \"geste commercial\".": "Once the site is live, I fix feedback and adjust for free for a month. It's included, not a \"commercial gesture\".",
+    "Garantie post-livraison": "Post-delivery guarantee",
+    "Sur tous les packs": "On all packages",
+    "Ce sur quoi vous pouvez": "What you can",
+    "compter.": "count on.",
+    "Je démarre mon studio. Plutôt que d'inventer des témoignages, je préfère vous dire clairement à quoi vous engager avec moi.": "I'm just starting the studio. Rather than make up testimonials, here's exactly what you're getting.",
+
+    /* Footer */
+    "Studio de création de sites web pour artisans, commerçants et indépendants. Basé à Bourg-en-Bresse, disponible partout en France.": "Web design studio for tradespeople, shopkeepers and freelancers. Based in Bourg-en-Bresse, working France-wide.",
+    "Navigation": "Navigation",
+    "Portfolio complet": "Full portfolio",
+    "Mentions légales": "Legal notice",
+    "Confidentialité": "Privacy",
+
+    /* Misc */
+    "Plombiers": "Plumbers",
+    "Coiffeurs": "Hairdressers",
+    "Kinés": "Physios",
+    "Coachs sportifs": "Fitness coaches",
+    "Restaurants": "Restaurants",
+    "Auto-écoles": "Driving schools",
+    "Esthéticiennes": "Beauticians",
+    "Garagistes": "Garages",
+    "Toiletteurs": "Pet groomers",
+    "Ostéopathes": "Osteopaths",
+    "Électriciens": "Electricians",
+    "Menuisiers": "Carpenters",
+    "Naviguer · taper pour filtrer...": "Navigate · type to filter...",
+    "Naviguer": "Navigate",
+    "Aller": "Go",
+    "Fermer": "Close",
+    "Appuie sur": "Press",
+    "pour naviguer": "to navigate",
+    "Hero": "Home",
+    "Pour qui c'est ?": "Who is it for?",
+    "Démos / Galerie": "Showcase",
+    "Ma promesse": "Commitment",
+    "Voir le portfolio complet": "Full portfolio",
+    "GitHub": "GitHub",
+    "Contact / Devis": "Contact / Quote",
+
+    /* Floating CTA & chapter labels */
+    "Devis gratuit": "Get a quote",
+    "PROMESSE": "COMMITMENT",
+    "GALERIE": "GALLERY",
+    "STUDIO": "STUDIO",
+    "PROCESS": "PROCESS",
+    "TARIFS": "PRICING",
+    "POUR QUI": "FOR WHOM",
+    "L'OFFRE": "WHAT'S INCLUDED",
+    "INTRO": "INTRO",
+    "Promesse": "Commitment",
+    "Galerie": "Gallery",
+
+    /* Mega marquee — exact text node strings (with ✦) */
+    "sur-mesure ✦": "custom ✦",
+    "sur-mesure": "custom",
+    "Livré en": "Delivered in",
+    "✦ Livré en": "✦ Delivered in",
+    "✦ Livré en ": "✦ Delivered in ",
+    "À partir de": "Starting at",
+    "À partir de ": "Starting at ",
+    "✦ Sans abonnement caché ✦": "✦ No hidden subscription ✦",
+    "Sans abonnement caché ✦": "No hidden subscription ✦",
+    "Sans abonnement caché": "No hidden subscription",
+    "Hébergement compris ✦": "Hosting included ✦",
+    "Hébergement compris": "Hosting included",
+    "Pas un template ✦": "Not a template ✦",
+    "Pas un template": "Not a template",
+    "Pas une agence offshore ✦": "Not an offshore agency ✦",
+    "Pas une agence offshore": "Not an offshore agency",
+    "Sites web": "Websites",
+    "· Bourg-en-Bresse ✦": "· Bourg-en-Bresse ✦",
+    "✦": "✦",
+    "7 jours": "7 days",
+
+    /* FAQ — exact questions */
+    "Quel est le délai exact pour avoir mon site en ligne ?": "What's the exact timeline to get my site online?",
+    "7 jours ouvrés à compter de la validation du devis et de la réception de vos textes/photos. Si vous n'avez pas tout, je vous accompagne pour les choisir ou je propose des alternatives. Pour les projets sur-mesure, le délai dépend de la complexité (estimé au devis).": "7 working days from quote validation and receipt of your copy/photos. If you don't have everything, I help you choose or suggest alternatives. For custom projects, the timeline depends on complexity (estimated in the quote).",
+    "Je peux modifier mon site moi-même après livraison ?": "Can I edit my site myself after delivery?",
+    "Oui. Soit vous prenez l'option maintenance à 25€/mois et je m'occupe de tout, soit vous gérez les petites modifs vous-même via une interface simple que je vous configure. On en parle au moment du devis selon votre préférence.": "Yes. Either you take the €25/month maintenance option and I handle everything, or you manage small edits yourself through a simple interface I set up for you. We discuss this during the quote based on your preference.",
+    "Que se passe-t-il après la première année ?": "What happens after the first year?",
+    "Le nom de domaine et l'hébergement sont à vous. Vous avez deux options : continuer avec moi (60€/an pour le renouvellement) ou tout récupérer pour le gérer ailleurs. Aucun engagement, aucune dépendance.": "The domain and hosting are yours. You have two options: continue with me (€60/year for renewal) or take everything to manage elsewhere. No commitment, no lock-in.",
+    "Pourquoi un site fait main et pas Wix ou un template ?": "Why a custom site and not Wix or a template?",
+    "Un site Wix coûte ~25€/mois à vie (300€/an), il est lent, mal référencé, et tout le monde a le même. Un site fait main charge plus vite, est mieux référencé sur Google, et vous appartient à 100%. À 2 ans, c'est rentable. À 5 ans, vous avez économisé 1500€.": "A Wix site costs ~€25/month forever (€300/year), is slow, poorly indexed, and looks like everyone else's. A custom site loads faster, ranks better on Google, and is 100% yours. After 2 years it pays off. After 5 years, you've saved €1,500.",
+    "Comment ça se passe pour le paiement ?": "How does payment work?",
+    "50% à la commande, 50% à la livraison. Virement bancaire ou chèque. Facture en bonne et due forme (auto-entrepreneur déclaré). TVA non applicable, art. 293 B du CGI.": "50% on order, 50% on delivery. Bank transfer or check. Proper invoice (registered sole trader). VAT not applicable, French CGI art. 293 B.",
+    "Vous travaillez seulement à Bourg-en-Bresse ?": "Do you only work in Bourg-en-Bresse?",
+    "Je suis basé à Bourg-en-Bresse et je privilégie les clients locaux (rendez-vous physique possible) — Bourg, Ain, Mâcon, Lyon. Mais je travaille à distance avec n'importe qui en France si le projet est intéressant.": "I'm based in Bourg-en-Bresse and prefer local clients (in-person meetings possible) — Bourg, Ain, Mâcon, Lyon. But I work remotely with anyone in France if the project is interesting.",
+
+    /* Globe / Localisation */
+    "Basé à": "Based in",
+    "Basé à Bourg-en-Bresse": "Based in Bourg-en-Bresse",
+    "Bresse.": "Bresse.",
+    "Bourg-en-": "Bourg-en-",
+    "partout en France": "everywhere in France",
+    ". RDV physique privilégié à Bourg-en-Bresse, Mâcon, Lyon et dans tout l'Ain. Travail à distance partout ailleurs.": ". In-person meetings in Bourg-en-Bresse, Mâcon, Lyon and across Ain. Remote work everywhere else.",
+    "RDV physique privilégié à Bourg-en-Bresse, Mâcon, Lyon et dans tout l'Ain. Travail à distance partout ailleurs.": "In-person meetings in Bourg-en-Bresse, Mâcon, Lyon and across Ain. Remote work everywhere else.",
+    "STATUS": "STATUS",
+    "STATUT": "STATUS",
+    "Disponible — Réponse sous 24h": "Available — Reply within 24h",
+    "46.20° N": "46.20° N",
+    "5.22° E": "5.22° E",
+    "Latitude · Ain (01)": "Latitude · Ain (01)",
+    "Longitude · Auvergne-Rhône-Alpes": "Longitude · Auvergne-Rhône-Alpes",
+    "Available": "Available",
+
+    /* Promesse section quotes — exact strings (with leading quote chars where needed) */
+    "Délai tenu, ou rien à payer.": "On time, or no payment.",
+    "Si je dépasse les 7 jours ouvrés convenus sans raison de votre côté, la dernière échéance saute. C'est écrit noir sur blanc dans le devis.": "If I exceed the agreed 7 working days without your fault, the last payment is waived. Written in black and white on the quote.",
+    "Engagement contractuel": "Contractual commitment",
+    "Sur tous les projets": "On all projects",
+    "Zéro abonnement caché.": "No hidden subscription.",
+    "Hébergement et nom de domaine compris la première année. Ensuite, ~25€/mois si vous voulez la maintenance, sinon vous récupérez tout sur votre propre compte.": "Hosting and domain included for the first year. Then ~€25/month if you want maintenance — otherwise you keep everything on your own account.",
+    "Vous restez propriétaire": "You stay the owner",
+    "Du code, du domaine, du contenu": "Of the code, domain, content",
+    "Vous parlez à moi, pas à un service client.": "You talk to me, not customer support.",
+    "Un seul interlocuteur, joignable par téléphone, email ou WhatsApp. Pas de jargon, pas de tickets, pas de \"merci pour votre patience\".": "One single contact, reachable by phone, email or WhatsApp. No jargon, no tickets, no \"thank you for your patience\".",
+    "Communication directe": "Direct communication",
+    "Tristan Muller · BUT Informatique": "Tristan Muller · BUT Informatique",
+    "SEO local pensé dès le départ.": "Local SEO from day one.",
+    "Le site est conçu pour ressortir sur \"votre métier + votre ville\". Fiche Google Business reliée, pages dédiées par zone si besoin, pas juste un joli design.": "The site is built to rank for \"your trade + your city\". Google Business linked, dedicated pages by area if needed, not just a pretty design.",
+    "Visibilité Google": "Google visibility",
+    "Inclus dans tous les packs": "Included in all plans",
+    "Studio basé à Bourg-en-Bresse, vraie facture FR.": "Studio in Bourg-en-Bresse, real French invoice.",
+    "Auto-entrepreneur déclaré en France, TVA en franchise, pas d'agence offshore qui sous-traite. On peut se voir sur place ou en visio.": "Registered French sole trader, VAT-exempt, no offshore agency outsourcing. We can meet in person or by video call.",
+    "Disponibilité Lyon, Mâcon, Genève": "Available in Lyon, Mâcon, Geneva",
+    "30 jours d'ajustements offerts.": "30 days of free adjustments.",
+    "Une fois le site en ligne, je corrige les retours et ajuste sans frais pendant un mois. C'est inclus, pas un \"geste commercial\".": "Once the site is live, I fix feedback and adjust for free for a month. It's included, not a \"commercial gesture\".",
+    "Garantie post-livraison": "Post-delivery guarantee",
+    "Sur tous les packs": "On all plans",
+
+    /* Trades singular */
+    "Plombier": "Plumber",
+    "Coiffeur": "Hairdresser",
+    "Kinésithérapeute": "Physiotherapist",
+    "Coach sportif": "Fitness coach",
+    "Auto-école": "Driving school",
+    "Esthéticienne": "Beautician",
+    "Garagiste": "Garage",
+    "Toiletteur": "Pet groomer",
+    "Ostéopathe": "Osteopath",
+    "Électricien": "Electrician",
+    "Menuisier": "Carpenter",
 
     /* Trustbar */
     "— Inspiré par les meilleures maisons": "— Inspired by leading brands",
@@ -2780,6 +5394,11 @@ footer{
 
   function applyLang(lang){
     if(lang===currentLang) return;
+    // Restore original HTML on word-split elements before translating
+    document.querySelectorAll('.fx-words[data-original-html]').forEach(el => {
+      el.innerHTML = el.dataset.originalHtml;
+      el.classList.add('in'); // keep visible (animation already played)
+    });
     const list = findText(document.body, []);
     list.forEach(n => {
       const original = n.nodeValue;
@@ -2831,8 +5450,8 @@ footer{
     pct.textContent='100';
     setTimeout(()=>pre.classList.add('gone'),300);
   };
-  if(document.readyState==='complete') setTimeout(finish,1900);
-  else window.addEventListener('load',()=>setTimeout(finish,1600));
+  if(document.readyState==='complete') setTimeout(finish,1100);
+  else window.addEventListener('load',()=>setTimeout(finish,1100));
 })();
 
 /* ===== CUSTOM CURSOR + magnetic ===== */
@@ -2930,6 +5549,113 @@ document.querySelectorAll('.sec-head h2').forEach(h=>{
     if(i<lines.length-1)h.appendChild(document.createElement('br'));
   });
 });
+
+/* ===== Mobile menu ===== */
+(function(){
+  const btn=document.getElementById('navToggle');
+  const links=document.getElementById('navLinks');
+  const icon=document.getElementById('navIcon');
+  if(!btn||!links)return;
+  function close(){
+    links.classList.remove('open');btn.classList.remove('open');
+    btn.setAttribute('aria-expanded','false');btn.setAttribute('aria-label','Ouvrir le menu');
+    document.body.classList.remove('menu-open');
+    if(icon){icon.classList.remove('fa-xmark');icon.classList.add('fa-bars');}
+  }
+  function open(){
+    links.classList.add('open');btn.classList.add('open');
+    btn.setAttribute('aria-expanded','true');btn.setAttribute('aria-label','Fermer le menu');
+    document.body.classList.add('menu-open');
+    if(icon){icon.classList.remove('fa-bars');icon.classList.add('fa-xmark');}
+  }
+  btn.addEventListener('click',()=>{links.classList.contains('open')?close():open();});
+  links.querySelectorAll('a').forEach(a=>a.addEventListener('click',close));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&links.classList.contains('open'))close();});
+  window.addEventListener('resize',()=>{if(window.innerWidth>900&&links.classList.contains('open'))close();});
+})();
+
+/* ===== DEVIS form (Formspree-compatible AJAX submit) ===== */
+(function(){
+  const form=document.getElementById('devisForm');
+  if(!form)return;
+  const ok=document.getElementById('formSuccess');
+  const err=document.getElementById('formError');
+  const btn=form.querySelector('.form-submit');
+  form.addEventListener('submit',async e=>{
+    if(!form.action||form.action.includes('YOUR_FORMSPREE_ID')){
+      e.preventDefault();err.hidden=false;ok.hidden=true;return;
+    }
+    e.preventDefault();ok.hidden=true;err.hidden=true;
+    btn.classList.add('loading');btn.disabled=true;
+    try{
+      const data=new FormData(form);
+      const res=await fetch(form.action,{method:'POST',body:data,headers:{'Accept':'application/json'}});
+      if(res.ok){ok.hidden=false;form.reset();ok.scrollIntoView({behavior:'smooth',block:'center'});}
+      else{err.hidden=false;}
+    }catch(_){err.hidden=false;}
+    finally{btn.classList.remove('loading');btn.disabled=false;}
+  });
+})();
+
+/* ===== v2 SCROLL CHOREOGRAPHY ===== */
+(function(){
+  // Progress bar
+  const bar=document.createElement('div');bar.className='scroll-progress';document.body.appendChild(bar);
+  const setBar=()=>{const h=document.documentElement;const max=h.scrollHeight-h.clientHeight;const pct=max>0?(h.scrollTop/max)*100:0;bar.style.width=pct+'%';};
+  window.addEventListener('scroll',setBar,{passive:true});window.addEventListener('resize',setBar);setBar();
+
+  // Auto-tag
+  const h1=document.querySelector('.hero h1');
+  if(h1)h1.setAttribute('data-words','');
+  document.querySelectorAll('.hero .eyebrow,.hero-tag,.hero-cta,.hero-stats').forEach(el=>el.classList.add('fx-fade'));
+  const heroPhoto=document.querySelector('.hero-photo');
+  if(heroPhoto)heroPhoto.classList.add('fx-img-reveal');
+  document.querySelectorAll('.sec-head h2,#temoignages h2,#trustbar h2').forEach(el=>el.setAttribute('data-words',''));
+  document.querySelectorAll('.sec-desc').forEach(el=>el.classList.add('fx-fade'));
+  document.querySelectorAll('.bento-card,.who-card,.proj,.testi,.price,.process-step,.faq-item').forEach((el,i)=>{
+    el.classList.add('fx-card');el.style.transitionDelay=(Math.min(i,8)*0.06)+'s';
+  });
+
+  // Word splitter — preserves original HTML for i18n restoration
+  document.querySelectorAll('[data-words]').forEach(el=>{
+    el.classList.add('fx-words');
+    if(!el.dataset.originalHtml)el.dataset.originalHtml=el.innerHTML;
+    const splitNodes=(node)=>{
+      Array.from(node.childNodes).forEach(child=>{
+        if(child.nodeType===3){
+          const text=child.textContent;
+          if(!text.trim())return;
+          const frag=document.createDocumentFragment();
+          text.split(/(\s+)/).forEach(w=>{
+            if(w.trim().length){
+              const span=document.createElement('span');span.className='w';span.textContent=w;frag.appendChild(span);
+            }else if(w.length){frag.appendChild(document.createTextNode(w));}
+          });
+          child.parentNode.replaceChild(frag,child);
+        }else if(child.nodeType===1 && child.childNodes.length){splitNodes(child);}
+      });
+    };
+    splitNodes(el);
+    el.querySelectorAll('.w').forEach((w,i)=>{w.style.transitionDelay=(i*0.04)+'s';});
+  });
+
+  // IntersectionObserver
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        if(e.target.matches('[data-count]')){
+          const target=parseFloat(e.target.getAttribute('data-count'))||0;
+          const dur=900;const start=performance.now();
+          const step=(t)=>{const p=Math.min((t-start)/dur,1);const eased=1-Math.pow(1-p,3);e.target.textContent=Math.round(target*eased);if(p<1)requestAnimationFrame(step);};
+          requestAnimationFrame(step);
+        }
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:.18,rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.fx-fade,.fx-words,.fx-card,.fx-img-reveal,[data-count]').forEach(el=>io.observe(el));
+})();
 
 /* ===== CMD-K palette ===== */
 (function(){
@@ -3251,6 +5977,206 @@ window.addEventListener('scroll',()=>{
   /* Hide the static label since cobe handles markers itself. */
   const lbl = document.querySelector('.globe-pulse');
   if (lbl) lbl.style.display = 'none';
+})();
+
+/* ============================================================
+   v3 — Lenis smooth scroll + Floating CTA + Theme switch
+   ============================================================ */
+
+/* 1. Lenis smooth scroll */
+(function(){
+  if(typeof Lenis==='undefined')return;
+  const lenis=new Lenis({duration:1.1,easing:t=>Math.min(1,1.001-Math.pow(2,-10*t)),smoothWheel:true});
+  function raf(time){lenis.raf(time);requestAnimationFrame(raf);}
+  requestAnimationFrame(raf);
+  // Anchor links: use Lenis to scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{
+      const id=a.getAttribute('href');
+      if(id.length<2)return;
+      const target=document.querySelector(id);
+      if(target){e.preventDefault();lenis.scrollTo(target,{offset:-80,duration:1.4});}
+    });
+  });
+})();
+
+/* 2. Floating Devis CTA — appears after scrolling past hero */
+(function(){
+  const cta=document.createElement('a');
+  cta.href='#contact';
+  cta.className='float-cta';
+  cta.setAttribute('aria-label','Demander un devis gratuit');
+  const ctaLabel=(document.documentElement.lang==='en')?'Get a quote':'Devis gratuit';
+  cta.innerHTML='<span class="float-cta-icon"><i class="fas fa-arrow-right"></i></span> '+ctaLabel;
+  document.body.appendChild(cta);
+  // Show after scrolling past hero
+  const hero=document.querySelector('.hero');
+  const showAt=()=>(hero?hero.offsetHeight*0.6:600);
+  function update(){
+    const y=window.scrollY;
+    const max=document.documentElement.scrollHeight-window.innerHeight;
+    const nearBottom=y>max-200;
+    // Hide when on hero or already on contact section
+    cta.classList.toggle('visible',y>showAt()&&!nearBottom);
+  }
+  window.addEventListener('scroll',update,{passive:true});
+  window.addEventListener('resize',update);
+  update();
+})();
+
+/* 4. Cinematic rail: hide hint after user starts scrolling horizontally */
+(function(){
+  const rail=document.getElementById('cinematicRail');
+  if(!rail)return;
+  const hint=document.querySelector('.cinematic-rail-hint');
+  if(!hint)return;
+  rail.addEventListener('scroll',()=>{
+    const max=rail.scrollWidth-rail.clientWidth;
+    if(max<=0)return;
+    const pct=rail.scrollLeft/max;
+    hint.style.opacity=pct<0.05?'':'0';
+  });
+})();
+
+/* 7. Scroll expansion hero — rAF-throttled, pinned scaling */
+(function(){
+  const section=document.getElementById('scrollXp');
+  const frame=document.getElementById('sxpFrame');
+  if(!section||!frame)return;
+  const topText=section.querySelector('.sxp-text-top');
+  const bottomText=section.querySelector('.sxp-text-bottom');
+  const bg=section.querySelector('.sxp-bg');
+  let ticking=false;
+  let lastP=-1;
+  // Cull: only run when section is even close to viewport
+  let inView=false;
+  const io=new IntersectionObserver(([e])=>{inView=e.isIntersecting;},{rootMargin:'200px'});
+  io.observe(section);
+
+  function compute(){
+    ticking=false;
+    if(!inView)return;
+    const r=section.getBoundingClientRect();
+    const total=section.offsetHeight-window.innerHeight;
+    if(total<=0)return;
+    const p=Math.min(Math.max(-r.top/total,0),1);
+    if(Math.abs(p-lastP)<0.002)return;
+    lastP=p;
+    const scaleP=Math.min(p/0.7,1);
+    const scale=1+scaleP*2.6;
+    frame.style.setProperty('--sxp-scale',scale.toFixed(3));
+    const textFade=Math.min(Math.max((p-0.1)/0.4,0),1);
+    const textOpacity=1-textFade;
+    if(topText)topText.style.opacity=textOpacity;
+    if(bottomText)bottomText.style.opacity=textOpacity;
+    if(bg)bg.style.opacity=(1-p*0.3).toFixed(2);
+  }
+  function onScroll(){
+    if(!ticking){ticking=true;requestAnimationFrame(compute);}
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  compute();
+})();
+
+/* 6. Intro stage — trigger reveal + typewriter */
+(function(){
+  const stage=document.getElementById('manifesto');
+  if(!stage)return;
+  const typed=document.getElementById('introTyped');
+  const cursor=typed?typed.querySelector('.ii-cursor'):null;
+  const wordsToType=['Tristan.','Tristan Muller.','Tristan, et je code.'];
+  let typedTriggered=false;
+  function triggerType(){
+    if(typedTriggered||!typed)return;
+    typedTriggered=true;
+    const finalWord='Tristan Muller.';
+    let i=0;
+    const start=()=>{
+      const tick=()=>{
+        if(i<=finalWord.length){
+          // text node before cursor
+          const txt=finalWord.slice(0,i);
+          // recreate content: text + cursor
+          while(typed.firstChild&&typed.firstChild!==cursor)typed.removeChild(typed.firstChild);
+          if(cursor&&cursor.parentNode===typed)typed.removeChild(cursor);
+          typed.insertBefore(document.createTextNode(txt),null);
+          if(cursor)typed.appendChild(cursor);
+          i++;
+          setTimeout(tick,90+Math.random()*60);
+        }
+      };
+      tick();
+    };
+    setTimeout(start,1500);
+  }
+  const io=new IntersectionObserver(([e])=>{
+    if(e.isIntersecting){
+      stage.classList.add('in');
+      triggerType();
+    }
+  },{threshold:0.25});
+  io.observe(stage);
+})();
+
+/* 5. Chapter counter (Motto/Chainzoku-style fixed UI) */
+(function(){
+  const chapters=[
+    {id:'#hero-anchor',label:'Intro'},
+    {id:'#manifesto',label:'Studio'},
+    {id:'#pour-qui',label:'Pour qui'},
+    {id:'#offre',label:'L\'offre'},
+    {id:'#process',label:'Process'},
+    {id:'#tarifs',label:'Tarifs'},
+    {id:'#projets',label:'Galerie'},
+    {id:'#temoignages',label:'Promesse'},
+    {id:'#faq',label:'FAQ'},
+    {id:'#contact',label:'Contact'}
+  ].map(c=>({...c,el:document.querySelector(c.id)})).filter(c=>c.el);
+  if(!chapters.length)return;
+  const counter=document.createElement('div');
+  counter.className='chapter-counter';
+  counter.innerHTML='<span class="cc-num">01</span><span class="cc-sep">/</span><span class="cc-total">'+String(chapters.length).padStart(2,'0')+'</span><span class="cc-lbl">Intro</span>';
+  document.body.appendChild(counter);
+  const numEl=counter.querySelector('.cc-num');
+  const lblEl=counter.querySelector('.cc-lbl');
+  const labelMap={
+    'Intro':'Intro','Studio':'Studio','Pour qui':'For whom',"L'offre":"Service",
+    'Process':'Process','Tarifs':'Pricing','Galerie':'Gallery','Promesse':'Commitment',
+    'FAQ':'FAQ','Contact':'Contact'
+  };
+  function update(){
+    let i=0;
+    for(let j=0;j<chapters.length;j++){
+      const r=chapters[j].el.getBoundingClientRect();
+      if(r.top<=window.innerHeight*0.3)i=j;
+    }
+    numEl.textContent=String(i+1).padStart(2,'0');
+    const lang=document.documentElement.lang||'fr';
+    const lbl=chapters[i].label;
+    lblEl.textContent=(lang==='en'&&labelMap[lbl])?labelMap[lbl]:lbl;
+  }
+  window.addEventListener('scroll',update,{passive:true});
+  update();
+})();
+
+/* 3. Nav theme switching (dark sections → translucent dark; light sections → light) */
+(function(){
+  const nav=document.querySelector('nav');
+  if(!nav)return;
+  // Light sections by class/id
+  const lightSections=['#pour-qui','#process','#tarifs','#faq','#projets'].map(s=>document.querySelector(s)).filter(Boolean);
+  function check(){
+    const navBottom=nav.getBoundingClientRect().bottom;
+    const onLight=lightSections.some(s=>{
+      const r=s.getBoundingClientRect();
+      return r.top<=navBottom+10&&r.bottom>navBottom+10;
+    });
+    nav.classList.toggle('theme-light',onLight);
+  }
+  window.addEventListener('scroll',check,{passive:true});
+  window.addEventListener('resize',check);
+  check();
 })();
 </script>
 
